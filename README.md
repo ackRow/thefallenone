@@ -1,6 +1,6 @@
 # The Fallen One
 
-#TODO List
+# TODO List
 
 |       | Hugo | Romain | Guillaume | Théo |
 |-------|------|--------|-----------|------|
