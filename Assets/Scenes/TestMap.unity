@@ -198,10 +198,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 6
 =======
   m_RootOrder: 9
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+  m_RootOrder: 4
+>>>>>>> parent of aeae0a7... Player asset added
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &169193318
 Prefab:
@@ -241,14 +245,19 @@ Prefab:
     - target: {fileID: 4758230220369578, guid: d9be410566c36cc4c837751196cbfa07, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 7
 =======
       value: 8
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+      value: 5
+>>>>>>> parent of aeae0a7... Player asset added
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9be410566c36cc4c837751196cbfa07, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &580077858
 =======
@@ -388,6 +397,8 @@ Prefab:
   m_ParentPrefab: {fileID: 100100000, guid: 5169d32c4b30d9a478de019d99c5cd99, type: 3}
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
   m_IsPrefabParent: 0
+=======
+>>>>>>> parent of aeae0a7... Player asset added
 --- !u!1001 &768087604
 Prefab:
   m_ObjectHideFlags: 0
@@ -426,10 +437,14 @@ Prefab:
     - target: {fileID: 4349766390015894, guid: 68e21c9b0773834448897d351640da9d, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 5
 =======
       value: 6
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+      value: 4
+>>>>>>> parent of aeae0a7... Player asset added
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68e21c9b0773834448897d351640da9d, type: 2}
@@ -498,10 +513,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 4
 =======
   m_RootOrder: 7
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+  m_RootOrder: 3
+>>>>>>> parent of aeae0a7... Player asset added
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1084074141
 Prefab:
@@ -681,10 +700,14 @@ Prefab:
     - target: {fileID: 4827311431999988, guid: 9565949477e7558408191b825ac5f93a, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 3
 =======
       value: 5
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+      value: 1
+>>>>>>> parent of aeae0a7... Player asset added
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9565949477e7558408191b825ac5f93a, type: 2}
@@ -827,10 +850,14 @@ Prefab:
     - target: {fileID: 4827311431999988, guid: 9565949477e7558408191b825ac5f93a, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 2
 =======
       value: 4
 >>>>>>> f27d8a11c0f094d91d065846ec65949c85f23d35
+=======
+      value: 1
+>>>>>>> parent of aeae0a7... Player asset added
       objectReference: {fileID: 0}
     - target: {fileID: 1256553595582338, guid: 9565949477e7558408191b825ac5f93a, type: 2}
       propertyPath: m_Name
