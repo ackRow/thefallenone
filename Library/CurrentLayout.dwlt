@@ -14,16 +14,22 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 870
     y: 769
     width: 1920
     height: 998
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     x: 0
     y: 64
     width: 3840
     height: 2036
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 9}
@@ -45,6 +51,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 470
     width: 887
     height: 478
@@ -52,6 +59,8 @@ MonoBehaviour:
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     y: 981
     width: 1774
     height: 1005
@@ -82,6 +91,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 887
     height: 948
   m_MinSize: {x: 202, y: 442}
@@ -96,6 +106,14 @@ MonoBehaviour:
   vertical: 1
   controlID: 137
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    width: 1774
+    height: 1986
+  m_MinSize: {x: 202, y: 342}
+  m_MaxSize: {x: 4002, y: 8042}
+  vertical: 1
+  controlID: 137
+>>>>>>> parent of 4d19bec... Map test Floor taged
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -112,6 +130,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 500
     width: 473
     height: 448
@@ -120,6 +139,11 @@ MonoBehaviour:
     width: 946
     height: 936
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    y: 1050
+    width: 946
+    height: 936
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_MinSize: {x: 234, y: 271}
   m_MaxSize: {x: 10004, y: 10021}
   m_ActualView: {fileID: 16}
@@ -147,6 +171,7 @@ MonoBehaviour:
     x: 1774
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 473
     height: 948
   m_MinSize: {x: 234, y: 492}
@@ -161,6 +186,14 @@ MonoBehaviour:
   vertical: 1
   controlID: 113
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    width: 946
+    height: 1986
+  m_MinSize: {x: 234, y: 492}
+  m_MaxSize: {x: 10004, y: 14042}
+  vertical: 1
+  controlID: 113
+>>>>>>> parent of 4d19bec... Map test Floor taged
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -178,12 +211,15 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 473
     height: 500
   m_MinSize: {x: 204, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 18}
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     width: 946
     height: 1050
   m_MinSize: {x: 204, y: 221}
@@ -213,6 +249,7 @@ MonoBehaviour:
     x: 0
     y: 30
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1920
     height: 948
   m_MinSize: {x: 713, y: 492}
@@ -227,6 +264,14 @@ MonoBehaviour:
   vertical: 0
   controlID: 111
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    width: 3840
+    height: 1986
+  m_MinSize: {x: 713, y: 492}
+  m_MaxSize: {x: 18008, y: 14042}
+  vertical: 0
+  controlID: 111
+>>>>>>> parent of 4d19bec... Map test Floor taged
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -244,12 +289,15 @@ MonoBehaviour:
     x: 2720
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 560
     height: 948
   m_MinSize: {x: 277, y: 71}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     width: 1120
     height: 1986
   m_MinSize: {x: 277, y: 71}
@@ -281,12 +329,17 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1920
     height: 998
 =======
     width: 3840
     height: 2036
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    width: 3840
+    height: 2036
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &10
@@ -326,12 +379,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     y: 978
     width: 1920
 =======
     y: 2016
     width: 3840
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    y: 2016
+    width: 3840
+>>>>>>> parent of 4d19bec... Map test Floor taged
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -354,6 +412,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 1360
     height: 948
   m_MinSize: {x: 436, y: 492}
@@ -361,13 +420,18 @@ MonoBehaviour:
   vertical: 0
   controlID: 52
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     width: 2720
     height: 1986
   m_MinSize: {x: 436, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 0
   controlID: 112
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -385,6 +449,7 @@ MonoBehaviour:
     x: 0
     y: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     width: 887
     height: 470
   m_MinSize: {x: 202, y: 221}
@@ -395,6 +460,8 @@ MonoBehaviour:
   - {fileID: 15}
   m_Selected: 0
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     width: 1774
     height: 981
   m_MinSize: {x: 102, y: 121}
@@ -405,7 +472,10 @@ MonoBehaviour:
   - {fileID: 14}
   - {fileID: 16}
   m_Selected: 1
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_LastSelected: 0
 --- !u!114 &14
 MonoBehaviour:
@@ -554,16 +624,22 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 2
     y: 519
     width: 469
     height: 427
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     x: 1776
     y: 1163
     width: 942
     height: 915
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -578,23 +654,30 @@ MonoBehaviour:
     m_SearchArea: 0
     m_Folders:
 <<<<<<< HEAD
+<<<<<<< HEAD
     - Assets/Player/Prefab
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Player/Prefab
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     - Assets/Player/Model
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Player/Model
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\hugorosen\Documents\thefallenone
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_SelectedIDs: 762c0000
     m_LastClickedID: 11382
@@ -604,6 +687,11 @@ MonoBehaviour:
     m_LastClickedID: 13014
     m_ExpandedIDs: 00000000f4290000862a0000ae2a0000f42a00008e2b0000fe2b0000002c0000062c0000b0320000b2320000b4320000b6320000b832000000ca9a3bffffff7f
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    m_SelectedIDs: d6320000
+    m_LastClickedID: 13014
+    m_ExpandedIDs: 00000000f4290000862a0000ae2a0000f42a00008e2b0000fe2b0000002c0000062c0000b0320000b2320000b4320000b6320000b832000000ca9a3bffffff7f
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -632,10 +720,14 @@ MonoBehaviour:
     m_SelectedIDs: 
     m_LastClickedID: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_ExpandedIDs: 000000001e2a0000b02a0000d82a00001e2b0000b82b0000282c00002a2c0000302c0000d6320000d8320000da320000dc320000de320000
 =======
     m_ExpandedIDs: 00000000f4290000862a0000ae2a0000f42a00008e2b0000fe2b0000002c0000062c0000b0320000b2320000b4320000b6320000b8320000
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    m_ExpandedIDs: 00000000f4290000862a0000ae2a0000f42a00008e2b0000fe2b0000002c0000062c0000b0320000b2320000b4320000b6320000b8320000
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -713,16 +805,22 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 1362
     y: 19
     width: 558
     height: 927
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     x: 2722
     y: 113
     width: 1118
     height: 1965
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
@@ -754,6 +852,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 2
     y: 19
     width: 469
@@ -776,6 +875,18 @@ MonoBehaviour:
     m_LastClickedID: 0
     m_ExpandedIDs: 46c0ffff66f7ffff00000000f42d00008e2e0000
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    x: 1776
+    y: 113
+    width: 942
+    height: 1029
+  m_PersistentViewDataDictionary: {fileID: 0}
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: c2befdff
+    m_LastClickedID: 0
+    m_ExpandedIDs: 46c0ffff66f7ffff00000000f42d00008e2e0000
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -821,16 +932,22 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 870
     y: 818
     width: 885
     height: 449
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     x: 0
     y: 113
     width: 1772
     height: 960
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
   lastFramingTime: 197.06798164504605
@@ -838,6 +955,7 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
 <<<<<<< HEAD
     m_Target: {x: -19.218056, y: -23.083286, z: 13.689803}
     speed: 2
@@ -847,6 +965,11 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -4.6087246, y: -6.8566694, z: 28.647293}
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    m_Target: {x: -4.6087246, y: -6.8566694, z: 28.647293}
+    speed: 2
+    m_Value: {x: -4.6087246, y: -6.8566694, z: 28.647293}
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -871,6 +994,7 @@ MonoBehaviour:
       m_Value: 0
   m_Rotation:
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Target: {x: -0.35050163, y: 0.35830694, z: -0.14728402, w: -0.85268533}
     speed: 2
     m_Value: {x: -0.35050163, y: 0.35830697, z: -0.14728402, w: -0.85268533}
@@ -887,6 +1011,15 @@ MonoBehaviour:
     speed: 2
     m_Value: 40.02562
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+    m_Target: {x: -0.16083658, y: 0.07424994, z: -0.012134553, w: -0.9841094}
+    speed: 2
+    m_Value: {x: -0.16083658, y: 0.07424994, z: -0.012134553, w: -0.9841094}
+  m_Size:
+    m_Target: 40.02562
+    speed: 2
+    m_Value: 40.02562
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -921,16 +1054,22 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
     x: 870
     y: 1288
     width: 885
     height: 457
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     x: 0
     y: 1094
     width: 1772
     height: 984
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -941,16 +1080,22 @@ MonoBehaviour:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_HBaseRangeMin: -442.5
     m_HBaseRangeMax: 442.5
     m_VBaseRangeMin: -220
     m_VBaseRangeMax: 220
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_HBaseRangeMin: -886
     m_HBaseRangeMax: 886
     m_VBaseRangeMin: -483.5
     m_VBaseRangeMax: 483.5
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -968,6 +1113,7 @@ MonoBehaviour:
       x: 0
       y: 17
 <<<<<<< HEAD
+<<<<<<< HEAD
       width: 885
       height: 440
     m_Scale: {x: 1, y: 1}
@@ -978,6 +1124,12 @@ MonoBehaviour:
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 886, y: 483.5}
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+      width: 1772
+      height: 967
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 886, y: 483.5}
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -985,25 +1137,35 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
       x: -442.5
       y: -220
       width: 885
       height: 440
 =======
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
       x: -886
       y: -483.5
       width: 1772
       height: 967
+<<<<<<< HEAD
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+>>>>>>> parent of 4d19bec... Map test Floor taged
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_LastWindowPixelSize: {x: 885, y: 457}
 =======
   m_LastWindowPixelSize: {x: 1772, y: 984}
 >>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
+=======
+  m_LastWindowPixelSize: {x: 1772, y: 984}
+>>>>>>> parent of 4d19bec... Map test Floor taged
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
