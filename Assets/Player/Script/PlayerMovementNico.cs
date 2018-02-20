@@ -13,6 +13,8 @@ public class PlayerMovementNico : Player
     public float Speed;
     private bool _isGrounded;
 
+    private int delay = 0;
+
     [SerializeField]
     private Animator animator;
 
@@ -54,6 +56,7 @@ public class PlayerMovementNico : Player
         if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
             Speed *= 0.6f;
+            animator.SetBool("hasJumped", false);
         }
 
         //_body.velocity c'est la vélocité de l'objet (la vitesse)
@@ -65,10 +68,19 @@ public class PlayerMovementNico : Player
 
         
 
-       if (Input.GetKey(KeyCode.Space) && _isGrounded)
+       if ( (Input.GetKey(KeyCode.Space) ||  animator.GetBool("hasJumped") ) && _isGrounded)
         {  //on saute
-            _body.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse); ;
-            _isGrounded = false;
+            
+            animator.SetBool("hasJumped", true);
+
+            delay++;
+
+            if (delay > 7)
+            {
+                _body.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse); ;
+                _isGrounded = false;
+                delay = 0;
+            }
         }
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
 

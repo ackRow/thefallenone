@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 398a0d6f145380d45874513e18d197e9
-timeCreated: 1519121212
+timeCreated: 1519166899
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -62,10 +62,12 @@ ModelImporter:
     4300010: Head
     4300012: Shoulder_L
     7400000: Default Take
-    7400002: Flipping
-    7400004: Idle
-    7400006: Punching
-    7400008: Walking
+    7400002: ArmatureAction
+    7400004: Flipping
+    7400006: Idle
+    7400008: Jumping
+    7400010: Punching
+    7400012: Walking
     9500000: //RootNode
     13700000: Body
     13700002: Hand_L
@@ -106,6 +108,34 @@ ModelImporter:
       takeName: Default Take
       firstFrame: 0
       lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: ArmatureAction
+      takeName: ArmatureAction
+      firstFrame: 0
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -160,8 +190,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
-      firstFrame: 1
-      lastFrame: 38
+      firstFrame: 0
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -169,6 +199,34 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jumping
+      takeName: Jumping
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
