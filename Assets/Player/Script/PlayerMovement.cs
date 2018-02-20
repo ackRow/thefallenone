@@ -13,12 +13,8 @@ public class PlayerMovement : Player
     public float Speed;
     private bool _isGrounded;
 
-    [SerializeField]
-    private Animator animator;
-
     void Start()
     {
-        animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
         _isGrounded = false;
     }
@@ -36,12 +32,6 @@ public class PlayerMovement : Player
 
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
-
-        if (animator)
-        {
-            animator.SetFloat("Speed", _moveDirection.x* _moveDirection.x);
-            animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
-        }
 
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {  //on saute
