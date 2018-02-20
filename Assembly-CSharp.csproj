@@ -51,12 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Custom\MouseLook.cs" />
-     <Compile Include="Assets\Custom\ThirdPersonCharacter.cs" />
-     <Compile Include="Assets\Custom\ThirdPersonUserControl.cs" />
- <Reference Include="Assembly-CSharp-firstpass">
- <HintPath>C:/Users/hugorosen/Documents/thefallenone/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll</HintPath>
- </Reference>
+     <Compile Include="Assets\Player\Script\moveLook.cs" />
+     <Compile Include="Assets\Player\Script\Player.cs" />
+     <Compile Include="Assets\Player\Script\PlayerMovementNico.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -141,6 +138,10 @@
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/hugorosen/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{C331C60B-6955-79BA-7BD8-D95291155DE5}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
