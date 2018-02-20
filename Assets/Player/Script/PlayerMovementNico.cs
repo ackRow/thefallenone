@@ -42,7 +42,7 @@ public class PlayerMovementNico : Player
 
         if (animator)
         {
-            animator.SetFloat("Speed", _moveDirection.x* _moveDirection.x);
+            animator.SetFloat("Speed", _body.velocity.x* _body.velocity.x);
             animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
             animator.SetBool("isPunching", Input.GetMouseButtonDown(0));
         }
@@ -54,7 +54,8 @@ public class PlayerMovementNico : Player
         }
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
-        { // on se baisse
+        {
+            speed = 1.0f;
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -79,6 +80,11 @@ public class PlayerMovementNico : Player
         if (collision.gameObject.tag == "Floor")
         {
             _isGrounded = true;
+        }
+        if(collision.gameObject.tag == "jumpg")
+        {
+            _body.AddForce(new Vector3(0, 600, 0), ForceMode.Impulse); ;
+            _isGrounded = false;
         }
     }
 }

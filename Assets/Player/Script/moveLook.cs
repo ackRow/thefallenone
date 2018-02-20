@@ -13,15 +13,11 @@ public class moveLook : MonoBehaviour {
     public float minimumY = -60F;
     public float maximumY = 60F;
 
-    [SerializeField]
-    public Animation isPunching;
-
     GameObject character;
     // Use this for initialization
     void Start()
     {
         character = this.transform.parent.gameObject;
-        //isPunching = GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -38,12 +34,6 @@ public class moveLook : MonoBehaviour {
 
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-
-        if (isPunching.isPlaying)
-        {
-            transform.Translate(new Vector3(0, 0, 10));
-
-        }
 
         //transform.position = Vector3.MoveTowards(transform.position, parent.transform.position, 0.03f); Vu TPS
     }
