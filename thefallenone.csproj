@@ -290,7 +290,7 @@
   <ItemGroup>
     <Compile Include="Assets\Player\Script\moveLook.cs" />
     <Compile Include="Assets\Player\Script\Player.cs" />
-    <Compile Include="Assets\Player\Script\PlayerMovement.cs" />
+    <Compile Include="Assets\Player\Script\PlayerMovementNico.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />

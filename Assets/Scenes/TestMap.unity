@@ -1474,6 +1474,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
+<<<<<<< HEAD
+  m_Mesh: {fileID: 4300096, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+--- !u!1 &538287835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100066, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 538287836}
+  m_Layer: 0
+  m_Name: marche_hauteur
+=======
   m_Mesh: {fileID: 4300122, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
 --- !u!1 &509073550
 GameObject:
@@ -1488,96 +1501,13 @@ GameObject:
   - component: {fileID: 509073554}
   m_Layer: 0
   m_Name: Tube_12
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &509073551
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400138, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 509073550}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2737367e-15, y: -1.4886928, z: -4.5419226}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1644133046}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &509073552
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300100, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
-    type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 509073550}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100004, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &509073553
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300100, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
-    type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 509073550}
-  m_Mesh: {fileID: 4300096, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
---- !u!64 &509073554
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 509073550}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300096, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
---- !u!1 &538287835
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100066, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 538287836}
-  m_Layer: 0
-  m_Name: marche_hauteur
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
+<<<<<<< HEAD
 --- !u!4 &538287836
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,6 +1566,28 @@ MeshRenderer:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 599449659}
+=======
+--- !u!4 &509073551
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400138, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509073550}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.2737367e-15, y: -1.4886928, z: -4.5419226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1644133046}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &509073552
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300100, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509073550}
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1644,7 +1596,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 2100008, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+=======
+  - {fileID: 2100004, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1664,6 +1620,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+<<<<<<< HEAD
 --- !u!33 &599449662
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1673,11 +1630,26 @@ MeshFilter:
   m_GameObject: {fileID: 599449659}
   m_Mesh: {fileID: 4300068, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
 --- !u!64 &599449663
+=======
+--- !u!33 &509073553
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300100, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 509073550}
+  m_Mesh: {fileID: 4300096, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+--- !u!64 &509073554
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 599449659}
+=======
+  m_GameObject: {fileID: 509073550}
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -1685,8 +1657,48 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
+<<<<<<< HEAD
   m_Mesh: {fileID: 4300068, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
 --- !u!1 &626063678
+=======
+  m_Mesh: {fileID: 4300096, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+--- !u!1 &538287835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100066, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 538287836}
+  m_Layer: 0
+  m_Name: marche_hauteur
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &538287836
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400066, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 538287835}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 10.149146, y: 3.3938806, z: 9.278441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1307494720}
+  - {fileID: 1080260329}
+  - {fileID: 896456937}
+  - {fileID: 1214547637}
+  - {fileID: 2000639981}
+  - {fileID: 750467198}
+  - {fileID: 1484038257}
+  m_Father: {fileID: 939599272}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &599449659
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 1537842995293144, guid: 8cf9074ddc6afcb4c8ef2ae920805cd7,
@@ -1701,7 +1713,11 @@ GameObject:
   - component: {fileID: 626063685}
   - component: {fileID: 626063679}
   m_Layer: 0
+<<<<<<< HEAD
   m_Name: Perso_Test
+=======
+  m_Name: "Sph\xE8re_1"
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1712,6 +1728,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 626063678}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1725,6 +1742,17 @@ MonoBehaviour:
   JumpForce: 12
   Speed: 0
 --- !u!23 &626063681
+=======
+  m_GameObject: {fileID: 599449659}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0390024, y: 0, z: 3.0562868}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1660789000}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &599449661
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 23308750127353946, guid: 8cf9074ddc6afcb4c8ef2ae920805cd7,
@@ -1787,6 +1815,7 @@ Transform:
   m_PrefabParentObject: {fileID: 4848478069099280, guid: 8cf9074ddc6afcb4c8ef2ae920805cd7,
     type: 2}
   m_PrefabInternal: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 626063678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.93, z: -5.8}
@@ -1811,6 +1840,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+=======
+  m_GameObject: {fileID: 599449659}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300068, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
 --- !u!1 &627182509
 GameObject:
   m_ObjectHideFlags: 0
@@ -5009,6 +5049,61 @@ Transform:
   m_Father: {fileID: 939599272}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+=======
+--- !u!1001 &1371041099
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.529
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4172871467029152, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 95390267433092122, guid: c607670df166d7c4d9ac39f957369d80,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 423c13ce7f9e0fe468908aa2194d1b87, type: 2}
+    - target: {fileID: 114480473342057434, guid: c607670df166d7c4d9ac39f957369d80,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1427773657}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
+  m_IsPrefabParent: 0
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
 --- !u!1 &1375636630
 GameObject:
   m_ObjectHideFlags: 0
@@ -5077,6 +5172,7 @@ MeshRenderer:
   m_SortingOrder: 0
 --- !u!33 &1375636633
 MeshFilter:
+<<<<<<< HEAD
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 3300088, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
     type: 3}
@@ -5160,6 +5256,11 @@ Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 124560659566005946, guid: 8cf9074ddc6afcb4c8ef2ae920805cd7,
     type: 2}
+=======
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300088, guid: 28c34b4f6cea81a40bb84bcd94f6f566,
+    type: 3}
+>>>>>>> parent of 37a3865... Merge branch 'master' of https://github.com/ackRow/thefallenone
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1378641385}
   m_Enabled: 1
