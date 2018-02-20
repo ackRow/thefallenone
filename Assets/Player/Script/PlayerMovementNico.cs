@@ -25,15 +25,7 @@ public class PlayerMovementNico : Player
 
     void Update()
     {
-        print(_isGrounded);
-    }
-
-    private void FixedUpdate()
-    {
-        Speed = 5.0f;
-
-        //_body.velocity c'est la vélocité de l'objet (la vitesse)
-
+        //print(_isGrounded);
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
@@ -42,28 +34,45 @@ public class PlayerMovementNico : Player
 
         if (animator)
         {
-            animator.SetFloat("Speed", _body.velocity.x* _body.velocity.x);
+
+            animator.SetFloat("Speed", Speed);
             animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
             animator.SetBool("isPunching", Input.GetMouseButtonDown(0));
         }
+    }
 
-        if (Input.GetKey(KeyCode.Space) && _isGrounded)
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {  // on cours
+            Speed = 10.0f;
+        }
+        else {
+             Speed = 4.0f;
+        }
+
+        if (!_isGrounded)
+        { //pendant qu'on est dans les air le mouvement est réduit
+            Speed *= 0.6f;
+        }
+
+        //_body.velocity c'est la vélocité de l'objet (la vitesse)
+
+        _moveDirection.z = Input.GetAxis("Horizontal");
+        _moveDirection.x = Input.GetAxis("Vertical");
+
+        print(_moveDirection);
+
+        
+
+       if (Input.GetKey(KeyCode.Space) && _isGrounded)
         {  //on saute
             _body.AddForce(new Vector3(0, 200, 0), ForceMode.Impulse); ;
             _isGrounded = false;
         }
+        _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-            speed = 1.0f;
-        }
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {  // on cours
-            Speed = 12.0f;
-        }
-
-        if (!_isGrounded)
+        /*if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
             speed = 1.0f;
         }
@@ -72,7 +81,7 @@ public class PlayerMovementNico : Player
         {
             _body.AddForce(transform.forward * 1000 * _moveDirection.x);
             _body.AddForce(transform.right * 1000 * _moveDirection.z);
-        }
+        }*/
     }
 
     void OnCollisionEnter(Collision collision)
