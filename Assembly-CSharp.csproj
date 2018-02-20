@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\FPS.cs" />
+     <Compile Include="Assets\Player\Model\Scripts\AICharacterControl.cs" />
+     <Compile Include="Assets\Player\Model\Scripts\ThirdPersonCharacter.cs" />
+     <Compile Include="Assets\Player\Model\Scripts\ThirdPersonUserControl.cs" />
      <Compile Include="Assets\Player\Script\moveLook.cs" />
      <Compile Include="Assets\Player\Script\Player.cs" />
      <Compile Include="Assets\Player\Script\PlayerHealth.cs" />

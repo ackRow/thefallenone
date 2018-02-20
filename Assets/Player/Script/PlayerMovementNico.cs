@@ -37,10 +37,14 @@ public class PlayerMovementNico : Player
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
+        //if (Input.GetMouseButtonDown(0))
+
+
         if (animator)
         {
             animator.SetFloat("Speed", _moveDirection.x* _moveDirection.x);
             animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
+            animator.SetBool("isPunching", Input.GetMouseButtonDown(0));
         }
 
         if (Input.GetKey(KeyCode.Space) && _isGrounded)
