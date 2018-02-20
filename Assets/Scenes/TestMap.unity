@@ -4928,6 +4928,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 423c13ce7f9e0fe468908aa2194d1b87, type: 2}
+    - target: {fileID: 114480473342057434, guid: c607670df166d7c4d9ac39f957369d80,
+        type: 2}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1427773657}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c607670df166d7c4d9ac39f957369d80, type: 2}
   m_IsPrefabParent: 0
@@ -5107,6 +5112,11 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300102, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+--- !u!95 &1427773657 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95390267433092122, guid: c607670df166d7c4d9ac39f957369d80,
+    type: 2}
+  m_PrefabInternal: {fileID: 1371041099}
 --- !u!1 &1453632237
 GameObject:
   m_ObjectHideFlags: 0
