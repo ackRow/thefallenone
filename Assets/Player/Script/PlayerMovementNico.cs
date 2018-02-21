@@ -64,7 +64,7 @@ public class PlayerMovementNico : Player
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-        print(_moveDirection);
+		print(_body.velocity);
 
         
 
@@ -83,6 +83,9 @@ public class PlayerMovementNico : Player
             }
         }
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
+
+		_body.isKinematic = _body.velocity == Vector3.zero;// || _body.acceleration == Vector3.zero;
+			
 
         /*if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
