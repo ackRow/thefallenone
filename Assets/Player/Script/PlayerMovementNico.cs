@@ -47,7 +47,7 @@ public class PlayerMovementNico : Player
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {  // on cours
-            Speed = 10.0f;
+            Speed = 8.0f;
         }
         else {
              Speed = 4.0f;
@@ -72,21 +72,22 @@ public class PlayerMovementNico : Player
         {  //on saute
             //_body.isKinematic = false;
             animator.SetBool("hasJumped", true);
-
+            //_isGrounded = false;
             delay++;
 
-            if (delay > 7)
+            if (delay == 7)
             {
-                _body.AddForce(new Vector3(0, 650, 0), ForceMode.Impulse); ;
                 _isGrounded = false;
+                //_body.isKinematic = false;
+                _body.AddForce(new Vector3(0, 650, 0), ForceMode.Impulse);
+                
                 delay = 0;
             }
         }
 
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
 
-		_body.isKinematic = _body.velocity == Vector3.zero && !animator.GetBool("hasJumped");
-			
+		_body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
 
         /*if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
@@ -108,8 +109,10 @@ public class PlayerMovementNico : Player
         }
         if(collision.gameObject.tag == "jumpg")
         {
-            _body.AddForce(new Vector3(0, 600, 0), ForceMode.Impulse); ;
+            _body.isKinematic = false;
+            _body.AddForce(new Vector3(0, 1200, 0), ForceMode.Impulse); ;
             _isGrounded = false;
+            
         }
     }
 }
