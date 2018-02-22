@@ -1,8 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
+
+
+    public Text GroundState;
+    public Text SpeedText;
+    public Text coordsText;
+    public float x;
+    public float y;
+    public float z;
 
     public float runSpeed = 10.0f;
     //public float gravity = 9.81f;
@@ -27,6 +36,12 @@ public class PlayerMovement : MonoBehaviour {
 
     void Update()
     {
+        x = _body.transform.position.x;
+        y = _body.transform.position.y;
+        z = _body.transform.position.z;
+        coordsText.text = "( " + x.ToString() + ", " + y.ToString() + ", " + z.ToString() + " )";
+        GroundState.text = "isGrounded: " + _isGrounded.ToString();
+        SpeedText.text = "Speed: " + Speed.ToString();
         //print(_isGrounded);
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
@@ -100,6 +115,11 @@ public class PlayerMovement : MonoBehaviour {
             _body.AddForce(transform.forward * 1000 * _moveDirection.x);
             _body.AddForce(transform.right * 1000 * _moveDirection.z);
         }*/
+
+        if(_body.transform.position.y < -20f)
+        {
+            _body.MovePosition(new Vector3(0, 0.06f, -3.6f));
+        }
     }
 
     void OnCollisionEnter(Collision collision)

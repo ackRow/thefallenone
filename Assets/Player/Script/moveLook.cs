@@ -18,6 +18,8 @@ public class moveLook : MonoBehaviour {
     void Start()
     {
         character = this.transform.parent.gameObject;
+        // On affiche pas le curseur en jeu
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -36,5 +38,12 @@ public class moveLook : MonoBehaviour {
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
 
         //transform.position = Vector3.MoveTowards(transform.position, parent.transform.position, 0.03f); Vu TPS
+
+        // Pour le moment on appuie sur echap pour avoir le curseur
+        if (Input.GetKeyDown("escape"))
+            Cursor.lockState = CursorLockMode.None;
+
+        if (Input.GetKeyDown(KeyCode.Return))
+            Cursor.lockState = CursorLockMode.Locked;
     }
 }
