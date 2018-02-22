@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementNico : Player
-{
+public class PlayerMovement : MonoBehaviour {
+
     public float runSpeed = 10.0f;
     //public float gravity = 9.81f;
     public Vector3 moveDirection = Vector3.zero;
@@ -49,8 +49,9 @@ public class PlayerMovementNico : Player
         {  // on cours
             Speed = 8.0f;
         }
-        else {
-             Speed = 4.0f;
+        else
+        {
+            Speed = 4.0f;
         }
 
         if (!_isGrounded)
@@ -64,11 +65,11 @@ public class PlayerMovementNico : Player
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-		//print(_body.velocity);
+        //print(_body.velocity);
 
-        
 
-       if ( (Input.GetKey(KeyCode.Space) ||  animator.GetBool("hasJumped") ) && _isGrounded)
+
+        if ((Input.GetKey(KeyCode.Space) || animator.GetBool("hasJumped")) && _isGrounded)
         {  //on saute
             //_body.isKinematic = false;
             animator.SetBool("hasJumped", true);
@@ -80,14 +81,14 @@ public class PlayerMovementNico : Player
                 _isGrounded = false;
                 //_body.isKinematic = false;
                 _body.AddForce(new Vector3(0, 650, 0), ForceMode.Impulse);
-                
+
                 delay = 0;
             }
         }
 
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
 
-		_body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
+        _body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
 
         /*if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
@@ -107,12 +108,12 @@ public class PlayerMovementNico : Player
         {
             _isGrounded = true;
         }
-        if(collision.gameObject.tag == "jumpg")
+        if (collision.gameObject.tag == "jumpg")
         {
             _body.isKinematic = false;
             _body.AddForce(new Vector3(0, 1200, 0), ForceMode.Impulse); ;
             _isGrounded = false;
-            
+
         }
     }
 }
