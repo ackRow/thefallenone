@@ -13,7 +13,16 @@ public class moveLook : MonoBehaviour {
     public float minimumY = -60F;
     public float maximumY = 60F;
 
+
     GameObject character;
+    [SerializeField]
+    private Animator animator;
+
+    private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
+    private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
+
+
+
     // Use this for initialization
     void Start()
     {
@@ -37,7 +46,27 @@ public class moveLook : MonoBehaviour {
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
 
+        
+
         //transform.position = Vector3.MoveTowards(transform.position, parent.transform.position, 0.03f); Vu TPS
+
+       /* if (animator)
+        {
+            
+
+            if(animator.GetCurrentAnimatorStateInfo(0).nameHash == idleStateHash)
+            {
+                animator.Play(bendStateHash);
+                //animator.speed = 0;
+            }
+            else
+            {
+                //animator.enabled = true;
+            }
+
+
+
+        } */
 
         // Pour le moment on appuie sur echap pour avoir le curseur
         if (Input.GetKeyDown("escape"))
