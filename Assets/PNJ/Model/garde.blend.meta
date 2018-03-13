@@ -68,13 +68,15 @@ ModelImporter:
     7400000: Default Take
     7400002: ArmatureAction
     7400004: Bending
-    7400006: Flipping
-    7400008: Idle
-    7400010: Jumping
-    7400012: Punching
-    7400014: Running
-    7400016: Walking
-    7400018: Walkingv2
+    7400006: Damage
+    7400008: Die
+    7400010: Flipping
+    7400012: Idle
+    7400014: Jumping
+    7400016: Punching
+    7400018: Running
+    7400020: Walking
+    7400022: Walkingv2
     9500000: //RootNode
     13700000: Body
     13700002: Glock_Eagle
@@ -170,6 +172,62 @@ ModelImporter:
     - serializedVersion: 16
       name: Bending
       takeName: Bending
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Damage
+      takeName: Damage
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die
+      takeName: Die
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0

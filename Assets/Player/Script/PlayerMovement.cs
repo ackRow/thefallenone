@@ -60,17 +60,18 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire)
             {
-                animator.SetBool("isPunching", true);
+                animator.SetTrigger("Punching");
                 Hit(player.punchDamage, player.punchRange);
                 nextTimeToFire = Time.time + 1f / player.punchRate;
             }
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
+                animator.SetTrigger("Shooting");
                 Hit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + 1f / player.gunFireRate;
             }
-        }else
-            animator.SetBool("isPunching", false);
+        }
+            
 
         if (animator)
         {
