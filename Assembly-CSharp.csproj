@@ -59,6 +59,7 @@
      <Compile Include="Assets\Player\Script\Player.cs" />
      <Compile Include="Assets\Player\Script\PlayerHealth.cs" />
      <Compile Include="Assets\Player\Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Target.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

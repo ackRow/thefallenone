@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
 
     public Text GroundState;
@@ -13,19 +12,25 @@ public class PlayerMovement : MonoBehaviour {
     public float y;
     public float z;
 
-    public float runSpeed = 10.0f;
-    //public float gravity = 9.81f;
-    public Vector3 moveDirection = Vector3.zero;
-    public float JumpForce = 12.0f;
+    //public Vector3 moveDirection = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
     private Rigidbody _body;
     public float Speed;
     private bool _isGrounded;
 
+    private float nextTimeToFire = 0f;
+    private int punchStateHash = Animator.StringToHash("Base Layer.Punching");
+    private int gunStateHash = Animator.StringToHash("Base Layer.Idle_Gun");
+
     private int delay = 0;
 
     [SerializeField]
+    Player player;
+
+    //[SerializeField]
     private Animator animator;
+
+    public Camera fpsCam;
 
     void Start()
     {
@@ -46,15 +51,33 @@ public class PlayerMovement : MonoBehaviour {
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-        //if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1) & player.hasGun)
+        {
+            animator.SetBool("hasgun", !animator.GetBool("hasgun"));
+        }
 
+        if (Input.GetMouseButton(0))
+        {
+            if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire)
+            {
+                animator.SetBool("isPunching", true);
+                Hit(player.punchDamage, player.punchRange);
+                nextTimeToFire = Time.time + 1f / player.punchRate;
+            }
+            else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
+            {
+                Hit(player.gunDamage, player.gunRange);
+                nextTimeToFire = Time.time + 1f / player.gunFireRate;
+            }
+        }else
+            animator.SetBool("isPunching", false);
 
         if (animator)
         {
 
             animator.SetFloat("Speed", Speed);
             animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
-            animator.SetBool("isPunching", Input.GetMouseButtonDown(0));
+            
         }
     }
 
@@ -62,11 +85,11 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {  // on cours
-            Speed = 8.0f;
+            Speed = player.running_speed;
         }
         else
         {
-            Speed = 4.0f;
+            Speed = player.walking_speed;
         }
 
         if (!_isGrounded)
@@ -95,7 +118,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 _isGrounded = false;
                 //_body.isKinematic = false;
-                _body.AddForce(new Vector3(0, 650, 0), ForceMode.Impulse);
+                _body.AddForce(new Vector3(0, player.JumpForce, 0), ForceMode.Impulse);
 
                 delay = 0;
             }
@@ -105,16 +128,6 @@ public class PlayerMovement : MonoBehaviour {
 
         _body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
 
-        /*if (!_isGrounded)
-        { //pendant qu'on est dans les air le mouvement est réduit
-            speed = 1.0f;
-        }
-        // si la vitesse depasse speed on bloque l'application de la force
-        if (Vector3.Magnitude(new Vector3(_body.velocity.x, 0, _body.velocity.z)) <= Speed)
-        {
-            _body.AddForce(transform.forward * 1000 * _moveDirection.x);
-            _body.AddForce(transform.right * 1000 * _moveDirection.z);
-        }*/
 
         if(_body.transform.position.y < -20f)
         {
@@ -135,5 +148,19 @@ public class PlayerMovement : MonoBehaviour {
             _isGrounded = false;
 
         }
+    }
+
+    void Hit(float damage, float range)
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        {
+            Target target = hit.transform.GetComponent<Target>();
+            if(target != null)
+            {
+                target.TakeDamage(damage);
+            }
+        }
+
     }
 }
