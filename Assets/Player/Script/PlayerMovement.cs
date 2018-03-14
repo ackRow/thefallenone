@@ -15,7 +15,7 @@ public class PlayerMovement : NetworkBehaviour
     //public Vector3 moveDirection = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
     private Rigidbody _body;
-    public float Speed;
+    public float Speed = 0;
     private bool _isGrounded;
 
     private float nextTimeToFire = 0f;
@@ -67,7 +67,7 @@ public class PlayerMovement : NetworkBehaviour
         GroundState.text = "isGrounded: " + _isGrounded.ToString();
         SpeedText.text = "Speed: " + Speed.ToString();*/
 
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || animator.GetBool("Dead"))
         {
             //Destroy(this);
             return;
@@ -114,18 +114,18 @@ public class PlayerMovement : NetworkBehaviour
             return;
 
         Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
-        if (Input.GetKey(KeyCode.LeftShift) && _isGrounded)
-        {  // on cours
-            Speed = player.running_speed;
-        }
-        else
+        if (_isGrounded || Speed == 0)
         {
-            Speed = player.walking_speed;
+            if (Input.GetKey(KeyCode.LeftShift))
+                Speed = player.running_speed;
+            else
+                Speed = player.walking_speed;
+            
         }
 
         if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
-            Speed *= 0.6f;
+           
             animator.SetBool("hasJumped", false);
         }
 
@@ -150,7 +150,7 @@ public class PlayerMovement : NetworkBehaviour
                 _isGrounded = false;
                 //_body.isKinematic = false;
                 _body.AddForce(new Vector3(0, player.JumpForce, 0), ForceMode.Impulse);
-
+                Speed *= 0.6f;
                 delay = 0;
             }
         }
@@ -162,7 +162,8 @@ public class PlayerMovement : NetworkBehaviour
 
         if(_body.transform.position.y < -20f)
         {
-            _body.MovePosition(new Vector3(0, 0.06f, -3.6f));
+            //_body.MovePosition(new Vector3(0, 0.06f, -3.6f));
+            Destroy(gameObject);
         }
     }
 
@@ -181,7 +182,12 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    [Command]
+    bool IsGrounded()
+     {
+       return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+     }
+
+[Command]
     void CmdHit(float damage, float range)
     {
         RaycastHit hit;

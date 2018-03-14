@@ -20,6 +20,7 @@ public class Player : NetworkBehaviour
 
     private Rigidbody _body;
     public GameObject gun;
+    public GameObject head;
 
     public Target target;
 
@@ -42,6 +43,7 @@ public class Player : NetworkBehaviour
             return;
         }
         playerHealth = FindObjectsOfType<Slider>()[0];
+        head.GetComponent<Renderer>().enabled = false;
         //Debug.Log(Object.FindObjectsOfType<Slider>()[0]);
 
 

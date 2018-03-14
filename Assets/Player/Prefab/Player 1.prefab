@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4886071539776792}
   - component: {fileID: 137025165016518878}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -940,13 +940,14 @@ MonoBehaviour:
   running_speed: 8
   gunDamage: 25
   gunRange: 20
-  gunFireBuff: 0.27
+  gunFireBuff: 0.28
   punchDamage: 50
   punchRange: 1
   punchingBuff: 0.95
   JumpForce: 650
   hasGun: 1
   gun: {fileID: 1335809070650372}
+  head: {fileID: 1027202245995882}
   target: {fileID: 114719430254591696}
 --- !u!114 &114492133382225530
 MonoBehaviour:
@@ -992,7 +993,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 95220886827455984}
-  m_ParameterSendBits: 143
+  m_ParameterSendBits: 191
   param0: 
   param1: 
   param2: 
