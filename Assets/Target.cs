@@ -13,11 +13,13 @@ public class Target : NetworkBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void TakeDamage (float amount)
+    [Command]
+    public void CmdTakeDamage (float amount)
     {
-        health -= amount;
-       
-
+        if (isServer)
+        {
+            health -= amount;
+        }
         if (health <= 0f)
             Die();
         else

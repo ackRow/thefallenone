@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI; // faut utiliser l'UI
 
 public class Player : NetworkBehaviour
 {
@@ -22,6 +23,8 @@ public class Player : NetworkBehaviour
 
     public Target target;
 
+    private Slider playerHealth;
+
 
     public Vector3 Position
     {    
@@ -32,17 +35,23 @@ public class Player : NetworkBehaviour
         
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
-
+       
         if (!isLocalPlayer)
         {
             GetComponentInChildren<moveLook>().local = false;
+            return;
         }
+        playerHealth = FindObjectsOfType<Slider>()[0];
+        //Debug.Log(Object.FindObjectsOfType<Slider>()[0]);
+
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!isLocalPlayer)
+            return;
+        playerHealth.value = target.health;
 
-	}
+    }
 }

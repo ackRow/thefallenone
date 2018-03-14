@@ -3160,6 +3160,38 @@ GameObject:
   m_PrefabParentObject: {fileID: 1371019147944246, guid: a9b28103f95665e4da8ee42147e9883f,
     type: 2}
   m_PrefabInternal: {fileID: 2054968796}
+--- !u!114 &788110214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788110213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 169
+    i1: 178
+    i2: 129
+    i3: 3
+    i4: 249
+    i5: 86
+    i6: 101
+    i7: 228
+    i8: 218
+    i9: 142
+    i10: 228
+    i11: 33
+    i12: 71
+    i13: 233
+    i14: 136
+    i15: 63
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!54 &788110216
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4753,7 +4785,7 @@ AudioListener:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1068953718}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &1068953720
 Behaviour:
   m_ObjectHideFlags: 0

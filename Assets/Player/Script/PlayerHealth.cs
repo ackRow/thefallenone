@@ -6,23 +6,25 @@ public class PlayerHealth : NetworkBehaviour
 {
 
     public Slider healthbar;
-    Player player;
+    //Player player;
 
-    // Use this for initialization
+    // Useless for now
     void Start() {
         if (!isLocalPlayer)
         {
             Destroy(this);
             return;
         }
-        player = GetComponent<Player>();
-        healthbar.value = player.target.health;
+        healthbar = GetComponent<Slider>();
+        //player = GetComponent<Player>();
+       // healthbar.value = 10.0f;
         
     }
 	
 	// Update is called once per frame
 	void Update () {
-        healthbar.value = player.target.health;
+        //healthbar.value = player.target.health;
 
     }
+
 }

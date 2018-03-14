@@ -34,18 +34,14 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-        if (!isLocalPlayer)
-        {
-            Destroy(this);
-            return;
-        }
+       
         animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
 
         if (Camera.main != null)
         {
-            fpsCam = Camera.main;
+            fpsCam = GetComponentInChildren< Camera > ();
         }
         else
         {
@@ -69,6 +65,12 @@ public class PlayerMovement : NetworkBehaviour
         GroundState.text = "isGrounded: " + _isGrounded.ToString();
         SpeedText.text = "Speed: " + Speed.ToString();*/
 
+        if (!isLocalPlayer)
+        {
+            //Destroy(this);
+            return;
+        }
+
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
@@ -82,13 +84,13 @@ public class PlayerMovement : NetworkBehaviour
             if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire)
             {
                 animator.SetTrigger("Punching");
-                Hit(player.punchDamage, player.punchRange);
+                CmdHit(player.punchDamage, player.punchRange);
                 nextTimeToFire = Time.time + player.punchingBuff;
             }
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 animator.SetTrigger("Shooting");
-                Hit(player.gunDamage, player.gunRange);
+                CmdHit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
         }
@@ -105,6 +107,11 @@ public class PlayerMovement : NetworkBehaviour
 
     private void FixedUpdate()
     {
+
+        if (!isLocalPlayer)
+            return;
+
+        Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
         if (Input.GetKey(KeyCode.LeftShift) && _isGrounded)
         {  // on cours
             Speed = player.running_speed;
@@ -172,15 +179,15 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    void Hit(float damage, float range)
+    void CmdHit(float damage, float range)
     {
         RaycastHit hit;
-        if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
-                target.TakeDamage(damage);
+                target.CmdTakeDamage(damage);
             }
         }
 
