@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class PlayerMovement : NetworkBehaviour
 {
@@ -33,13 +34,19 @@ public class PlayerMovement : NetworkBehaviour
 
     private Camera fpsCam;
 
+    public AudioClip gunShot;
+
+    public AudioSource myAudio;
+
     void Start()
     {
-       
+        
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         _body = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
+
+        myAudio = GetComponent<AudioSource>();
 
         if (Camera.main != null)
         {
@@ -92,6 +99,8 @@ public class PlayerMovement : NetworkBehaviour
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 net_animator.SetTrigger("Shooting");
+                myAudio.clip = gunShot;
+                myAudio.Play();
                 CmdHit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
