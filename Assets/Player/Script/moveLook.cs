@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.Networking;
 using UnityEngine;
 
-public class moveLook : MonoBehaviour {
+public class moveLook : NetworkBehaviour
+{
 
     Vector2 mouseLook;
     Vector2 smoothV;
@@ -15,20 +15,32 @@ public class moveLook : MonoBehaviour {
 
 
     GameObject character;
-    [SerializeField]
-    private Animator animator;
+    //[SerializeField]
+    //private Animator animator;
 
     private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
     private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
+
+    public bool local = true;
 
 
 
     // Use this for initialization
     void Start()
     {
+
         character = this.transform.parent.gameObject;
         // On affiche pas le curseur en jeu
         Cursor.lockState = CursorLockMode.Locked;
+
+        if (!local)
+        {
+            Destroy(this.gameObject.transform.GetChild(0).gameObject);
+            Destroy(this);
+            return;
+        }
+        
+
     }
 
     // Update is called once per frame

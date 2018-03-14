@@ -1,7 +1,7 @@
-﻿using UnityEngine.UI;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
 
 
@@ -34,7 +34,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        if (!isLocalPlayer)
+        {
+            Destroy(this);
+            return;
+        }
         animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
@@ -101,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && _isGrounded)
         {  // on cours
             Speed = player.running_speed;
         }

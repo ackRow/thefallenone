@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour
+{
 
     public float walking_speed = 4.0f;
     public float running_speed = 8.0f;
@@ -27,8 +29,14 @@ public class Player : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
+
+        if (!isLocalPlayer)
+        {
+            GetComponentInChildren<moveLook>().local = false;
+        }
 
     }
 	
