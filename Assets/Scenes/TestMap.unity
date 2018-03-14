@@ -1393,6 +1393,23 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300008, guid: 9413ac96bd431c44abfdb535fe7f6e31, type: 3}
+--- !u!1 &419297288 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1157577775126818, guid: 8de35567d37278e4584f821cb98d660a,
+    type: 2}
+  m_PrefabInternal: {fileID: 919332458}
+--- !u!114 &419297296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 419297288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e118b4c9e7855fc43916f59477f9fa19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &435698259
 GameObject:
   m_ObjectHideFlags: 0
@@ -3807,8 +3824,23 @@ Prefab:
     - target: {fileID: 114201992548493590, guid: 8de35567d37278e4584f821cb98d660a,
         type: 2}
       propertyPath: gunFireRate
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114201992548493590, guid: 8de35567d37278e4584f821cb98d660a,
+        type: 2}
+      propertyPath: gunFireBuff
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201992548493590, guid: 8de35567d37278e4584f821cb98d660a,
+        type: 2}
+      propertyPath: punchingBuff
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 114201992548493590, guid: 8de35567d37278e4584f821cb98d660a,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 419297296}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8de35567d37278e4584f821cb98d660a, type: 2}
   m_IsPrefabParent: 0

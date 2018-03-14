@@ -5,12 +5,12 @@ public class PlayerMovement : MonoBehaviour
 {
 
 
-    public Text GroundState;
+    /*public Text GroundState;
     public Text SpeedText;
     public Text coordsText;
     public float x;
     public float y;
-    public float z;
+    public float z;*/
 
     //public Vector3 moveDirection = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
@@ -30,24 +30,41 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField]
     private Animator animator;
 
-    public Camera fpsCam;
+    private Camera fpsCam;
 
     void Start()
     {
+
         animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
+
+        if (Camera.main != null)
+        {
+            fpsCam = Camera.main;
+        }
+        else
+        {
+            Debug.LogWarning(
+                "Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
+            // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
+        }
+
         _isGrounded = false;
     }
 
     void Update()
     {
+        /*
+         * NO UI in this file !
+         * 
         x = _body.transform.position.x;
         y = _body.transform.position.y;
         z = _body.transform.position.z;
         coordsText.text = "( " + x.ToString() + ", " + y.ToString() + ", " + z.ToString() + " )";
         GroundState.text = "isGrounded: " + _isGrounded.ToString();
-        SpeedText.text = "Speed: " + Speed.ToString();
-        //print(_isGrounded);
+        SpeedText.text = "Speed: " + Speed.ToString();*/
+
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
@@ -62,13 +79,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetTrigger("Punching");
                 Hit(player.punchDamage, player.punchRange);
-                nextTimeToFire = Time.time + 1f / player.punchRate;
+                nextTimeToFire = Time.time + player.punchingBuff;
             }
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 animator.SetTrigger("Shooting");
                 Hit(player.gunDamage, player.gunRange);
-                nextTimeToFire = Time.time + 1f / player.gunFireRate;
+                nextTimeToFire = Time.time + player.gunFireBuff;
             }
         }
             
