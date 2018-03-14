@@ -1,4 +1,10 @@
 sceneSetups:
 - path: Assets/Scenes/TestMap.unity
   isLoaded: 1
+  isActive: 0
+- path: Assets/Scenes/Multi.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/Scenes/Level1.unity
+  isLoaded: 1
   isActive: 1
