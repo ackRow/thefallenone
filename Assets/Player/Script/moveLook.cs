@@ -35,7 +35,10 @@ public class moveLook : NetworkBehaviour
 
         if (!local)
         {
-            Destroy(this.gameObject.transform.GetChild(0).gameObject);
+            //Destroy(this.gameObject.transform.GetChild(0).gameObject);
+            Camera cam = gameObject.transform.GetChild(0).gameObject.GetComponent<Camera>();
+            cam.enabled = false;
+            cam.GetComponent<AudioListener>().enabled = false;
             Destroy(this);
             return;
         }

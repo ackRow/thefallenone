@@ -24,11 +24,12 @@ public class PlayerMovement : NetworkBehaviour
 
     private int delay = 0;
 
-    [SerializeField]
+    //[SerializeField]
     Player player;
 
     //[SerializeField]
     private Animator animator;
+    NetworkAnimator net_animator;
 
     private Camera fpsCam;
 
@@ -36,6 +37,7 @@ public class PlayerMovement : NetworkBehaviour
     {
        
         animator = GetComponent<Animator>();
+        net_animator = GetComponent<NetworkAnimator>();
         _body = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
 
@@ -83,13 +85,13 @@ public class PlayerMovement : NetworkBehaviour
         {
             if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire)
             {
-                animator.SetTrigger("Punching");
+                net_animator.SetTrigger("Punching");
                 CmdHit(player.punchDamage, player.punchRange);
                 nextTimeToFire = Time.time + player.punchingBuff;
             }
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
-                animator.SetTrigger("Shooting");
+                net_animator.SetTrigger("Shooting");
                 CmdHit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
@@ -179,11 +181,13 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    [Command]
     void CmdHit(float damage, float range)
     {
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
+            //Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
