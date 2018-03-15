@@ -36,15 +36,16 @@ public class Player : NetworkBehaviour
         
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
-       
+        head.GetComponent<Renderer>().enabled = false;
+
         if (!isLocalPlayer)
         {
-            Destroy(this);
             GetComponentInChildren<moveLook>().local = false;
+            head.GetComponent<Renderer>().enabled = true;
             return;
         }
         playerHealth = FindObjectsOfType<Slider>()[0];
-        head.GetComponent<Renderer>().enabled = false;
+        
         //Debug.Log(Object.FindObjectsOfType<Slider>()[0]);
 
 
