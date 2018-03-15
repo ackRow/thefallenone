@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour {
 
     public GameObject menuObject;
+    public GameObject hud;
     public bool isActive = false;
 
 	// Update is called once per frame
@@ -14,6 +15,7 @@ public class PauseMenuScript : MonoBehaviour {
         if (isActive)
         {
             menuObject.SetActive(true);
+            hud.SetActive(false);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
             Time.timeScale = 0;
@@ -21,6 +23,7 @@ public class PauseMenuScript : MonoBehaviour {
         else
         {
             menuObject.SetActive(false);
+            hud.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             Time.timeScale = 1;
