@@ -37,27 +37,28 @@ public class Player : NetworkBehaviour
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
         head.GetComponent<Renderer>().enabled = false;
-
+        playerHealth = FindObjectsOfType<Slider>()[0];
+        Debug.Log(playerHealth.name);
         if (!isLocalPlayer)
         {
             GetComponentInChildren<moveLook>().local = false;
             head.GetComponent<Renderer>().enabled = true;
             return;
         }
-        playerHealth = FindObjectsOfType<Slider>()[0];
-        
-        //Debug.Log(Object.FindObjectsOfType<Slider>()[0]);
+
+
+        // playerHealth = FindObjectsOfType<Slider>()[0];
 
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-        if (!isLocalPlayer)
+
+    // Update is called once per frame
+    void Update () {
+        /*if (!isLocalPlayer)
         {
             return;
-        }
-        playerHealth.value = target.health;
+        }*/
+        playerHealth.value = 60;// target.health;
 
     }
 }

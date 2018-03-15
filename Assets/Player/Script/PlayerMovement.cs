@@ -171,15 +171,17 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetBool("hasJumped", true);
             //_isGrounded = false;
             delay++;
+
+            walking = false;
+            myAudio.Stop();
             //le son du jump sinon ça fait un truc dégueu sans condition
-            if (!myAudio.isPlaying)
-            {
-                myAudio.PlayOneShot(jumpSound, 0.3f);
-            }
 
             if (delay == 7)
             {
                 _isGrounded = false;
+                
+                myAudio.PlayOneShot(jumpSound, 0.3f);
+
                 //_body.isKinematic = false;
                 _body.AddForce(new Vector3(0, player.JumpForce, 0), ForceMode.Impulse);
                 Speed *= 0.6f;
