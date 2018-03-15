@@ -47,6 +47,7 @@ public class PlayerMovement : NetworkBehaviour
         player = GetComponent<Player>();
 
         myAudio = GetComponent<AudioSource>();
+        myAudio.clip = gunShot;
 
         if (Camera.main != null)
         {
@@ -99,8 +100,7 @@ public class PlayerMovement : NetworkBehaviour
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 net_animator.SetTrigger("Shooting");
-                myAudio.clip = gunShot;
-                myAudio.Play();
+                
                 CmdHit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
@@ -199,6 +199,8 @@ public class PlayerMovement : NetworkBehaviour
 [Command]
     void CmdHit(float damage, float range)
     {
+       
+        myAudio.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
