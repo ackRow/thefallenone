@@ -39,6 +39,7 @@ public class Player : NetworkBehaviour
        
         if (!isLocalPlayer)
         {
+            Destroy(this);
             GetComponentInChildren<moveLook>().local = false;
             return;
         }
@@ -52,7 +53,9 @@ public class Player : NetworkBehaviour
 	// Update is called once per frame
 	void Update () {
         if (!isLocalPlayer)
+        {
             return;
+        }
         playerHealth.value = target.health;
 
     }

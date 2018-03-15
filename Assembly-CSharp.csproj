@@ -55,10 +55,13 @@
      <Compile Include="Assets\Player\Model\Scripts\AICharacterControl.cs" />
      <Compile Include="Assets\Player\Model\Scripts\ThirdPersonCharacter.cs" />
      <Compile Include="Assets\Player\Model\Scripts\ThirdPersonUserControl.cs" />
+     <Compile Include="Assets\Player\Script\DeathAnimation.cs" />
      <Compile Include="Assets\Player\Script\moveLook.cs" />
      <Compile Include="Assets\Player\Script\Player.cs" />
      <Compile Include="Assets\Player\Script\PlayerHealth.cs" />
      <Compile Include="Assets\Player\Script\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
+     <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
      <Compile Include="Assets\Target.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

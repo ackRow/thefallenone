@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class Target : NetworkBehaviour
 {
@@ -11,11 +12,16 @@ public class Target : NetworkBehaviour
     Animator animator;
     NetworkAnimator net_animator;
 
+    //public AudioSource myAudio;
+
     void Start()
     {
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
+
+        //myAudio = GetComponent<AudioSource>();
+        //myAudio.clip = hit;
     }
 
 
@@ -30,9 +36,12 @@ public class Target : NetworkBehaviour
 
     private void Die()
     {
-       /* if(!animator.GetBool("Dead"))
-            animator.SetBool("Dead", true);
-        Destroy(gameObject, 10f);*/
+       
+        //Destroy(gameObject, 10f);
+        
+        RpcRespawn();
+
+        
         health = 100f;
 
     }
@@ -42,8 +51,20 @@ public class Target : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            // move back to zero location
-            transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+            //if (!animator.GetBool("Dead"))
+            StartCoroutine(Respawn());
+
         }
+    }
+
+    IEnumerator Respawn()
+    {
+        //print(Time.time);
+        net_animator.SetTrigger("Dead2");
+       
+        yield return new WaitForSeconds(5);
+        animator.Play("Idle", -1, 0f);
+        transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        //print(Time.time);
     }
 }

@@ -28,6 +28,8 @@ public class PlayerMovement : NetworkBehaviour
     //[SerializeField]
     Player player;
 
+    bool walking = false;
+
     //[SerializeField]
     private Animator animator;
     NetworkAnimator net_animator;
@@ -35,6 +37,8 @@ public class PlayerMovement : NetworkBehaviour
     private Camera fpsCam;
 
     public AudioClip gunShot;
+    public AudioClip hitSound;
+    public AudioClip walkSound;
 
     public AudioSource myAudio;
 
@@ -75,7 +79,7 @@ public class PlayerMovement : NetworkBehaviour
         GroundState.text = "isGrounded: " + _isGrounded.ToString();
         SpeedText.text = "Speed: " + Speed.ToString();*/
 
-        if (!isLocalPlayer || animator.GetBool("Dead"))
+        if (!isLocalPlayer || player.target.health <= 0)
         {
             //Destroy(this);
             return;
@@ -100,7 +104,7 @@ public class PlayerMovement : NetworkBehaviour
             else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 net_animator.SetTrigger("Shooting");
-                myAudio.Play();
+                myAudio.PlayOneShot(gunShot);
                 CmdHit(player.gunDamage, player.gunRange);
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
@@ -111,7 +115,20 @@ public class PlayerMovement : NetworkBehaviour
         {
 
             animator.SetFloat("Speed", Speed);
-            animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2);
+            animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2 && _isGrounded);
+            if (walking == false && animator.GetBool("isWalking"))
+            {
+                walking = true;
+                myAudio.clip = walkSound;
+                myAudio.loop = true;
+                myAudio.Play();
+            }
+            else if(walking == true && !animator.GetBool("isWalking"))
+            {
+                walking = false;
+                myAudio.Stop();
+            }
+
             
         }
     }
@@ -119,13 +136,13 @@ public class PlayerMovement : NetworkBehaviour
     private void FixedUpdate()
     {
 
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || player.target.health <= 0)
             return;
 
         Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
         if (_isGrounded || Speed == 0)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && !animator.GetBool("hasgun"))
                 Speed = player.running_speed;
             else
                 Speed = player.walking_speed;
@@ -208,9 +225,12 @@ public class PlayerMovement : NetworkBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
+                //PlaySound();
                 target.CmdTakeDamage(damage);
             }
         }
 
     }
+
+
 }

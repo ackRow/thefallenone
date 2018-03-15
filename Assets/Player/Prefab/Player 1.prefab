@@ -1109,6 +1109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  spawnPoints: []
 --- !u!114 &114732237346582064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1175,6 +1176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 0
   gunShot: {fileID: 8300000, guid: e6e9d07cb70d72e499e1333f0c0e850b, type: 3}
+  hitSound: {fileID: 8300000, guid: 5ad5b3ae3440f6e49a2874d2642f4696, type: 3}
+  walkSound: {fileID: 8300000, guid: 3b82c88b304d2824c820d9f750607da9, type: 3}
   myAudio: {fileID: 0}
 --- !u!124 &124400622274077470
 Behaviour:
