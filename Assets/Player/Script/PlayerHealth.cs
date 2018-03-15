@@ -16,7 +16,7 @@ public class PlayerHealth : NetworkBehaviour
             return;
         }
         healthbar = GetComponent<Slider>();
-        //player = GetComponent<Player>();
+       //player = GetComponent<Player>();
        // healthbar.value = 10.0f;
         
     }
@@ -24,7 +24,6 @@ public class PlayerHealth : NetworkBehaviour
 	// Update is called once per frame
 	void Update () {
         //healthbar.value = player.target.health;
-
     }
 
 }
