@@ -39,10 +39,7 @@ public class Target : NetworkBehaviour
        
         //Destroy(gameObject, 10f);
         
-        RpcRespawn();
-
-        
-        health = 100f;
+        RpcRespawn();  
 
     }
 
@@ -65,6 +62,7 @@ public class Target : NetworkBehaviour
         yield return new WaitForSeconds(5);
         animator.Play("Idle", -1, 0f);
         transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        health = 100f;
         //print(Time.time);
     }
 }

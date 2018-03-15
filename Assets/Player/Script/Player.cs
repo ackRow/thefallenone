@@ -37,8 +37,7 @@ public class Player : NetworkBehaviour
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
         head.GetComponent<Renderer>().enabled = false;
-        playerHealth = FindObjectsOfType<Slider>()[0];
-        Debug.Log(playerHealth.name);
+
         if (!isLocalPlayer)
         {
             GetComponentInChildren<moveLook>().local = false;
@@ -46,7 +45,7 @@ public class Player : NetworkBehaviour
             return;
         }
 
-
+        
         // playerHealth = FindObjectsOfType<Slider>()[0];
 
 
@@ -54,11 +53,17 @@ public class Player : NetworkBehaviour
 
     // Update is called once per frame
     void Update () {
-        /*if (!isLocalPlayer)
+        if (!isLocalPlayer)
         {
             return;
-        }*/
-        playerHealth.value = 60;// target.health;
+        }
+        GUIHealthSync();
+    }
 
+    [GUITarget]
+    void GUIHealthSync()
+    {
+        playerHealth = FindObjectsOfType<Slider>()[0];
+        playerHealth.value = target.health;
     }
 }
