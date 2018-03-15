@@ -2851,7 +2851,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You were dead
+  m_Text: 'You''ve been shot :'
 --- !u!222 &1646024607
 CanvasRenderer:
   m_ObjectHideFlags: 0

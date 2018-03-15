@@ -45,7 +45,7 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-        
+
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         _body = GetComponent<Rigidbody>();
@@ -56,7 +56,7 @@ public class PlayerMovement : NetworkBehaviour
 
         if (Camera.main != null)
         {
-            fpsCam = GetComponentInChildren< Camera > ();
+            fpsCam = GetComponentInChildren<Camera>();
         }
         else
         {
@@ -102,7 +102,7 @@ public class PlayerMovement : NetworkBehaviour
                 CmdHit(player.punchDamage, player.punchRange);
                 nextTimeToFire = Time.time + player.punchingBuff;
             }
-            else if(animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
+            else if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
             {
                 net_animator.SetTrigger("Shooting");
                 myAudio.PlayOneShot(gunShot);
@@ -110,7 +110,7 @@ public class PlayerMovement : NetworkBehaviour
                 nextTimeToFire = Time.time + player.gunFireBuff;
             }
         }
-            
+
 
         if (animator)
         {
@@ -124,13 +124,13 @@ public class PlayerMovement : NetworkBehaviour
                 myAudio.loop = true;
                 myAudio.Play();
             }
-            else if(walking == true && !animator.GetBool("isWalking"))
+            else if (walking == true && !animator.GetBool("isWalking"))
             {
                 walking = false;
                 myAudio.Stop();
             }
 
-            
+
         }
     }
 
@@ -147,12 +147,12 @@ public class PlayerMovement : NetworkBehaviour
                 Speed = player.running_speed;
             else
                 Speed = player.walking_speed;
-            
+
         }
 
         if (!_isGrounded)
         { //pendant qu'on est dans les air le mouvement est réduit
-           
+
             animator.SetBool("hasJumped", false);
         }
 
@@ -179,7 +179,7 @@ public class PlayerMovement : NetworkBehaviour
             if (delay == 7)
             {
                 _isGrounded = false;
-                
+
                 myAudio.PlayOneShot(jumpSound, 0.3f);
 
                 //_body.isKinematic = false;
@@ -194,7 +194,7 @@ public class PlayerMovement : NetworkBehaviour
         _body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
 
 
-        if(_body.transform.position.y < -20f)
+        if (_body.transform.position.y < -20f)
         {
             //_body.MovePosition(new Vector3(0, 0.06f, -3.6f));
             _body.MovePosition(player.target.spawnPoints[Random.Range(0, 4)].transform.position);
@@ -218,30 +218,34 @@ public class PlayerMovement : NetworkBehaviour
     }
 
     bool IsGrounded()
-     {
-       return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
-     }
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+    }
 
-[Command]
+    [Command]
     void CmdHit(float damage, float range)
     {
-       
+
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             //Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
-            if(target != null)
+            if (target != null)
             {
-                if (!myAudio.isPlaying)
-                {
-                    myAudio.PlayOneShot(hitSound);
-                }
+                RpcPlayHitSound();
                 target.CmdTakeDamage(damage);
             }
         }
 
     }
 
-
+    [ClientRpc]
+    void RpcPlayHitSound()
+    {
+        if (!myAudio.isPlaying)
+        {
+            myAudio.PlayOneShot(hitSound);
+        }
+    }
 }
