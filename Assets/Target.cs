@@ -6,6 +6,8 @@ public class Target : NetworkBehaviour
     [SyncVar]
     public float health = 100f;
 
+    public NetworkStartPosition[] spawnPoints;
+
     Animator animator;
     NetworkAnimator net_animator;
 
@@ -13,6 +15,7 @@ public class Target : NetworkBehaviour
     {
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
     }
 
 
@@ -27,9 +30,20 @@ public class Target : NetworkBehaviour
 
     private void Die()
     {
-        if(!animator.GetBool("Dead"))
+       /* if(!animator.GetBool("Dead"))
             animator.SetBool("Dead", true);
-        Destroy(gameObject, 10f);
-        
+        Destroy(gameObject, 10f);*/
+        health = 100f;
+
+    }
+
+    [ClientRpc]
+    void RpcRespawn()
+    {
+        if (isLocalPlayer)
+        {
+            // move back to zero location
+            transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        }
     }
 }

@@ -172,7 +172,8 @@ public class PlayerMovement : NetworkBehaviour
         if(_body.transform.position.y < -20f)
         {
             //_body.MovePosition(new Vector3(0, 0.06f, -3.6f));
-            Destroy(gameObject);
+            _body.MovePosition(player.target.spawnPoints[Random.Range(0, 4)].transform.position);
+            //Destroy(gameObject);
         }
     }
 
