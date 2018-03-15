@@ -39,6 +39,7 @@ public class PlayerMovement : NetworkBehaviour
     public AudioClip gunShot;
     public AudioClip hitSound;
     public AudioClip walkSound;
+    public AudioClip jumpSound;
 
     public AudioSource myAudio;
 
@@ -170,6 +171,11 @@ public class PlayerMovement : NetworkBehaviour
             animator.SetBool("hasJumped", true);
             //_isGrounded = false;
             delay++;
+            //le son du jump sinon ça fait un truc dégueu sans condition
+            if (!myAudio.isPlaying)
+            {
+                myAudio.PlayOneShot(jumpSound, 0.3f);
+            }
 
             if (delay == 7)
             {
@@ -225,7 +231,10 @@ public class PlayerMovement : NetworkBehaviour
             Target target = hit.transform.GetComponent<Target>();
             if(target != null)
             {
-                //PlaySound();
+                if (!myAudio.isPlaying)
+                {
+                    myAudio.PlayOneShot(hitSound);
+                }
                 target.CmdTakeDamage(damage);
             }
         }
