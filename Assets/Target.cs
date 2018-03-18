@@ -2,26 +2,22 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class Target : NetworkBehaviour
+public class Target : NetworkBehaviour // Tout les personnages ayant de la vie implémente cette classe
 {
     [SyncVar]
-    public float health = 100f;
+    public float health = 100f; // la vie est synchronisé sur les clients et le serveur
 
     public NetworkStartPosition[] spawnPoints;
 
     Animator animator;
     NetworkAnimator net_animator;
 
-    //public AudioSource myAudio;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         spawnPoints = FindObjectsOfType<NetworkStartPosition>();
-
-        //myAudio = GetComponent<AudioSource>();
-        //myAudio.clip = hit;
     }
 
 
@@ -30,39 +26,35 @@ public class Target : NetworkBehaviour
         health -= amount;
         if (health <= 0f)
             Die();
-        //else
-        //    net_animator.SetTrigger("isHit");
+        else
+            animator.SetTrigger("isHit"); // animation lorsqu'on est touché
     }
 
     private void Die()
     {
-       
-        //Destroy(gameObject, 10f);
-        
         RpcRespawn();  
-
     }
 
-    [ClientRpc]
+    [ClientRpc] // La fonction est synchronisé avec le client
     void RpcRespawn()
     {
         if (isLocalPlayer)
         {
-            //if (!animator.GetBool("Dead"))
-            StartCoroutine(Respawn());
+            StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
 
         }
     }
 
     IEnumerator Respawn()
     {
-        //print(Time.time);
-        net_animator.SetTrigger("Dead2");
+        net_animator.SetTrigger("Dead2"); // On lance l'animation de mort
        
-        yield return new WaitForSeconds(5);
-        animator.Play("Idle", -1, 0f);
+        yield return new WaitForSeconds(5); // delay
+        
+        
+        // On relance l'animation Idle et on remet la vie à 100
+        animator.Play("Idle", -1, 0f); 
         transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
         health = 100f;
-        //print(Time.time);
     }
 }
