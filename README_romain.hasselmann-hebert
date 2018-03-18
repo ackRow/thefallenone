@@ -1,0 +1,41 @@
+Romain Hasselmann-Hebert : Parie graphique / Level design
+
+* Images - Photoshop 
+----------------------
+
+J'ai réalisé un premier prototype du logo pour le jeux qui fut remplacer par celui actuel grâce à Photoshop.
+De la même manière, j'ai réalisé le logo de l'équipe.
+
+Réalisation d'un template photoshop qui permet de faire une image pour les catégories et les articles très rapidement en changent
+l'image de fond et le texte.
+
+* Asset - 3D
+---------------------
+
+Recherche d'asset, qui nous a permis de trouver le personnage actuellement utilisé. J'ai également récupérer quelques objets 3D qui
+seront utilisés dans les différentes map du jeux.
+J'ai également demandé à un amis qui maitrise bien la 3D de nous réaliser le pistolet.
+
+Modification des assets pour qu'ils colle à l'ambiance visuel du jeux, c'est à dire avec des arrêtes des polygones visiblent avec 
+le logiciel cinéma 4D.
+
+* Level Design
+---------------------
+
+Création d'une map de test, ayant tout type de collision possibles avec des objets de formes différentes. Création d'escalier, et
+de pente pour voir la réaction du système de mouvement du joueur avec les objets de la map.
+
+Developpement du premier niveau du jeux, réflexion sur la jouabilité et l'évolution du joueur dans l'environnement.
+
+Création d'une map multijoueur dynamique, regroupent plusieurs plateforme à différents niveaux, ainsi que quelques jump boost
+pour permettre d'accéder au drapeaux.
+
+
+* A faire
+---------------------
+
+Pour la prochaine soutenance je prévois de réaliser plusieurs niveaux jouables. De ce fait il faut que je trouve de nouveaux objets 
+3D et que je les modifient pour qu'ils collent à l'ambiance du jeux.
+
+Aider à la réalisation et la conception des futurs interractions entre le joueur et la map.
+
