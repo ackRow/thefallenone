@@ -36,17 +36,14 @@ public class Player : NetworkBehaviour
         
         gun.GetComponent<Renderer>().enabled = hasGun;
         target = GetComponent<Target>();
-        head.GetComponent<Renderer>().enabled = false;
+        head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
 
         if (!isLocalPlayer)
         {
-            GetComponentInChildren<moveLook>().local = false;
-            head.GetComponent<Renderer>().enabled = true;
+            GetComponentInChildren<moveLook>().local = false; // On desactive la camera fps des autres joueurs
+            head.GetComponent<Renderer>().enabled = true; // On affiche la tête des autres joueurs
             return;
         }
-
-        
-        // playerHealth = FindObjectsOfType<Slider>()[0];
 
 
     }
@@ -61,9 +58,9 @@ public class Player : NetworkBehaviour
     }
 
     [GUITarget]
-    void GUIHealthSync()
+    void GUIHealthSync() // On synchronise avec le GUI du client pour update la barre de vie en temps réel
     {
-        playerHealth = FindObjectsOfType<Slider>()[0];
+        playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
         playerHealth.value = target.health;
     }
 }
