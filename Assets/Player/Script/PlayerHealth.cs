@@ -2,6 +2,13 @@
 using UnityEngine.Networking;
 using UnityEngine;
 
+/*
+
+	NE SERT PLUS A RIEN
+	SERA SUPPRIME DANS LES PROCHAINES VERSIONS
+
+*/
+
 public class PlayerHealth : NetworkBehaviour
 {
 
