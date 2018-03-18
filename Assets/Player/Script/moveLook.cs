@@ -15,27 +15,20 @@ public class moveLook : NetworkBehaviour
 
 
     GameObject character;
-    //[SerializeField]
-    //private Animator animator;
 
     private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
     private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
 
     public bool local = true;
 
-
-
     // Use this for initialization
     void Start()
     {
 
-        character = this.transform.parent.gameObject;
-        // On affiche pas le curseur en jeu
-        Cursor.lockState = CursorLockMode.Locked;
+        character = this.transform.parent.gameObject;     
 
-        if (!local)
+        if (!local) // On desactive la camera pour les autres joueurs multi
         {
-            //Destroy(this.gameObject.transform.GetChild(0).gameObject);
             Camera cam = gameObject.transform.GetChild(0).gameObject.GetComponent<Camera>();
             cam.enabled = false;
             cam.GetComponent<AudioListener>().enabled = false;
@@ -43,13 +36,16 @@ public class moveLook : NetworkBehaviour
             return;
         }
         
-
+        // On affiche pas le curseur en jeu
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        
+        // On tourne la camera et le joueur en fonction des mouvements de souris
 
         md = Vector2.Scale(md, new Vector2(sensivity * smoothing, sensivity * smoothing));
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
@@ -61,27 +57,6 @@ public class moveLook : NetworkBehaviour
         transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
         character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
 
-        
-
-        //transform.position = Vector3.MoveTowards(transform.position, parent.transform.position, 0.03f); Vu TPS
-
-       /* if (animator)
-        {
-            
-
-            if(animator.GetCurrentAnimatorStateInfo(0).nameHash == idleStateHash)
-            {
-                animator.Play(bendStateHash);
-                //animator.speed = 0;
-            }
-            else
-            {
-                //animator.enabled = true;
-            }
-
-
-
-        } */
 
         // Pour le moment on appuie sur echap pour avoir le curseur
         if (Input.GetKeyDown("escape"))
