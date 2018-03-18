@@ -5,15 +5,6 @@ using System.Collections;
 public class PlayerMovement : NetworkBehaviour
 {
 
-
-    /*public Text GroundState;
-    public Text SpeedText;
-    public Text coordsText;
-    public float x;
-    public float y;
-    public float z;*/
-
-    //public Vector3 moveDirection = Vector3.zero;
     private Vector3 _moveDirection = Vector3.zero;
     private Rigidbody _body;
     public float Speed = 0;
@@ -25,12 +16,10 @@ public class PlayerMovement : NetworkBehaviour
 
     private int delay = 0;
 
-    //[SerializeField]
     Player player;
 
     bool walking = false;
 
-    //[SerializeField]
     private Animator animator;
     NetworkAnimator net_animator;
 
@@ -45,7 +34,8 @@ public class PlayerMovement : NetworkBehaviour
 
     void Start()
     {
-
+        // On recupère les différentes Component de l'objet unity
+        
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         _body = GetComponent<Rigidbody>();
@@ -70,40 +60,31 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
-        /*
-         * NO UI in this file !
-         * 
-        x = _body.transform.position.x;
-        y = _body.transform.position.y;
-        z = _body.transform.position.z;
-        coordsText.text = "( " + x.ToString() + ", " + y.ToString() + ", " + z.ToString() + " )";
-        GroundState.text = "isGrounded: " + _isGrounded.ToString();
-        SpeedText.text = "Speed: " + Speed.ToString();*/
 
-        if (!isLocalPlayer || player.target.health <= 0)
-        {
-            //Destroy(this);
+        if (!isLocalPlayer || player.target.health <= 0) // Le joueur ne peut pas controller les autres personnages en multi
+        {                                                // Il ne peut pas non plus se déplacer s'il est mort (health <= 0)
             return;
         }
 
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-        if (Input.GetMouseButtonDown(1) & player.hasGun)
+        if (Input.GetMouseButtonDown(1) & player.hasGun) // Le joueur peut mettre en joue son arme (clic droit)
         {
             animator.SetBool("hasgun", !animator.GetBool("hasgun"));
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)) // clic gauche
         {
-            if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire)
-            {
+            if (!animator.GetBool("hasgun") && Time.time > nextTimeToFire) // S'il reste appuyer, il y a un delay 
+            { // Si le joueur n'a pas d'arme ou s'il n'a pas mis son arme en joue, il donne un coup de point
                 net_animator.SetTrigger("Punching");
-                CmdHit(player.punchDamage, player.punchRange);
+                CmdHit(player.punchDamage, player.punchRange); // CmdHit est une fonction Server
                 nextTimeToFire = Time.time + player.punchingBuff;
             }
-            else if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire)
+            else if (animator.GetCurrentAnimatorStateInfo(0).fullPathHash == gunStateHash && Time.time >= nextTimeToFire) // cadence de tir
             {
+                // S'il a une arme, alors il peut tirer
                 net_animator.SetTrigger("Shooting");
                 myAudio.PlayOneShot(gunShot);
                 CmdHit(player.gunDamage, player.gunRange);
@@ -115,8 +96,10 @@ public class PlayerMovement : NetworkBehaviour
         if (animator)
         {
 
-            animator.SetFloat("Speed", Speed);
+            animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
             animator.SetBool("isWalking", (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2 && _isGrounded);
+            
+            // On joue le son de pas
             if (walking == false && animator.GetBool("isWalking"))
             {
                 walking = true;
@@ -140,7 +123,7 @@ public class PlayerMovement : NetworkBehaviour
         if (!isLocalPlayer || player.target.health <= 0)
             return;
 
-        Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
+        // On change la vitesse de déplacement du joueur en fonction de son état (en l'air, entrain de courir)
         if (_isGrounded || Speed == 0)
         {
             if (Input.GetKey(KeyCode.LeftShift) && !animator.GetBool("hasgun"))
@@ -151,54 +134,49 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         if (!_isGrounded)
-        { //pendant qu'on est dans les air le mouvement est réduit
+        { //pendant qu'on est dans les air on desactive l'animation de prise d'élan du saut
 
             animator.SetBool("hasJumped", false);
         }
 
-        //_body.velocity c'est la vélocité de l'objet (la vitesse)
-
+        // On récupère les entrées clavier
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-        //print(_body.velocity);
-
-
-
         if ((Input.GetKey(KeyCode.Space) || animator.GetBool("hasJumped")) && _isGrounded)
         {  //on saute
-            //_body.isKinematic = false;
-            animator.SetBool("hasJumped", true);
-            //_isGrounded = false;
+        
+            animator.SetBool("hasJumped", true); // on démarre l'animation de prise d'élan pour le saut
+
             delay++;
 
             walking = false;
-            myAudio.Stop();
-            //le son du jump sinon ça fait un truc dégueu sans condition
+            myAudio.Stop(); // on arrête les bruits de pas
 
-            if (delay == 7)
+            if (delay == 7) // Le delay permet de synchroniser le saut avec l'animation
             {
                 _isGrounded = false;
 
-                myAudio.PlayOneShot(jumpSound, 0.3f);
+                myAudio.PlayOneShot(jumpSound, 0.3f); // bruit du saut
 
-                //_body.isKinematic = false;
+                // Pour rendre le saut plus réaliste, on utilise AddForce en mode Impulse
                 _body.AddForce(new Vector3(0, player.JumpForce, 0), ForceMode.Impulse);
-                Speed *= 0.6f;
+                Speed *= 0.6f; // la vitesse du joueur est réduite dans les airs
                 delay = 0;
             }
         }
 
+        // On modifie directement la velocity du personnage pour les axes X et Z afin de le rendre plus controlable
+        // Au lieu d'utiliser AddForce
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
 
+        // On désactive la kinetic du rigidbody lorsque celui ci est à l'arrêt (pour qu'il ne glisse pas dans les pentes par exemple)
         _body.isKinematic = _body.velocity == Vector3.zero && !(_isGrounded || animator.GetBool("hasJumped"));
 
-
+        // Si le joueur tombe dans le vide, il respawn
         if (_body.transform.position.y < -20f)
         {
-            //_body.MovePosition(new Vector3(0, 0.06f, -3.6f));
             _body.MovePosition(player.target.spawnPoints[Random.Range(0, 4)].transform.position);
-            //Destroy(gameObject);
         }
     }
 
@@ -217,31 +195,25 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
-    }
-
-    [Command]
+    [Command] // S'execute sur le serveur
     void CmdHit(float damage, float range)
     {
-
         RaycastHit hit;
+        // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            //Debug.Log(hit.transform.name);
             Target target = hit.transform.GetComponent<Target>();
-            if (target != null)
+            if (target != null) // Si un joueur est touché
             {
-                RpcPlayHitSound();
-                target.CmdTakeDamage(damage);
+                RpcPlayHitSound(); 
+                target.CmdTakeDamage(damage); // La target va perdre de la vie
             }
         }
 
     }
 
     [ClientRpc]
-    void RpcPlayHitSound()
+    void RpcPlayHitSound() // On lance le son de hit chez les clients
     {
         if (!myAudio.isPlaying)
         {
