@@ -1,0 +1,22 @@
+login: guillaume.mateos
+
+---- README de MATEOS Guillaume ----
+
+Voici tout le code réaliser pour la première soutenance.
+Nous avons tous travailler sur unity, c'est à dire que tout le monde 
+a toucher au code sur unity. Personnellement j'avais commencer par 
+faire plusieurs codes differents qui permettais tous au final de 
+bouger le personnage sur unity (le zqsd basique) et j'ai aussi réaliser
+le script qui permet d'obtenir les rotation du personnage en fonction
+du mouvement de la souris. Pour ce dernier j'ai du vraiment m'aider 
+d'un tutoriel sur internet puisque le script utilise une notion assez 
+complexe que je n'ai jamais vu en cours: un quaternion. Il permet de faire une rotation
+par rapport a un axe(très grossièrement). Pour en revenir au deplacement du joueur nous avons 
+finalement chosis la méthode du rigidbody. Hugo à pris mon premier script 
+de cette derniere méthode et l'a très vite améliorer. Pendant ce temps j'ai réaliser 
+le site internet en partant d'un template bootstrap libre de droit. Le site est accessible 
+a tout moment a l'adresse suivante: thefallen.one. Il n'est pas encore complet 
+mais les differents scripts qui permettent de dynamiser le site(en PHP notament)
+ne vont pas vraiment me poser de problème a réaliser. Lorsque j'aurais terminer le 
+site je retournerais sur unity afin d'implementer de nouveaux mecanisme sur le joueur
+afin d'améliorer sa jouabilité et surtout sa mobilité.
