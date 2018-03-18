@@ -32,9 +32,19 @@ dans le script.
 * Mise en réseau
 
 Les principales fonctionnalités du joueur fonctionnent en multi joueur. Il y a parfois des comportements inattendus qu'il faudra
-résoudre (l'animation de tir qui se joue 2 fois pour le host).
+résoudre ( ex : l'animation de tir qui se joue 2 fois pour le host ).
+
+* Héritage
+
+Pour l'instant il n'y a pas d'héritage, mais je pense que la classe `Player.cs` comportant les variables principales du joueur
+pourrait hérité de la classe `Target.cs` qui représente tous les objets du jeu qui ont de la vie et peuvent se faire tirer dessus.
 
 # PNJ (player non joueur)
+
+* Script
+```
+Assets/Target.cs
+```
 
 * Commencement
 
