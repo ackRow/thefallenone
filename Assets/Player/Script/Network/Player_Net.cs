@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using UnityEngine.UI; // faut utiliser l'UI
 
-public class Player : NetworkBehaviour
+public class Player_Net : NetworkBehaviour
 {
 
     public float walking_speed = 4.0f;
@@ -22,7 +22,7 @@ public class Player : NetworkBehaviour
     public GameObject gun;
     public GameObject head;
 
-    public Target target;
+    public Target_Net target;
 
     private Slider playerHealth;
 
@@ -35,12 +35,12 @@ public class Player : NetworkBehaviour
     void Start () {
         
         gun.GetComponent<Renderer>().enabled = hasGun;
-        target = GetComponent<Target>();
+        target = GetComponent<Target_Net>();
         head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
 
         if (!isLocalPlayer)
         {
-            GetComponentInChildren<moveLook>().local = false; // On desactive la camera fps des autres joueurs
+            GetComponentInChildren<moveLook_Net>().local = false; // On desactive la camera fps des autres joueurs
             head.GetComponent<Renderer>().enabled = true; // On affiche la tête des autres joueurs
             return;
         }

@@ -1,7 +1,6 @@
-﻿using UnityEngine.Networking;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class moveLook : NetworkBehaviour
+public class moveLook : MonoBehaviour
 {
 
     Vector2 mouseLook;
@@ -18,24 +17,13 @@ public class moveLook : NetworkBehaviour
 
     private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
     private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
-
-    public bool local = true;
-
+   
     // Use this for initialization
     void Start()
     {
 
-        character = this.transform.parent.gameObject;     
+        character = transform.parent.gameObject;
 
-        if (!local) // On desactive la camera pour les autres joueurs multi
-        {
-            Camera cam = gameObject.transform.GetChild(0).gameObject.GetComponent<Camera>();
-            cam.enabled = false;
-            cam.GetComponent<AudioListener>().enabled = false;
-            Destroy(this);
-            return;
-        }
-        
         // On affiche pas le curseur en jeu
         Cursor.lockState = CursorLockMode.Locked;
     }

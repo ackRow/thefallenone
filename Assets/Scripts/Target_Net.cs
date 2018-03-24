@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class Target : NetworkBehaviour // Tout les personnages ayant de la vie implémente cette classe
+public class Target_Net : NetworkBehaviour // Tout les personnages ayant de la vie implémente cette classe
 {
     [SyncVar]
     public float health = 100f; // la vie est synchronisé sur les clients et le serveur

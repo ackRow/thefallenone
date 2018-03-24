@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerMovement_Net : NetworkBehaviour
 {
 
     private Vector3 _moveDirection = Vector3.zero;
@@ -16,7 +16,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private int delay = 0;
 
-    Player player;
+    Player_Net player;
 
     bool walking = false;
 
@@ -39,7 +39,7 @@ public class PlayerMovement : NetworkBehaviour
         animator = GetComponent<Animator>();
         net_animator = GetComponent<NetworkAnimator>();
         _body = GetComponent<Rigidbody>();
-        player = GetComponent<Player>();
+        player = GetComponent<Player_Net>();
 
         myAudio = GetComponent<AudioSource>();
         myAudio.clip = gunShot;
@@ -202,7 +202,7 @@ public class PlayerMovement : NetworkBehaviour
         // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Target target = hit.transform.GetComponent<Target>();
+            Target_Net target = hit.transform.GetComponent<Target_Net>();
             if (target != null) // Si un joueur est touché
             {
                 RpcPlayHitSound(); 
