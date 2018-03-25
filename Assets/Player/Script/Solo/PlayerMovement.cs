@@ -66,9 +66,9 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection.z = Input.GetAxis("Horizontal");
         _moveDirection.x = Input.GetAxis("Vertical");
 
-        if (Input.GetMouseButtonDown(1) & player.hasGun) // Le joueur peut mettre en joue son arme (clic droit)
+        if (Input.GetMouseButtonDown(1)) // Le joueur peut mettre en joue son arme (clic droit)
         {
-            animator.SetBool("hasgun", !animator.GetBool("hasgun"));
+            player.hasGun = !player.hasGun;
         }
 
         if (Input.GetMouseButton(0)) // clic gauche

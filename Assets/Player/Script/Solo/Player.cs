@@ -20,13 +20,19 @@ public class Player : MonoBehaviour, ITarget
 
     public bool hasGun = false;
 
+    public bool FPSView = true;
+
     private Rigidbody _body;
     public GameObject gun;
     public GameObject head;
+    public GameObject[] Arm;
+    public GameObject Stomach;
 
     private Slider playerHealth;
 
     private Animator animator;
+
+    public Animator ArmAnimator;
 
 
 
@@ -37,8 +43,22 @@ public class Player : MonoBehaviour, ITarget
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        gun.GetComponent<Renderer>().enabled = hasGun;
-        head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
+
+        ArmAnimator = GetComponentsInChildren<Animator>()[1];
+
+        //gun.GetComponent<Renderer>().enabled = hasGun;
+
+        if (FPSView)
+        {
+            gun.GetComponent<Renderer>().enabled = false;
+            head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
+            foreach (var obj in Arm)
+            {
+                obj.GetComponent<Renderer>().enabled = false;
+            }
+        }
+
+        
 
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
 
@@ -49,6 +69,11 @@ public class Player : MonoBehaviour, ITarget
     void Update () {
         
         playerHealth.value = health;
+
+        gun.GetComponent<Renderer>().enabled = hasGun;
+
+        animator.SetBool("hasgun", hasGun);
+        ArmAnimator.SetBool("hasGun", hasGun);
     }
 
     public void TakeDamage(float damage)

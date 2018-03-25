@@ -296,6 +296,7 @@
     <Compile Include="Assets\Player\Script\Network\moveLook_Net.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
     <Compile Include="Assets\Player\Script\Network\PlayerMovement_Net.cs" />
+    <Compile Include="Assets\Player\Script\Solo\ArmAnimation.cs" />
     <Compile Include="Assets\Player\Script\Solo\moveLook.cs" />
     <Compile Include="Assets\Player\Script\Solo\Player.cs" />
     <Compile Include="Assets\Player\Script\Solo\PlayerMovement.cs" />
