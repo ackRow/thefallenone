@@ -1052,6 +1052,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &184806206 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1476169550297144, guid: a9b28103f95665e4da8ee42147e9883f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2054968796}
 --- !u!1 &185233512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,6 +3722,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 760884398}
   m_Mesh: {fileID: 4300042, guid: 28c34b4f6cea81a40bb84bcd94f6f566, type: 3}
+--- !u!1 &777534978 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1221284754493300, guid: a9b28103f95665e4da8ee42147e9883f,
+    type: 2}
+  m_PrefabInternal: {fileID: 2054968796}
 --- !u!1 &778429237
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,10 +3771,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 788110213}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53e2a4b0442d0bb4f9d281e7998154b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 84cb0eb9c90c8ce43b4c267612cdef50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  walking_speed: 4
+  running_speed: 8
+  JumpForce: 650
+  hasGun: 0
+  gunDamage: 25
+  gunRange: 20
+  gunFireBuff: 0.28
+  punchDamage: 50
+  punchRange: 1
+  punchingBuff: 0.95
+  FPSView: 1
+  gun: {fileID: 184806206}
+  head: {fileID: 777534978}
+  ArmExt: []
+  ArmFPS: []
 --- !u!54 &788110216
 Rigidbody:
   m_ObjectHideFlags: 0

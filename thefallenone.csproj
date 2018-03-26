@@ -299,8 +299,10 @@
     <Compile Include="Assets\Player\Script\Solo\ArmAnimation.cs" />
     <Compile Include="Assets\Player\Script\Solo\moveLook.cs" />
     <Compile Include="Assets\Player\Script\Solo\Player.cs" />
+    <Compile Include="Assets\Player\Script\Solo\Player1.cs" />
     <Compile Include="Assets\Player\Script\Solo\PlayerMovement.cs" />
     <Compile Include="Assets\PNJ\Script\Bot.cs" />
+    <Compile Include="Assets\Scripts\Human.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
