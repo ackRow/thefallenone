@@ -1,106 +1,87 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI; // faut utiliser l'UI
-using System.Collections;
 
-public class Player : MonoBehaviour, ITarget
-{
-
-    public float walking_speed = 4.0f;
-    public float running_speed = 8.0f;
-
-    public float gunDamage = 25f;
-    public float gunRange = 20f;
-    public float gunFireBuff = 0.267f;
-    public float punchDamage = 10f;
-    public float punchRange = 0.1f;
-    public float punchingBuff = 1f;
-    public float JumpForce = 650.0f;
-
-    public float health = 100;
-
-    public bool hasGun = false;
-
-    public bool FPSView = true;
-
-    private Rigidbody _body;
-    public GameObject gun;
-    public GameObject head;
-    public GameObject[] Arm;
-    public GameObject Stomach;
+public class Player : Human { // Hérite de la classe human
 
     private Slider playerHealth;
 
-    private Animator animator;
+    private Animator ArmAnimator; // les mains en vue fps
 
-    public Animator ArmAnimator;
+    public bool FPSView = true;
 
+    private GameObject gun;
+    public GameObject head;
 
+    public GameObject[] ArmExt; // last object is the gun
 
-    public Vector3 Position
-    {    
-        get { return _body.transform.position; }
-    }
+    public GameObject[] ArmFPS;
+
     // Use this for initialization
-    void Start () {
-        animator = GetComponent<Animator>();
-
+    new void Start () {
+        base.Start();
+        
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
-
-        //gun.GetComponent<Renderer>().enabled = hasGun;
 
         if (FPSView)
         {
-            gun.GetComponent<Renderer>().enabled = false;
             head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
-            foreach (var obj in Arm)
+            foreach (var obj in ArmExt)
             {
                 obj.GetComponent<Renderer>().enabled = false;
             }
+
+            gun = ArmFPS[ArmFPS.Length - 1];
+        }
+        else
+        {
+            head.GetComponent<Renderer>().enabled = true; // On cache la tête du joueur (car vue FPS)
+            foreach (var obj in ArmFPS)
+            {
+                obj.GetComponent<Renderer>().enabled = false;
+            }
+
+            gun = ArmExt[ArmExt.Length - 1];
         }
 
-        
-
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
-
-
     }
-
-    // Update is called once per frame
-    void Update () {
+	
+	// Update is called once per frame
+	new void Update () {
+        base.Update();
         
+        /* UI */
         playerHealth.value = health;
 
-        gun.GetComponent<Renderer>().enabled = hasGun;
+        /* Hide and Show gun */
+        gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
 
-        animator.SetBool("hasgun", hasGun);
-        ArmAnimator.SetBool("hasGun", hasGun);
+        /* Animation FPS Arm */
+        Animate(ArmAnimator);
+
     }
 
-    public void TakeDamage(float damage)
+    new void FixedUpdate()
     {
-        health -= damage;
-        if (health <= 0f)
-            Die();
-        else
-            animator.SetTrigger("isHit"); // animation lorsqu'on est touché*/
+        base.FixedUpdate();
     }
 
-    public void Die()
+    public override void Die()
     {
+        base.Die();
         StartCoroutine(Respawn());
     }
 
     IEnumerator Respawn()
     {
-        animator.SetTrigger("Dead2"); // On lance l'animation de mort
-
         yield return new WaitForSeconds(5); // delay
 
-
+        dead = false;
         // On relance l'animation Idle et on remet la vie à 100
-        animator.Play("Idle", -1, 0f);
+        _animator.Play("Idle", -1, 0f);
         //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
         health = 100f;
     }
-
 }

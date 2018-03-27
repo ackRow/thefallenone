@@ -51,7 +51,12 @@ public class Human : MonoBehaviour, ITarget
     protected float jumpDelay = 0.0f; // sync jump animation
 
     protected bool isScoping = false; // Est entrain de viser
-    protected float nextTimeToFire = 0f;
+    protected float nextTimeToAttack = 0f;
+    protected bool attacking = false;
+
+
+    protected bool hasHitTarget = false;
+    protected bool isHit = false;
 
 
 
@@ -61,15 +66,14 @@ public class Human : MonoBehaviour, ITarget
     }
 
     protected void Start () {
-        Debug.Log("test");
+
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
     }
 
 
-    protected void Update() // Animating, playing sounds, adjusting life
+    protected void Animate(Animator _animator)
     {
-
         if (_animator)
         {
             _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
@@ -77,23 +81,46 @@ public class Human : MonoBehaviour, ITarget
             if (hasGun)
                 _animator.SetBool("Scope", isScoping);
 
-            _animator.SetBool("Walk", walking);
+            if (attacking)
+            {
+                if (isScoping)
+                    _animator.SetTrigger("Shoot");
+                else
+                    _animator.SetTrigger("Punch");
+
+                attacking = false;
+            }
+
+            _animator.SetBool("Walk", walking && !jumping);
+
+            _animator.SetBool("Jump", jumping);
 
             _animator.SetBool("Dead", dead);
 
         }
     }
 
+    protected void Update() // Animating, playing sounds
+    {
+
+        /* Animation */
+        Animate(_animator);
+
+        /* Sound */
+    }
+
     protected void FixedUpdate() // Moving, Physic Stuff
     {
-        if (IsGrounded())
+        /*if (IsGrounded())
         {
             _body.isKinematic = _body.velocity == Vector3.zero;
         }
         else
         {
             _body.isKinematic = !jumping;
-        }
+        }*/
+
+        //Debug.DrawRay(_body.position + new Vector3(0, 0.05f, 0), -Vector3.up, Color.red, 0.1f, true);
 
         if (dead)
             return;
@@ -112,15 +139,19 @@ public class Human : MonoBehaviour, ITarget
         }
     }
 
-    protected void Jump()
+    public void Jump()
     {
-        walking = false;
-        jumping = true;
+        if(!jumping && IsGrounded())
+        {
+            walking = false;
+            jumping = true;
 
-        jumpDelay = Time.time + 0.5f;
+            jumpDelay = Time.time + 0.15f;
+        }
+        
     }
 
-    protected void Forward(bool run, Vector3 _direction)
+    public void Forward(bool run, Vector3 _direction)
     {
         if (!isScoping || IsGrounded())
             Speed = run ? running_speed : walking_speed;
@@ -133,18 +164,30 @@ public class Human : MonoBehaviour, ITarget
         _moveDirection = _direction;
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void Scope()
     {
-        if (collision.gameObject.tag == "jumpg")
-        {
-            Jump();
-            jumpMult = 2.0f;
-        }
+        if (hasGun)
+            isScoping = !isScoping;
     }
 
-    bool IsGrounded()
+    public void Attack(Vector3 _position, Vector3 _direction)
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+        if (Time.time > nextTimeToAttack)
+        {
+            nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
+            attacking = true;
+            RaycastHit hit;
+            // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
+            if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
+            {
+                ITarget target = hit.transform.GetComponent<ITarget>();
+                if (target != null) // Si un joueur est touché
+                {
+                    hasHitTarget = true;
+                    target.TakeDamage((isScoping ? gunDamage : punchDamage)); // La target va perdre de la vie
+                }
+            }
+        }
     }
 
     public void TakeDamage(float damage)
@@ -156,8 +199,23 @@ public class Human : MonoBehaviour, ITarget
             _animator.SetTrigger("isHit"); // animation lorsqu'on est touché
     }
 
-    public void Die()
+    public virtual void Die()
     {
+        Debug.Log("Virtual");
         dead = true;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "jumpg")
+        {
+            Jump();
+            jumpMult = 2.0f;
+        }
+    }
+
+    protected bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position + new Vector3(0, 0.9f, 0), -Vector3.up, 1f);
     }
 }

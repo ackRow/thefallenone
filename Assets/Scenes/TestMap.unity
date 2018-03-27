@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -763,6 +763,10 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 159290128}
+--- !u!1 &166198730 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100030, guid: bac95406348950940a9a3da8e7554637, type: 3}
+  m_PrefabInternal: {fileID: 1755373665}
 --- !u!1 &169346146
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,6 +2688,10 @@ Transform:
   m_Father: {fileID: 1757205446}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &581112408 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100014, guid: bac95406348950940a9a3da8e7554637, type: 3}
+  m_PrefabInternal: {fileID: 1755373665}
 --- !u!1 &596645231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,7 +3777,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 788110213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84cb0eb9c90c8ce43b4c267612cdef50, type: 3}
   m_Name: 
@@ -3785,6 +3793,19 @@ MonoBehaviour:
   punchDamage: 50
   punchRange: 1
   punchingBuff: 0.95
+  _body: {fileID: 0}
+  _animator: {fileID: 0}
+  _moveDirection: {x: 0, y: 0, z: 0}
+  jumpMult: 1
+  Speed: 0
+  walking: 0
+  jumping: 0
+  dead: 0
+  jumpDelay: 0
+  isScoping: 0
+  nextTimeToFire: 0
+  playerHealth: {fileID: 0}
+  ArmAnimator: {fileID: 0}
   FPSView: 1
   gun: {fileID: 184806206}
   head: {fileID: 777534978}
@@ -4112,7 +4133,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 869749693}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.526, y: 0.218, z: 0.12}
+  m_LocalPosition: {x: -0.534, y: 0.244, z: 0.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 917270637}
@@ -7913,9 +7934,8 @@ GameObject:
   - component: {fileID: 1549938784}
   - component: {fileID: 1549938783}
   - component: {fileID: 1549938782}
-  - component: {fileID: 1549938781}
-  - component: {fileID: 1549938780}
   - component: {fileID: 1549938779}
+  - component: {fileID: 1549938780}
   - component: {fileID: 1549938778}
   m_Layer: 0
   m_Name: Bluzz
@@ -8008,38 +8028,7 @@ AudioSource:
 --- !u!114 &1549938779
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114494780982503352, guid: ff4eb5d632bb52c469c94020799167fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1549938777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e118b4c9e7855fc43916f59477f9fa19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1549938780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114590155123651180, guid: ff4eb5d632bb52c469c94020799167fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1549938777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08309c5fec9c228449ed05392de3778e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  gunShot: {fileID: 8300000, guid: 81fc6e5aba5f2b74ebc0f1e7ba193a99, type: 3}
-  hitSound: {fileID: 8300000, guid: 5ad5b3ae3440f6e49a2874d2642f4696, type: 3}
-  walkSound: {fileID: 8300000, guid: 3b82c88b304d2824c820d9f750607da9, type: 3}
-  jumpSound: {fileID: 8300000, guid: 849a2f6253e08a6428efd02328ff0aed, type: 3}
-  myAudio: {fileID: 0}
---- !u!114 &1549938781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114862107503306448, guid: ff4eb5d632bb52c469c94020799167fd,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1549938777}
   m_Enabled: 1
@@ -8047,28 +8036,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706ce301b412b7943abb9f43a8a556ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   walking_speed: 4
   running_speed: 8
+  JumpForce: 650
+  hasGun: 1
   gunDamage: 25
   gunRange: 20
   gunFireBuff: 0.28
   punchDamage: 50
   punchRange: 1
   punchingBuff: 0.95
-  JumpForce: 650
-  health: 100
-  hasGun: 1
   FPSView: 1
-  gun: {fileID: 60768}
   head: {fileID: 21025533}
-  Arm:
+  ArmExt:
   - {fileID: 1533907149}
   - {fileID: 1701845877}
   - {fileID: 1220838812}
   - {fileID: 797058082}
   - {fileID: 596645231}
-  Stomach: {fileID: 938022489}
-  ArmAnimator: {fileID: 0}
+  ArmFPS:
+  - {fileID: 1688284320}
+  - {fileID: 581112408}
+  - {fileID: 166198730}
+  - {fileID: 166198730}
+  - {fileID: 60768}
+--- !u!114 &1549938780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549938777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb09aabec937fe948b94f9c8d71c3702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &1549938782
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8872,6 +8875,10 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 9413ac96bd431c44abfdb535fe7f6e31, type: 3}
+--- !u!1 &1688284320 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100012, guid: bac95406348950940a9a3da8e7554637, type: 3}
+  m_PrefabInternal: {fileID: 1755373665}
 --- !u!1 &1691629008
 GameObject:
   m_ObjectHideFlags: 0
@@ -9295,6 +9302,14 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e2409ce9f6aac724ebb544e510c80274, type: 2}
+    - target: {fileID: 13700008, guid: bac95406348950940a9a3da8e7554637, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e7c0a40c32a3f984da7994cdbdac099a, type: 2}
+    - target: {fileID: 13700006, guid: bac95406348950940a9a3da8e7554637, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e7c0a40c32a3f984da7994cdbdac099a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bac95406348950940a9a3da8e7554637, type: 3}
   m_IsPrefabParent: 0
