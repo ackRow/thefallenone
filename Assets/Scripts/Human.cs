@@ -8,6 +8,11 @@ using UnityEngine;
  * (déplacements, animations, attaque, mort)
  * 
  */
+
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
+[RequireComponent(typeof(Animator))]
+
 public class Human : MonoBehaviour, ITarget
 {
 
@@ -35,6 +40,7 @@ public class Human : MonoBehaviour, ITarget
     /* Component */
     protected Rigidbody _body;
     protected Animator _animator;
+    protected CapsuleCollider _capsCollider;
 
     /* Movement variable */
     
@@ -43,6 +49,7 @@ public class Human : MonoBehaviour, ITarget
     protected float jumpMult = 1.0f;
     protected float Speed = 0.0f;
 
+    protected bool crouching = false;
     protected bool walking = false;
     protected bool jumping = false;
 
@@ -69,6 +76,7 @@ public class Human : MonoBehaviour, ITarget
 
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
+        _capsCollider = GetComponent<CapsuleCollider>();
     }
 
 
@@ -77,6 +85,8 @@ public class Human : MonoBehaviour, ITarget
         if (_animator)
         {
             _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
+
+            
 
             if (hasGun)
                 _animator.SetBool("Scope", isScoping);
@@ -90,6 +100,8 @@ public class Human : MonoBehaviour, ITarget
 
                 attacking = false;
             }
+
+            _animator.SetFloat("Crouch", crouching ? 1.0f : 0.0f);
 
             _animator.SetBool("Walk", walking && !jumping);
 
@@ -149,6 +161,23 @@ public class Human : MonoBehaviour, ITarget
             jumpDelay = Time.time + 0.15f;
         }
         
+    }
+
+    public bool Crouch()
+    {
+        if (!crouching)
+        {
+            crouching = true;
+            _capsCollider.height = _capsCollider.height / 2f;
+            _capsCollider.center = _capsCollider.center / 2f;
+        }
+        else
+        {
+            crouching = false;
+            _capsCollider.height = _capsCollider.height * 2f;
+            _capsCollider.center = _capsCollider.center * 2f;
+        }
+        return crouching;
     }
 
     public void Forward(bool run, Vector3 _direction)

@@ -29,6 +29,15 @@ public class PlayerController : MonoBehaviour {
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
             player.Jump();
 
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            if(player.Crouch())
+                fpsCam.transform.Translate(0.2f * Vector3.down);
+            else
+                fpsCam.transform.Translate(0.2f * Vector3.up);
+        }
+           
+
 
         player.Forward(Input.GetKey(KeyCode.LeftShift), //CrossPlatformInputManager.GetButtonDown("Run"), 
             new Vector3(Input.GetAxis("Vertical"), 0, Input.GetAxis("Horizontal")));

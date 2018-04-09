@@ -66,10 +66,13 @@ public class Player : Human { // Hérite de la classe human
 
     }
 
+    
+
     new void FixedUpdate()
     {
         base.FixedUpdate();
     }
+
 
     public override void Die()
     {
