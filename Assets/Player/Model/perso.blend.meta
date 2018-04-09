@@ -68,15 +68,17 @@ ModelImporter:
     7400000: Default Take
     7400002: ArmatureAction
     7400004: Bending
-    7400006: Flipping
-    7400008: Idle
-    7400010: Idle_Gun
-    7400012: Jumping
-    7400014: Punching
-    7400016: Running
-    7400018: Shoot
-    7400020: Walking
-    7400022: Walkingv2
+    7400006: Crunch
+    7400008: Crunch_Walk
+    7400010: Flipping
+    7400012: Idle
+    7400014: Idle_Gun
+    7400016: Jumping
+    7400018: Punching
+    7400020: Running
+    7400022: Shoot
+    7400024: Walking
+    7400026: Walkingv2
     9500000: //RootNode
     13700000: Body
     13700002: Glock_Eagle
@@ -198,6 +200,62 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Crunch
+      takeName: Crunch
+      firstFrame: 1
+      lastFrame: 17
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Crunch_Walk
+      takeName: Crunch_Walk
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Flipping
       takeName: Flipping
       firstFrame: 0
@@ -228,7 +286,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle
       takeName: Idle
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
@@ -256,7 +314,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle_Gun
       takeName: Idle_Gun
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
@@ -284,7 +342,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jumping
       takeName: Jumping
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
@@ -312,7 +370,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Punching
       takeName: Punching
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
@@ -340,7 +398,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Running
       takeName: Running
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
@@ -368,7 +426,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Shoot
       takeName: Shoot
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
@@ -424,7 +482,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walkingv2
       takeName: Walkingv2
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
