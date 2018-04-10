@@ -9,6 +9,8 @@ public class Player : Human { // Hérite de la classe human
 
     private Animator ArmAnimator; // les mains en vue fps
 
+    private PlayerController controller;
+
     public bool FPSView = true;
 
     private GameObject gun;
@@ -21,7 +23,9 @@ public class Player : Human { // Hérite de la classe human
     // Use this for initialization
     new void Start () {
         base.Start();
-        
+
+
+        controller = GetComponent<PlayerController>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
 
         if (FPSView)
@@ -71,6 +75,14 @@ public class Player : Human { // Hérite de la classe human
     new void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+
+    public override void Stand()
+    {
+        base.Stand();
+        // Call camera change in PlayerController
+        controller.adjustingCamera(false);
     }
 
 

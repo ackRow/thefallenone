@@ -42,8 +42,11 @@ public class Human : MonoBehaviour, ITarget
     protected Animator _animator;
     protected CapsuleCollider _capsCollider;
 
+    protected float _capsHeight;
+    protected Vector3 _capsCenter;
+
     /* Movement variable */
-    
+
     protected Vector3 _moveDirection = Vector3.zero;
 
     protected float jumpMult = 1.0f;
@@ -77,6 +80,8 @@ public class Human : MonoBehaviour, ITarget
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
         _capsCollider = GetComponent<CapsuleCollider>();
+        _capsHeight = _capsCollider.height;
+        _capsCenter = _capsCollider.center;
     }
 
 
@@ -114,6 +119,14 @@ public class Human : MonoBehaviour, ITarget
 
     protected void Update() // Animating, playing sounds
     {
+        /* State */
+        if (crouching)
+        {
+            crouching = IsGrounded() && !(jumping || Speed == running_speed || isScoping);
+            if (!crouching)
+                Stand();
+        }
+
 
         /* Animation */
         Animate(_animator);
@@ -165,19 +178,23 @@ public class Human : MonoBehaviour, ITarget
 
     public bool Crouch()
     {
-        if (!crouching)
+        crouching = !crouching;
+        adjustCollider(crouching);
+        return crouching;
+    }
+
+    public void adjustCollider(bool crouching)
+    {
+        if (crouching)
         {
-            crouching = true;
             _capsCollider.height = _capsCollider.height / 2f;
             _capsCollider.center = _capsCollider.center / 2f;
         }
         else
         {
-            crouching = false;
-            _capsCollider.height = _capsCollider.height * 2f;
-            _capsCollider.center = _capsCollider.center * 2f;
+            _capsCollider.height = _capsHeight;
+            _capsCollider.center = _capsCenter;
         }
-        return crouching;
     }
 
     public void Forward(bool run, Vector3 _direction)
@@ -233,6 +250,13 @@ public class Human : MonoBehaviour, ITarget
         Debug.Log("Virtual");
         dead = true;
     }
+
+    public virtual void Stand()
+    {
+        // Override this in child
+        adjustCollider(crouching);
+    }
+
 
     void OnCollisionEnter(Collision collision)
     {
