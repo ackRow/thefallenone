@@ -14,15 +14,17 @@ public class moveLook : MonoBehaviour
 
 
     GameObject character;
+    Player player;
 
-    private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
-    private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
+    //private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
+    //private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
    
     // Use this for initialization
     void Start()
     {
 
         character = transform.parent.gameObject;
+        player = character.GetComponent<Player>();
 
         // On affiche pas le curseur en jeu
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,8 +44,11 @@ public class moveLook : MonoBehaviour
 
         mouseLook.y = Mathf.Clamp(mouseLook.y, minimumY, maximumY);
 
-        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        if (!player.dead)
+        {
+            transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+            character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        }
 
 
         // Pour le moment on appuie sur echap pour avoir le curseur

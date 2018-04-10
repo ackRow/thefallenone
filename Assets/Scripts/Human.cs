@@ -56,7 +56,7 @@ public class Human : MonoBehaviour, ITarget
     protected bool walking = false;
     protected bool jumping = false;
 
-    protected bool dead = false;
+    public bool dead = false;
 
     protected float jumpDelay = 0.0f; // sync jump animation
 
@@ -87,8 +87,9 @@ public class Human : MonoBehaviour, ITarget
 
     protected void Animate(Animator _animator)
     {
-        if (_animator)
+        if (_animator && !dead)
         {
+
             _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
 
             
@@ -112,7 +113,7 @@ public class Human : MonoBehaviour, ITarget
 
             _animator.SetBool("Jump", jumping);
 
-            _animator.SetBool("Dead", dead);
+            //_animator.SetBool("Dead", dead);
 
         }
     }
@@ -136,14 +137,7 @@ public class Human : MonoBehaviour, ITarget
 
     protected void FixedUpdate() // Moving, Physic Stuff
     {
-        /*if (IsGrounded())
-        {
-            _body.isKinematic = _body.velocity == Vector3.zero;
-        }
-        else
-        {
-            _body.isKinematic = !jumping;
-        }*/
+
 
         //Debug.DrawRay(_body.position + new Vector3(0, 0.05f, 0), -Vector3.up, Color.red, 0.1f, true);
 
@@ -154,6 +148,7 @@ public class Human : MonoBehaviour, ITarget
         // On modifie directement la velocity du personnage pour les axes X et Z afin de le rendre plus controlable
         // Au lieu d'utiliser AddForce
         _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
+        Debug.Log(_body.velocity);
 
         if (jumping && Time.time > jumpDelay)  // Le delay permet de synchroniser le saut avec l'animation
         {
@@ -247,7 +242,7 @@ public class Human : MonoBehaviour, ITarget
 
     public virtual void Die()
     {
-        Debug.Log("Virtual");
+        _animator.Play("Die", -1, 0f);
         dead = true;
     }
 

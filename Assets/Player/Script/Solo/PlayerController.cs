@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour {
     private Camera fpsCam; // Get direction using camera
     Player player;
 
-    private Vector3 camPos;
-    private Vector3 FPSpos;
+    private Quaternion camRot;
+    //private Vector3 FPSpos;
 
     // Use this for initialization
     void Start () {
@@ -26,8 +26,7 @@ public class PlayerController : MonoBehaviour {
             // we use self-relative controls in this case, which probably isn't what the user wants, but hey, we warned them!
         }
 
-        FPSpos = FPSContainer.transform.position;
-        camPos = fpsCam.transform.position;
+        camRot = fpsCam.transform.rotation;
     }
 	
 	// Update is called once per frame
@@ -61,6 +60,17 @@ public class PlayerController : MonoBehaviour {
             player.Scope();
 
 
+    }
+
+    public void resetCamera(bool dead)
+    {
+        if (dead)
+        {
+            camRot = fpsCam.transform.rotation;
+            fpsCam.transform.Rotate(new Vector3(-40, 0, 0));
+        }
+        else
+            fpsCam.transform.rotation = camRot;
     }
 
     public void adjustingCamera(bool crouching)

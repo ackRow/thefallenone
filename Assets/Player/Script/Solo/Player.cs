@@ -66,8 +66,6 @@ public class Player : Human { // Hérite de la classe human
         /* Hide and Show gun */
         gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
 
-        
-
     }
 
     
@@ -89,6 +87,7 @@ public class Player : Human { // Hérite de la classe human
     public override void Die()
     {
         base.Die();
+        controller.resetCamera(true);
         StartCoroutine(Respawn());
     }
 
@@ -97,6 +96,7 @@ public class Player : Human { // Hérite de la classe human
         yield return new WaitForSeconds(5); // delay
 
         dead = false;
+        controller.resetCamera(false);
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
         //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
