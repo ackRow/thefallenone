@@ -187,7 +187,7 @@ BlendTree:
   m_Name: Standing
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400026, guid: 398a0d6f145380d45874513e18d197e9, type: 3}
+    m_Motion: {fileID: 7400024, guid: 398a0d6f145380d45874513e18d197e9, type: 3}
     m_Threshold: 4
     m_Position: {x: 0, y: 0}
     m_TimeScale: 8
@@ -1658,7 +1658,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400020, guid: 00a3d3fefee1ed94f897da3e5ab51088, type: 3}
+  m_Motion: {fileID: 7400026, guid: 398a0d6f145380d45874513e18d197e9, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

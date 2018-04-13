@@ -78,7 +78,7 @@ ModelImporter:
     7400020: Running
     7400022: Shoot
     7400024: Walking
-    7400026: Walkingv2
+    7400026: Walking_Scope
     9500000: //RootNode
     13700000: Body
     13700002: Glock_Eagle
@@ -118,7 +118,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default Take
       takeName: Default Take
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
@@ -342,7 +342,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Jumping
       takeName: Jumping
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 6
       wrapMode: 0
       orientationOffsetY: 0
@@ -370,7 +370,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Punching
       takeName: Punching
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 28
       wrapMode: 0
       orientationOffsetY: 0
@@ -426,7 +426,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Shoot
       takeName: Shoot
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
@@ -454,15 +454,15 @@ ModelImporter:
     - serializedVersion: 16
       name: Walking
       takeName: Walking
-      firstFrame: 0
-      lastFrame: 39
+      firstFrame: 1
+      lastFrame: 38
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -480,10 +480,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walkingv2
-      takeName: Walkingv2
+      name: Walking_Scope
+      takeName: Walking_Scope
       firstFrame: 1
-      lastFrame: 38
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
