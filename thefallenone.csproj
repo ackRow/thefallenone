@@ -295,13 +295,14 @@
     <Compile Include="Assets\Player\Script\DeathAnimation.cs" />
     <Compile Include="Assets\Player\Script\Network\moveLook_Net.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
-    <Compile Include="Assets\Player\Script\Network\PlayerMovement_Net.cs" />
+    <Compile Include="Assets\Player\Script\Network\PlayerController_Net.cs" />
     <Compile Include="Assets\Player\Script\Solo\moveLook.cs" />
     <Compile Include="Assets\Player\Script\Solo\Player.cs" />
     <Compile Include="Assets\Player\Script\Solo\PlayerController.cs" />
     <Compile Include="Assets\PNJ\Script\Bot.cs" />
     <Compile Include="Assets\PNJ\Script\BotController.cs" />
     <Compile Include="Assets\Scripts\Human.cs" />
+    <Compile Include="Assets\Scripts\Human_Net.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />

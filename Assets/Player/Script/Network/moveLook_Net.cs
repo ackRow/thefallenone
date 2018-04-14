@@ -1,5 +1,5 @@
-﻿using UnityEngine.Networking;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public class moveLook_Net : NetworkBehaviour
 {
@@ -15,27 +15,18 @@ public class moveLook_Net : NetworkBehaviour
 
 
     GameObject character;
+    Player_Net player;
 
-    private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
-    private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
-
-    public bool local = true;
-
+    //private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
+    //private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
+   
     // Use this for initialization
     void Start()
     {
 
-        character = this.transform.parent.gameObject;     
+        character = transform.parent.gameObject;
+        player = character.GetComponent<Player_Net>();
 
-        if (!local) // On desactive la camera pour les autres joueurs multi
-        {
-            Camera cam = gameObject.transform.GetChild(0).gameObject.GetComponent<Camera>();
-            cam.enabled = false;
-            cam.GetComponent<AudioListener>().enabled = false;
-            Destroy(this);
-            return;
-        }
-        
         // On affiche pas le curseur en jeu
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -54,8 +45,11 @@ public class moveLook_Net : NetworkBehaviour
 
         mouseLook.y = Mathf.Clamp(mouseLook.y, minimumY, maximumY);
 
-        transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        if (!player.dead)
+        {
+            transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+            character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        }
 
 
         // Pour le moment on appuie sur echap pour avoir le curseur

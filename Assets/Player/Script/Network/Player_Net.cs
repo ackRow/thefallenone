@@ -1,66 +1,107 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI; // faut utiliser l'UI
 
-public class Player_Net : NetworkBehaviour
-{
-
-    public float walking_speed = 4.0f;
-    public float running_speed = 8.0f;
-
-    public float gunDamage = 25f;
-    public float gunRange = 20f;
-    public float gunFireBuff = 0.267f;
-    public float punchDamage = 10f;
-    public float punchRange = 0.1f;
-    public float punchingBuff = 1f;
-    public float JumpForce = 650.0f;
-
-    public bool hasGun = false;
-
-    private Rigidbody _body;
-    public GameObject gun;
-    public GameObject head;
-
-    public Target_Net target;
+public class Player_Net : Human_Net { // Hérite de la classe human
 
     private Slider playerHealth;
 
+    private Animator ArmAnimator; // les mains en vue fps
 
-    public Vector3 Position
-    {    
-        get { return _body.transform.position; }
-    }
+    private PlayerController_Net controller;
+
+    public bool FPSView = true;
+
+    private GameObject gun;
+    public GameObject head;
+
+    public GameObject[] ArmExt; // last object is the gun
+
+    public GameObject[] ArmFPS;
+
+
     // Use this for initialization
-    void Start () {
-        
-        gun.GetComponent<Renderer>().enabled = hasGun;
-        target = GetComponent<Target_Net>();
-        head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
+    new void Start () {
+        base.Start();
 
-        if (!isLocalPlayer)
+        username = "Player Online";
+
+        controller = GetComponent<PlayerController_Net>();
+        ArmAnimator = GetComponentsInChildren<Animator>()[1];
+
+        if (FPSView)
         {
-            GetComponentInChildren<moveLook_Net>().local = false; // On desactive la camera fps des autres joueurs
-            head.GetComponent<Renderer>().enabled = true; // On affiche la tête des autres joueurs
-            return;
+            head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
+            foreach (var obj in ArmExt)
+            {
+                obj.GetComponent<Renderer>().enabled = false;
+            }
+
+            gun = ArmFPS[ArmFPS.Length - 1];
+        }
+        else
+        {
+            head.GetComponent<Renderer>().enabled = true; // On cache la tête du joueur (car vue FPS)
+            foreach (var obj in ArmFPS)
+            {
+                obj.GetComponent<Renderer>().enabled = false;
+            }
+
+            gun = ArmExt[ArmExt.Length - 1];
         }
 
+       // playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+    }
+	
+	// Update is called once per frame
+	new void Update () {
+
+        /* Animation FPS Arm */
+        Animate(ArmAnimator);
+
+        base.Update();
+
+        /* UI */
+        //playerHealth.value = health;
+
+        /* Hide and Show gun */
+        gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
 
     }
 
-    // Update is called once per frame
-    void Update () {
-        if (!isLocalPlayer)
-        {
-            return;
-        }
-        GUIHealthSync();
-    }
+    
 
-    [GUITarget]
-    void GUIHealthSync() // On synchronise avec le GUI du client pour update la barre de vie en temps réel
+    new void FixedUpdate()
     {
-        playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
-        playerHealth.value = target.health;
+        base.FixedUpdate();
+    }
+
+
+    public override void Stand()
+    {
+        base.Stand();
+        // Call camera change in PlayerController
+        controller.adjustingCamera(false);
+    }
+
+
+    public override void Die()
+    {
+        base.Die();
+        controller.resetCamera(true);
+        StartCoroutine(Respawn());
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(5); // delay
+
+        dead = false;
+        controller.resetCamera(false);
+        // On relance l'animation Idle et on remet la vie à 100
+        _animator.Play("Idle", -1, 0f);
+        //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        health = 100f;
     }
 }
