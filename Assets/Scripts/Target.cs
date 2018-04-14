@@ -3,7 +3,7 @@ using System.Collections;
 
 public interface ITarget
 {
-    void TakeDamage(float damage);
+    void TakeDamage(float damage, Human caller);
     void Die();
 
 }

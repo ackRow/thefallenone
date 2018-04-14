@@ -20,10 +20,12 @@ public class Player : Human { // Hérite de la classe human
 
     public GameObject[] ArmFPS;
 
+
     // Use this for initialization
     new void Start () {
         base.Start();
 
+        username = "Player";
 
         controller = GetComponent<PlayerController>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
