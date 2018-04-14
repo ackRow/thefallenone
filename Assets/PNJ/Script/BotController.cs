@@ -6,8 +6,10 @@ public class BotController : MonoBehaviour {
 
     Bot bot;
 
-    bool hasRotate = true;
+    bool triggerTarget = true;
     float angle;
+
+   public Human target;
 
     int round = 50;
 
@@ -27,17 +29,30 @@ public class BotController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        // Routine
-        if (round == 100)
+
+        if (triggerTarget)
         {
-            angle += 180.0f;
+            Vector3 targetDir = target.transform.position - transform.position;
 
-            hasRotate = true;
-            bot.transform.rotation = Quaternion.AngleAxis(angle, bot.transform.up); // rotate
-
-            round = 0;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
+            //Debug.DrawRay(transform.position, newDir, Color.red);
+            if(!bot.dead)
+                transform.rotation = Quaternion.LookRotation(newDir);
         }
+        else
+        {   // Routine
+            if (round == 100)
+            {
+                angle += 180.0f;
 
-        round++;
+                bot.transform.rotation = Quaternion.AngleAxis(angle, bot.transform.up); // rotate
+
+                round = 0;
+            }
+
+            round++;
+        }
+        
+        
     }
 }

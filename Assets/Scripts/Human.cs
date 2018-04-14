@@ -244,7 +244,7 @@ public class Human : MonoBehaviour, ITarget
     public void TakeDamage(float damage, Human caller)
     {
         health -= damage;
-        if (health <= 0f)
+        if (health <= 0f && !dead)
         {
             Die();
             Debug.Log(caller.username + " killed "+username);
