@@ -100,19 +100,21 @@ public class Human : MonoBehaviour, ITarget
             if (hasGun)
                 _animator.SetFloat("Scope", isScoping ? 1.0f : 0.0f);
 
-            if (attacking)
-            {
-                //crouching = false;
-                attacking = false;
-                _animator.SetTrigger("Attack");
-                
-            }
+           
 
             _animator.SetFloat("Crouch", crouching ? 1.0f : 0.0f);
 
             _animator.SetBool("Walk", walking && !jumping);
 
             _animator.SetBool("Jump", jumping);
+
+            if (attacking)
+            {
+                //crouching = false;
+                attacking = false;
+                _animator.SetTrigger("Attack");
+
+            }
 
         }
     }

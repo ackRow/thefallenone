@@ -9,7 +9,7 @@ public class Bot : Human
     new void Start () {
         base.Start();
         gunFireBuff = 10.0f;
-        walking_speed = 1.0f;
+        walking_speed = 2.0f;
         gunDamage = 10.0f;
         if(username == "Human")
             username = "Guard";
