@@ -11,6 +11,8 @@ public class BotController : MonoBehaviour {
 
    public Human target;
 
+    Vector3 forward = new Vector3(1.0f, 0, 0);
+
     int round = 50;
 
     // Use this for initialization
@@ -23,8 +25,8 @@ public class BotController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
-        bot.Forward(false, new Vector3(1.0f,0 ,0)); // go forward  
-
+        bot.Forward(false, forward); // go forward  
+        
     }
 
     private void FixedUpdate()
@@ -35,9 +37,15 @@ public class BotController : MonoBehaviour {
             Vector3 targetDir = target.transform.position - transform.position;
 
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
+            //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
             //Debug.DrawRay(transform.position, newDir, Color.red);
-            if(!bot.dead)
+
+
+            if (!bot.dead)
+            {
                 transform.rotation = Quaternion.LookRotation(newDir);
+                bot.Attack(bot.transform.position + new Vector3(0, 1f, 0), newDir);
+            }
         }
         else
         {   // Routine

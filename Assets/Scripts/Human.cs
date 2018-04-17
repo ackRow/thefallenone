@@ -18,7 +18,7 @@ public class Human : MonoBehaviour, ITarget
 
     /* Variable Definition */
 
-    public string username;
+    public string username = "Human";
 
     public float health = 100;
 
@@ -80,7 +80,6 @@ public class Human : MonoBehaviour, ITarget
 
     protected void Start () {
 
-        username = "Human";
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
         _capsCollider = GetComponent<CapsuleCollider>();

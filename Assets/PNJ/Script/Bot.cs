@@ -5,12 +5,14 @@ using UnityEngine;
 public class Bot : Human
 {
 
-
     // Use this for initialization
     new void Start () {
         base.Start();
-
-        username = "Guard";
+        gunFireBuff = 10.0f;
+        walking_speed = 1.0f;
+        gunDamage = 10.0f;
+        if(username == "Human")
+            username = "Guard";
     }
 	
 	// Update is called once per frame

@@ -51,7 +51,7 @@ public class Player : Human { // Hérite de la classe human
             gun = ArmExt[ArmExt.Length - 1];
         }
 
-       // playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+        playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
     }
 	
 	// Update is called once per frame
@@ -63,7 +63,7 @@ public class Player : Human { // Hérite de la classe human
         base.Update();
 
         /* UI */
-        //playerHealth.value = health;
+        playerHealth.value = health;
 
         /* Hide and Show gun */
         gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
