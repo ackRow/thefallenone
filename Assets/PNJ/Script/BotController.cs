@@ -43,7 +43,13 @@ public class BotController : MonoBehaviour {
 
             if (!bot.dead)
             {
-                transform.rotation = Quaternion.LookRotation(newDir);
+                Quaternion rotateY = Quaternion.LookRotation(newDir);
+
+                transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+
+                //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
+
+
                 bot.Attack(bot.transform.position + new Vector3(0, 1f, 0), newDir);
             }
         }

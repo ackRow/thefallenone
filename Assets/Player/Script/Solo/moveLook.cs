@@ -10,7 +10,9 @@ public class moveLook : MonoBehaviour
     public float smoothing = 2.0f;
 
     public float minimumY = -60F;
+    public float minimumY_crunch = -30F;
     public float maximumY = 60F;
+    public float maximumY_crunch = 30F;
 
 
     GameObject character;
@@ -42,7 +44,7 @@ public class moveLook : MonoBehaviour
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
         mouseLook += smoothV;
 
-        mouseLook.y = Mathf.Clamp(mouseLook.y, minimumY, maximumY);
+        mouseLook.y = Mathf.Clamp(mouseLook.y, player.crouching ? minimumY_crunch : minimumY, player.crouching ? maximumY_crunch : maximumY);
 
         if (!player.dead)
         {

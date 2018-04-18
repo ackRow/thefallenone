@@ -91,7 +91,8 @@ public class Player : Human { // Hérite de la classe human
     {
         base.Stand();
         // Call camera change in PlayerController
-        controller.adjustingCamera(false);
+        if(!crouching)
+            controller.adjustingCamera(false);
     }
 
 

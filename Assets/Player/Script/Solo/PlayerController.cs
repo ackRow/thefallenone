@@ -38,7 +38,8 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            adjustingCamera(player.Crouch());
+            if(player.canStand || !player.crouching)
+                adjustingCamera(player.Crouch());
         }
 
 
@@ -80,13 +81,13 @@ public class PlayerController : MonoBehaviour {
         if (crouching)
         {
             FPSContainer.transform.Translate(new Vector3(0, 0.0f, 0.2f));
-            fpsCam.transform.Translate(new Vector3(0, -0.25f, 0.0f));
+            fpsCam.transform.Translate(new Vector3(0.02f, -0.30f, 0.07f));
         }
 
         else
         {
             FPSContainer.transform.Translate(new Vector3(0, 0.0f, -0.2f));
-            fpsCam.transform.Translate(new Vector3(0, +0.25f, 0.0f));
+            fpsCam.transform.Translate(new Vector3(-0.02f, +0.30f, -0.07f));
         }
     }
 }

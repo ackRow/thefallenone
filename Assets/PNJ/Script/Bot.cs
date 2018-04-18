@@ -10,8 +10,8 @@ public class Bot : Human
         base.Start();
         gunFireBuff = 2.0f;
         walking_speed = 2.5f;
-        gunDamage = 10.0f;
-        if(username == "Human")
+        gunDamage = 20.0f;
+        if(username == "")
             username = "Guard";
     }
 	

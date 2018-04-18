@@ -55,7 +55,8 @@ public class Human : MonoBehaviour, ITarget
     protected float jumpMult = 1.0f;
     protected float Speed = 0.0f;
 
-    protected bool crouching = false;
+    public bool crouching = false;
+    public bool canStand = true;
     protected bool walking = false;
     protected bool jumping = false;
 
@@ -118,6 +119,8 @@ public class Human : MonoBehaviour, ITarget
     protected void Update() // Animating, playing sounds
     {
         /* State */
+        canStand = !Physics.Raycast(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, _capsCollider.height);
+
         if (!IsGrounded() && crouching)
         {
             Stand();
@@ -131,7 +134,8 @@ public class Human : MonoBehaviour, ITarget
 
     protected void FixedUpdate() // Moving, Physic Stuff
     {
-        //Debug.DrawRay(_body.position + new Vector3(0, 0.05f, 0), -Vector3.up, Color.red, 0.1f, true);
+        // Debug.DrawRay(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, Color.red, 0.1f, true);
+       
 
         if (dead)
             return;
@@ -224,7 +228,7 @@ public class Human : MonoBehaviour, ITarget
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             attacking = true;
             RaycastHit hit;
-            Debug.Log("Attack!");
+           // Debug.Log("Attack!");
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {         
@@ -240,8 +244,11 @@ public class Human : MonoBehaviour, ITarget
 
     public void TakeDamage(float damage, Human caller)
     {
+        if (dead)
+            return;
+
         health -= damage;
-        if (health <= 0f && !dead)
+        if (health <= 0f)
         {
             Die();
             Debug.Log(caller.username + " killed "+username);
@@ -259,9 +266,16 @@ public class Human : MonoBehaviour, ITarget
 
     public virtual void Stand()
     {
+
         // Override this in child
-        crouching = false;
-        adjustCollider(crouching);
+        if (!canStand)
+            Debug.Log("Head Bang");
+        else
+        {
+            crouching = false;
+            adjustCollider(crouching);
+        }
+        
     }
 
 
@@ -269,9 +283,10 @@ public class Human : MonoBehaviour, ITarget
     {
         if (collision.gameObject.tag == "jumpg")
         {
-            Jump();
+            //Jump();
             jumpMult = 2.0f;
-        }
+        }else
+            jumpMult = 1.0f;
     }
 
     protected bool IsGrounded()
