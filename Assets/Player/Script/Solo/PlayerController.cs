@@ -53,8 +53,10 @@ public class PlayerController : MonoBehaviour {
 
         /* Attack */
 
-        if (Input.GetMouseButton(0)) // clic gauche
+        if (Input.GetMouseButton(0))
+        { // clic gauche
             player.Attack(fpsCam.transform.position, fpsCam.transform.forward);
+        }
 
         if (Input.GetMouseButtonDown(1)) // clic droit
             player.Scope();

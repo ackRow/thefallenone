@@ -33,7 +33,7 @@ public class Human : MonoBehaviour, ITarget
 
     public float gunDamage = 25f;
     public float gunRange = 20f;
-    public float gunFireBuff = 0.28f;
+    public float gunFireBuff = 0.4f;
 
     public float punchDamage = 50f;
     public float punchRange = 1f;
@@ -95,12 +95,8 @@ public class Human : MonoBehaviour, ITarget
 
             _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
 
-            
-
             if (hasGun)
-                _animator.SetFloat("Scope", isScoping ? 1.0f : 0.0f);
-
-           
+                _animator.SetFloat("Scope", isScoping ? 1.0f : 0.0f);     
 
             _animator.SetFloat("Crouch", crouching ? 1.0f : 0.0f);
 
@@ -126,7 +122,6 @@ public class Human : MonoBehaviour, ITarget
         {
             Stand();
         }
-
 
         /* Animation */
         Animate(_animator);
@@ -229,9 +224,10 @@ public class Human : MonoBehaviour, ITarget
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             attacking = true;
             RaycastHit hit;
+            Debug.Log("Attack!");
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
-            {
+            {         
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
                 {
