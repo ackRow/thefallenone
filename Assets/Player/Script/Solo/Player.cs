@@ -20,6 +20,10 @@ public class Player : Human { // Hérite de la classe human
 
     public GameObject[] ArmFPS;
 
+    public LoginData _login;
+    public UserData _user;
+
+    public string Token = "";
 
     // Use this for initialization
     new void Start () {
@@ -53,7 +57,12 @@ public class Player : Human { // Hérite de la classe human
 
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
 
-        PostScore("ackRow", "cou123cou");
+        if(Token == "")
+            Login("Test", "test");
+        else
+        {
+            getUserInfo();
+        }
     }
 	
 	// Update is called once per frame
@@ -71,8 +80,6 @@ public class Player : Human { // Hérite de la classe human
         gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
 
     }
-
-    
 
     new void FixedUpdate()
     {
@@ -107,7 +114,9 @@ public class Player : Human { // Hérite de la classe human
         health = 100f;
     }
 
-    public void PostScore(string name, string pass)
+
+
+    public void Login(string name, string pass)
     {
         WWWForm form = new WWWForm();
         form.AddField("username", name);
@@ -115,23 +124,31 @@ public class Player : Human { // Hérite de la classe human
 
         WWW www = new WWW("https://thefallen.one/sync/login.php", form);
 
-        StartCoroutine(WaitForRequest(www));
+        StartCoroutine(WaitForRequest<LoginData>(www));
     }
 
-    IEnumerator WaitForRequest(WWW data)
+    public void getUserInfo()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", Token);
+
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
+
+        StartCoroutine(WaitForRequest<UserData>(www));
+    }
+    IEnumerator WaitForRequest<T>(WWW data)
     {
         yield return data; // Wait until the download is done
-        Debug.Log(data);
         if (data.error != null)
         {
             Debug.Log("There was an error sending request: " + data.error);
         }
         else
         {
-            Debug.Log("WWW Request: " + data.text);
-            WebData t = JsonUtility.FromJson<WebData>(data.text);
-            Debug.Log(t.result);
+            T jsonClass = JsonUtility.FromJson<T>(data.text);
+            ((IJsonClass)jsonClass).ProcessData(this);
         }
-        
     }
+
+    
 }

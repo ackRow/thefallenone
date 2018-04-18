@@ -33,7 +33,7 @@ public class Human : MonoBehaviour, ITarget
 
     public float gunDamage = 25f;
     public float gunRange = 20f;
-    public float gunFireBuff = 0.4f;
+    public float gunFireBuff = 0.6f;
 
     public float punchDamage = 50f;
     public float punchRange = 1f;

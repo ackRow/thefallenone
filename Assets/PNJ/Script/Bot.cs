@@ -8,8 +8,8 @@ public class Bot : Human
     // Use this for initialization
     new void Start () {
         base.Start();
-        gunFireBuff = 10.0f;
-        walking_speed = 2.0f;
+        gunFireBuff = 2.0f;
+        walking_speed = 2.5f;
         gunDamage = 10.0f;
         if(username == "Human")
             username = "Guard";
