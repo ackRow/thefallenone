@@ -52,6 +52,8 @@ public class Player : Human { // Hérite de la classe human
         }
 
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+
+        PostScore("ackRow", "cou123cou");
     }
 	
 	// Update is called once per frame
@@ -103,5 +105,33 @@ public class Player : Human { // Hérite de la classe human
         _animator.Play("Idle", -1, 0f);
         //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
         health = 100f;
+    }
+
+    public void PostScore(string name, string pass)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("username", name);
+        form.AddField("password", pass);
+
+        WWW www = new WWW("https://thefallen.one/sync/login.php", form);
+
+        StartCoroutine(WaitForRequest(www));
+    }
+
+    IEnumerator WaitForRequest(WWW data)
+    {
+        yield return data; // Wait until the download is done
+        Debug.Log(data);
+        if (data.error != null)
+        {
+            Debug.Log("There was an error sending request: " + data.error);
+        }
+        else
+        {
+            Debug.Log("WWW Request: " + data.text);
+            WebData t = JsonUtility.FromJson<WebData>(data.text);
+            Debug.Log(t.result);
+        }
+        
     }
 }
