@@ -20,7 +20,7 @@ public class moveLook : MonoBehaviour
 
     //private int idleStateHash = Animator.StringToHash("Base Layer.Idle");
     //private int bendStateHash = Animator.StringToHash("Base Layer.Bending");
-   
+
     // Use this for initialization
     void Start()
     {

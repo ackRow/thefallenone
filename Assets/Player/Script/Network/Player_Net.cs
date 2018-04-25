@@ -30,6 +30,13 @@ public class Player_Net : Human_Net { // Hérite de la classe human
         controller = GetComponent<PlayerController_Net>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
 
+        if (!isLocalPlayer)
+        {
+            GetComponentInChildren<moveLook_Online>().local = false; // On desactive la camera fps des autres joueurs
+            head.GetComponent<Renderer>().enabled = true; // On affiche la tête des autres joueurs
+            FPSView = false;
+        }
+
         if (FPSView)
         {
             head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
@@ -39,6 +46,7 @@ public class Player_Net : Human_Net { // Hérite de la classe human
             }
 
             gun = ArmFPS[ArmFPS.Length - 1];
+            // playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
         }
         else
         {
@@ -51,11 +59,14 @@ public class Player_Net : Human_Net { // Hérite de la classe human
             gun = ArmExt[ArmExt.Length - 1];
         }
 
-       // playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+       
     }
 	
 	// Update is called once per frame
 	new void Update () {
+
+        if (!isLocalPlayer)
+            return;
 
         /* Animation FPS Arm */
         Animate(ArmAnimator);
@@ -74,6 +85,9 @@ public class Player_Net : Human_Net { // Hérite de la classe human
 
     new void FixedUpdate()
     {
+        if (!isLocalPlayer)
+            return;
+
         base.FixedUpdate();
     }
 

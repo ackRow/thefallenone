@@ -293,7 +293,7 @@
     <Compile Include="Assets\Player\Model\Scripts\ThirdPersonCharacter.cs" />
     <Compile Include="Assets\Player\Model\Scripts\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Player\Script\DeathAnimation.cs" />
-    <Compile Include="Assets\Player\Script\Network\moveLook_Net.cs" />
+    <Compile Include="Assets\Player\Script\Network\moveLook_Online.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
     <Compile Include="Assets\Player\Script\Network\PlayerController_Net.cs" />
     <Compile Include="Assets\Player\Script\Solo\moveLook.cs" />
