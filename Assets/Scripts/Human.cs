@@ -251,7 +251,10 @@ public class Human : MonoBehaviour, ITarget
         if (health <= 0f)
         {
             Die();
-            Debug.Log(caller.username + " killed "+username);
+            if(caller != null)
+                Debug.Log(caller.username + " killed "+username);
+            else
+                Debug.Log(username + " died");
         }
             
         else
@@ -287,6 +290,16 @@ public class Human : MonoBehaviour, ITarget
             jumpMult = 2.0f;
         }else
             jumpMult = 1.0f;
+
+
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "aie")
+        {
+            TakeDamage(1, null);
+        }
     }
 
     protected bool IsGrounded()

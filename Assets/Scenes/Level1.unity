@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 153332591}
   - component: {fileID: 153332593}
   - component: {fileID: 153332592}
+  - component: {fileID: 153332594}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: aie
@@ -407,6 +408,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 153332590}
   m_Mesh: {fileID: 4300016, guid: ef475302b3836b74b9fdc70f792d1ae3, type: 3}
+--- !u!65 &153332594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 153332590}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 1, z: 1.9499998}
+  m_Center: {x: 0, y: 0, z: 0.000000029802322}
 --- !u!1 &155665858
 GameObject:
   m_ObjectHideFlags: 0
@@ -9006,6 +9019,31 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224979302090002416, guid: ddfd03b645771e44080338293a8ba0e9,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224979302090002416, guid: ddfd03b645771e44080338293a8ba0e9,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236957266758008, guid: ddfd03b645771e44080338293a8ba0e9,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236957266758008, guid: ddfd03b645771e44080338293a8ba0e9,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224236957266758008, guid: ddfd03b645771e44080338293a8ba0e9,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ddfd03b645771e44080338293a8ba0e9, type: 2}

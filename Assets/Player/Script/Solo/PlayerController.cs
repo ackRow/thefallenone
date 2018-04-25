@@ -78,16 +78,23 @@ public class PlayerController : MonoBehaviour {
 
     public void adjustingCamera(bool crouching)
     {
+        Vector3 RIGHT = FPSContainer.transform.TransformDirection(Vector3.right);
+        Vector3 FORWARD = FPSContainer.transform.TransformDirection(Vector3.forward);
         if (crouching)
         {
-            FPSContainer.transform.Translate(new Vector3(0, 0.0f, 0.2f));
-            fpsCam.transform.Translate(new Vector3(0.02f, -0.30f, 0.07f));
+
+
+            //FPSContainer.transform.Translate(new Vector3(0, 0.0f, 0.2f));
+            FPSContainer.transform.localPosition += new Vector3(0, 0.0f, 0.2f);
+
+            fpsCam.transform.localPosition += new Vector3(0.02f, -0.30f, 0.07f);
         }
 
         else
         {
-            FPSContainer.transform.Translate(new Vector3(0, 0.0f, -0.2f));
-            fpsCam.transform.Translate(new Vector3(-0.02f, +0.30f, -0.07f));
+            //FPSContainer.transform.Translate(new Vector3(0, 0.0f, -0.2f));
+            FPSContainer.transform.localPosition += new Vector3(0, 0.0f, -0.2f);
+            fpsCam.transform.localPosition += new Vector3(-0.02f, +0.30f, -0.07f);
         }
     }
 }
