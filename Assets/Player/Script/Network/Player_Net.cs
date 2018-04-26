@@ -12,7 +12,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     public float JumpForce = 650.0f;
 
-    public bool hasGun = false; // Possède une arme   
+    public bool hasGun = true; // Possède une arme   
 
     /* Default value for gun and punch */
 
@@ -190,18 +190,45 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         }
     }
 
+    [Command] // S'execute sur le serveur
+    void CmdAttackOnline(Vector3 _position, Vector3 _direction, bool useGun)
+    {
+        RaycastHit hit;
+        // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
+        if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
+        {
+            ITarget_Net target = hit.transform.GetComponent<ITarget_Net>();
+            if (target != null) // Si un joueur est touché
+            {
+                //RpcPlayHitSound();
+                hasHitTarget = true;
+                target.TakeDamage((useGun ? gunDamage : punchDamage), this); // La target va perdre de la vie
+            }
+        }
+    }
+
+    /*[ClientRpc]
+    void RpcPlayHitSound() // On lance le son de hit chez les clients
+    {
+        if (!myAudio.isPlaying)
+        {
+            myAudio.PlayOneShot(hitSound);
+        }
+    }*/
 
 
     /* --- Update Function --- */
 
 
     void Update () {
+
+        /* Online */
+        gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
+
         if (!isLocalPlayer)
             return;
 
-        /* State */
-        gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
-
+        /* Local State */        
         canStand = !Physics.Raycast(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, _capsCollider.height);
         if (!IsGrounded() && crouching)
         {
@@ -240,6 +267,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
 
     /* --- Action Function (called by the controller) --- */
+
+    
     public void Attack(Vector3 _position, Vector3 _direction)
     {
         if (!isLocalPlayer)
@@ -252,21 +281,13 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             attacking = true;
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             //Playing gun shot sound
+            Debug.Log(_animator.GetFloat("Scope"));
+            Debug.Log(isScoping);
 
-            RaycastHit hit;
-            // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
-            if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
-            {
-                ITarget_Net target = hit.transform.GetComponent<ITarget_Net>();
-                if (target != null) // Si un joueur est touché
-                {
-                    hasHitTarget = true;
-                    target.TakeDamage((isScoping ? gunDamage : punchDamage), this); // La target va perdre de la vie
-                }
-            }
-
+            CmdAttackOnline(_position, _direction, isScoping);
         }
     }
+
 
     public void Stand()
     {
