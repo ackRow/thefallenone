@@ -9,7 +9,11 @@ public class BotController : MonoBehaviour {
     bool triggerTarget = true;
     float angle;
 
-   public Human target;
+    float distance;
+    float minDistance = 1;
+    float maxDistance = 5;
+
+    public Human target;
 
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
@@ -24,14 +28,23 @@ public class BotController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
-        bot.Forward(false, forward); // go forward  
-        
+
+        distance = Vector3.Distance(target.transform.position, transform.position);
+
+        // Si la distance entre le bot et le personnage est superieur a minDistance alors il avant vers le player
+        // Si il est trop loin il ne va pas vers le joueur non plus
+        // Sinon il ne bouge pas
+        if (distance > minDistance)
+            bot.Forward(false, forward);
+        else if(distance > maxDistance)
+            bot.Forward(false, Vector3.zero);
+        else
+            bot.Forward(false, Vector3.zero);
     }
 
     private void FixedUpdate()
     {
-
+        // Si le joueur est trigger par le bot
         if (triggerTarget)
         {
             Vector3 targetDir = target.transform.position - transform.position;
@@ -45,12 +58,13 @@ public class BotController : MonoBehaviour {
             {
                 Quaternion rotateY = Quaternion.LookRotation(newDir);
 
-                transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                if (distance < maxDistance)
+                {
+                    transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                    bot.Attack(bot.transform.position + new Vector3(0, 5f, 0), newDir);
+                }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
-
-
-                bot.Attack(bot.transform.position + new Vector3(0, 1f, 0), newDir);
             }
         }
         else

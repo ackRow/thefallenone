@@ -1,10 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
 using UnityEngine.UI; // faut utiliser l'UI
 
-public class Player_Net : Human_Net { // Hérite de la classe human
+public class Player_Net : NetworkBehaviour, ITarget_Net
+{
+    /* Variable Definition */
 
+    public float walking_speed = 4.0f;
+    public float running_speed = 8.0f;
+
+    public float JumpForce = 650.0f;
+
+    public bool hasGun = false; // Possède une arme   
+
+    /* Default value for gun and punch */
+
+    public float gunDamage = 25f;
+    public float gunRange = 20f;
+    public float gunFireBuff = 0.6f;
+
+    public float punchDamage = 50f;
+    public float punchRange = 1f;
+    public float punchingBuff = 0.95f;
+
+    /* Component */
+    protected Rigidbody _body;
+    protected Animator _animator;
+    protected CapsuleCollider _capsCollider;
+
+    protected float _capsHeight;
+    protected Vector3 _capsCenter;
+
+    /* Movement variable */
+
+    protected Vector3 _moveDirection = Vector3.zero;
+
+    protected float jumpMult = 1.0f;
+    protected float Speed = 0.0f;
+
+    public bool crouching = false;
+    public bool canStand = true;
+    protected bool walking = false;
+    protected bool jumping = false;
+
+    public bool dead = false;
+
+    protected float jumpDelay = 0.0f; // sync jump animation
+
+    protected bool isScoping = false; // Est entrain de viser
+    protected float nextTimeToAttack = 0f;
+    protected bool attacking = false;
+
+
+    protected bool hasHitTarget = false;
+    protected bool isHit = false;
+
+    /* Local variable */
     private Slider playerHealth;
 
     private Animator ArmAnimator; // les mains en vue fps
@@ -21,14 +73,36 @@ public class Player_Net : Human_Net { // Hérite de la classe human
     public GameObject[] ArmFPS;
 
 
-    // Use this for initialization
-    new void Start () {
-        base.Start();
+    /* Online */
+    public NetworkStartPosition[] spawnPoints;
 
-        username = "Player Online";
+    public string username = "Player Online";
+
+    [SyncVar]
+    public float health = 100;
+
+
+    public Vector3 Position
+    {    
+        get { return _body.transform.position; }
+    }
+
+
+    /* --- Init Function --- */
+
+
+    void Start () {
+
+        _animator = GetComponent<Animator>();
+        _body = GetComponent<Rigidbody>();
+        _capsCollider = GetComponent<CapsuleCollider>();
+        _capsHeight = _capsCollider.height;
+        _capsCenter = _capsCollider.center;
 
         controller = GetComponent<PlayerController_Net>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
+
+        spawnPoints = FindObjectsOfType<NetworkStartPosition>();
 
         if (!isLocalPlayer)
         {
@@ -46,7 +120,7 @@ public class Player_Net : Human_Net { // Hérite de la classe human
             }
 
             gun = ArmFPS[ArmFPS.Length - 1];
-            // playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+            playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
         }
         else
         {
@@ -58,64 +132,267 @@ public class Player_Net : Human_Net { // Hérite de la classe human
 
             gun = ArmExt[ArmExt.Length - 1];
         }
-
-       
     }
-	
-	// Update is called once per frame
-	new void Update () {
 
+    /* Helper Function */
+    protected void Animate(Animator _animator)
+    {
+        if (_animator && !dead)
+        {
+
+            _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
+
+
+
+            if (hasGun)
+                _animator.SetFloat("Scope", isScoping ? 1.0f : 0.0f);
+
+            if (attacking)
+            {
+                //crouching = false;
+                attacking = false;
+                _animator.SetTrigger("Attack");
+
+            }
+
+            _animator.SetFloat("Crouch", crouching ? 1.0f : 0.0f);
+
+            _animator.SetBool("Walk", walking && !jumping);
+
+            _animator.SetBool("Jump", jumping);
+
+        }
+    }
+
+    bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position + new Vector3(0, 0.9f, 0), -Vector3.up, 1f);
+    }
+
+    [GUITarget]
+    void GUIHealthSync() // On synchronise avec le GUI du client pour update la barre de vie en temps réel
+    {
+        playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
+        playerHealth.value = health;
+    }
+
+    public void adjustCollider(bool crouching)
+    {
+        if (crouching)
+        {
+            _capsCollider.height = _capsCollider.height / 2f;
+            _capsCollider.center = _capsCollider.center / 2f;
+        }
+        else
+        {
+            _capsCollider.height = _capsHeight;
+            _capsCollider.center = _capsCenter;
+        }
+    }
+
+
+
+    /* --- Update Function --- */
+
+
+    void Update () {
         if (!isLocalPlayer)
             return;
+
+        /* State */
+        gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
+
+        canStand = !Physics.Raycast(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, _capsCollider.height);
+        if (!IsGrounded() && crouching)
+        {
+            Stand();
+        }
 
         /* Animation FPS Arm */
         Animate(ArmAnimator);
+        Animate(_animator);
 
-        base.Update();
+        /* Sound */
 
         /* UI */
-        //playerHealth.value = health;
-
-        /* Hide and Show gun */
-        gun.GetComponent<Renderer>().enabled = hasGun && isScoping;
-
+        GUIHealthSync();
+       
     }
 
-    
+    protected void FixedUpdate() // Moving, Physic Stuff
+    {
+        if (dead || !isLocalPlayer)
+            return;
 
-    new void FixedUpdate()
+
+        // On modifie directement la velocity du personnage pour les axes X et Z afin de le rendre plus controlable
+        // Au lieu d'utiliser AddForce
+        _body.velocity = new Vector3(Vector3.Dot(transform.forward, _moveDirection * Speed), _body.velocity.y, Vector3.Dot(transform.right, _moveDirection * Speed));
+
+        if (jumping && Time.time > jumpDelay)  // Le delay permet de synchroniser le saut avec l'animation
+        {
+            // Pour rendre le saut plus réaliste, on utilise AddForce en mode Impulse
+            _body.AddForce(new Vector3(0, JumpForce * jumpMult, 0), ForceMode.Impulse);
+            jumpMult = 1.0f;
+            jumping = false; // a présent, le joueur n'est plus entrain de sauter mais entrain de retomber
+        }
+    }
+
+
+    /* --- Action Function (called by the controller) --- */
+    public void Attack(Vector3 _position, Vector3 _direction)
     {
         if (!isLocalPlayer)
             return;
 
-        base.FixedUpdate();
+        if (Time.time > nextTimeToAttack)
+        {
+            if (crouching)
+                Stand();
+            attacking = true;
+            nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
+            //Playing gun shot sound
+
+            RaycastHit hit;
+            // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
+            if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
+            {
+                ITarget_Net target = hit.transform.GetComponent<ITarget_Net>();
+                if (target != null) // Si un joueur est touché
+                {
+                    hasHitTarget = true;
+                    target.TakeDamage((isScoping ? gunDamage : punchDamage), this); // La target va perdre de la vie
+                }
+            }
+
+        }
+    }
+
+    public void Stand()
+    {
+        // Override this in child
+        if (!canStand)
+            Debug.Log("Head Bang");
+        else
+        {
+            crouching = false;
+            adjustCollider(crouching);
+        }
+
+    }
+
+    public void Jump()
+    {
+
+        if (crouching)
+        {
+            Stand();
+            return;
+        }
+
+        if (!jumping && IsGrounded())
+        {
+            walking = false;
+            jumping = true;
+
+
+            jumpDelay = Time.time + 0.15f;
+        }
+
+    }
+
+    public bool Crouch()
+    {
+        crouching = !crouching;
+        adjustCollider(crouching);
+        return crouching;
+    }
+
+    public void Scope()
+    {
+        if (hasGun)
+            isScoping = !isScoping;
+        if (crouching)
+            Stand();
+    }
+
+    public void Forward(bool run, Vector3 _direction)
+    {
+        if (!isScoping && IsGrounded())
+            Speed = run ? running_speed : walking_speed;
+        else
+            Speed = walking_speed;  // si le joueur est en l'air ou s'il vise, il ne peut pas courir
+
+        if (crouching && run)
+            Stand();
+
+        walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
+
+        _moveDirection = _direction;
     }
 
 
-    public override void Stand()
+    /* --- Event Function (or callback) --- */
+
+
+    public void TakeDamage(float damage, Player_Net caller)
     {
-        base.Stand();
-        // Call camera change in PlayerController
-        controller.adjustingCamera(false);
+        CmdTakeDamage(damage);
     }
 
-
-    public override void Die()
+    [Command]
+    public void CmdTakeDamage(float amount) // run server side
     {
-        base.Die();
-        controller.resetCamera(true);
-        StartCoroutine(Respawn());
+        if (dead)
+            return;
+
+        health -= amount;
+        if (health <= 0f)
+        {
+            dead = true;
+            Die();
+        }
+        else
+            _animator.SetTrigger("isHit"); // animation lorsqu'on est touché
+    } 
+
+
+    private void Die()
+    {
+        RpcRespawn();
+    }
+
+    [ClientRpc] // La fonction est synchronisé avec le client
+    void RpcRespawn()
+    {
+        if (isLocalPlayer)
+        {
+            StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
+        }
     }
 
     IEnumerator Respawn()
     {
+        _animator.Play("Die", -1, 0f); // On lance l'animation de mort
+
         yield return new WaitForSeconds(5); // delay
 
-        dead = false;
-        controller.resetCamera(false);
+
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
-        //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
         health = 100f;
     }
+
+    
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "jumpg")
+        {
+            Jump();
+            jumpMult = 2.0f;
+        }
+    }
+
+   
 }

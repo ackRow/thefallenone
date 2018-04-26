@@ -3,7 +3,8 @@ using UnityEngine.Networking;
 using UnityStandardAssets.CrossPlatformInput;
 
 
-public class PlayerController_Net : NetworkBehaviour {
+public class PlayerController_Net : NetworkBehaviour
+{
 
     public GameObject FPSContainer;
 
@@ -11,10 +12,12 @@ public class PlayerController_Net : NetworkBehaviour {
     Player_Net player;
 
     private Quaternion camRot;
+
     //private Vector3 FPSpos;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         player = GetComponent<Player_Net>();
         if (Camera.main != null)
         {
@@ -29,9 +32,10 @@ public class PlayerController_Net : NetworkBehaviour {
 
         camRot = fpsCam.transform.rotation;
     }
-	
-	// Update is called once per frame
-	void Update () { // Input
+
+    // Update is called once per frame
+    void Update()
+    { // Input
 
         /* Mouvement */
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
@@ -54,8 +58,11 @@ public class PlayerController_Net : NetworkBehaviour {
 
         /* Attack */
 
-        if (Input.GetMouseButton(0)) // clic gauche
+        if (Input.GetMouseButton(0))
+        {// clic gauche
             player.Attack(fpsCam.transform.position, fpsCam.transform.forward);
+            //player.CmdAttack(fpsCam.transform.position, fpsCam.transform.forward);
+        }
 
         if (Input.GetMouseButtonDown(1)) // clic droit
             player.Scope();

@@ -17,6 +17,7 @@ public class DeathAnimation : MonoBehaviour {
     private void Awake()
     {
         Instance = this;
+        healthbar = FindObjectsOfType<Slider>()[0]; // On recupère le slider
     }
 
     public void Fade(bool showing, float duration)

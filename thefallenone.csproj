@@ -289,9 +289,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Player\Model\Scripts\AICharacterControl.cs" />
-    <Compile Include="Assets\Player\Model\Scripts\ThirdPersonCharacter.cs" />
-    <Compile Include="Assets\Player\Model\Scripts\ThirdPersonUserControl.cs" />
     <Compile Include="Assets\Player\Script\DeathAnimation.cs" />
     <Compile Include="Assets\Player\Script\Network\moveLook_Online.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />

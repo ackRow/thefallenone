@@ -13,14 +13,15 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
 
-public class Human_Net : NetworkBehaviour, ITarget_Net
+public class Human_Net : NetworkBehaviour
 {
 
     /* Variable Definition */
 
     public string username;
 
-    public float health = 100;
+    [SyncVar]
+    public float health = 100;  // la vie est synchronisé sur les clients et le serveur
 
     public float walking_speed = 4.0f;
     public float running_speed = 8.0f;
@@ -55,7 +56,8 @@ public class Human_Net : NetworkBehaviour, ITarget_Net
     protected float jumpMult = 1.0f;
     protected float Speed = 0.0f;
 
-    protected bool crouching = false;
+    public bool crouching = false;
+    public bool canStand = true;
     protected bool walking = false;
     protected bool jumping = false;
 
@@ -121,11 +123,20 @@ public class Human_Net : NetworkBehaviour, ITarget_Net
     protected void Update() // Animating, playing sounds
     {
         /* State */
+        /*if(!dead && health <= 0f) // Viens juste d'être tué
+        {
+            dead = true;
+            if(_animator)
+                _animator.Play("Die", -1, 0f);
+           
+        }*/
+
+        canStand = !Physics.Raycast(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, _capsCollider.height);
+
         if (!IsGrounded() && crouching)
         {
             Stand();
         }
-
 
         /* Animation */
         Animate(_animator);
@@ -135,8 +146,6 @@ public class Human_Net : NetworkBehaviour, ITarget_Net
 
     protected void FixedUpdate() // Moving, Physic Stuff
     {
-        //Debug.DrawRay(_body.position + new Vector3(0, 0.05f, 0), -Vector3.up, Color.red, 0.1f, true);
-
         if (dead)
             return;
 
@@ -218,15 +227,20 @@ public class Human_Net : NetworkBehaviour, ITarget_Net
             Stand();
     }
 
-    public void Attack(Vector3 _position, Vector3 _direction)
+    
+    /*public void Attack(Vector3 _position, Vector3 _direction)
     {
+        Debug.Log("attacking");
         if (Time.time > nextTimeToAttack)
         {
             if (crouching)
                 Stand();
-
-            nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             attacking = true;
+            nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
+
+            //Playing gun shot sound
+
+
             RaycastHit hit;
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
@@ -238,35 +252,48 @@ public class Human_Net : NetworkBehaviour, ITarget_Net
                     target.TakeDamage((isScoping ? gunDamage : punchDamage), this); // La target va perdre de la vie
                 }
             }
+
         }
-    }
+    }*/
 
     public void TakeDamage(float damage, Human_Net caller)
     {
+        if (dead)
+            return;
+
         health -= damage;
-        if (health <= 0f && !dead)
+        if (health <= 0f)
         {
-            Die();
-            Debug.Log(caller.username + " killed "+username);
+            //Die();
+            if (caller != null)
+                Debug.Log(caller.username + " killed " + username);
+            else
+                Debug.Log(username + " died");
         }
-            
+
         else
             _animator.SetTrigger("isHit"); // animation lorsqu'on est touché
     }
 
-    public virtual void Die()
+   /* public virtual void Die()
     {
         _animator.Play("Die", -1, 0f);
         dead = true;
-    }
+    }*/
 
     public virtual void Stand()
     {
-        // Override this in child
-        crouching = false;
-        adjustCollider(crouching);
-    }
 
+        // Override this in child
+        if (!canStand)
+            Debug.Log("Head Bang");
+        else
+        {
+            crouching = false;
+            adjustCollider(crouching);
+        }
+
+    }
 
     void OnCollisionEnter(Collision collision)
     {
