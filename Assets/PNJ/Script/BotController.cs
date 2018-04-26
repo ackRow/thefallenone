@@ -10,8 +10,8 @@ public class BotController : MonoBehaviour {
     float angle;
 
     float distance;
-    float minDistance = 1;
-    float maxDistance = 5;
+    float minDistance = 5;
+    float maxDistance = 20;
 
     public Human target;
 
@@ -51,7 +51,7 @@ public class BotController : MonoBehaviour {
 
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
             //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
-            //Debug.DrawRay(transform.position, newDir, Color.red);
+            //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);
 
 
             if (!bot.dead)
@@ -61,7 +61,7 @@ public class BotController : MonoBehaviour {
                 if (distance < maxDistance)
                 {
                     transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
-                    bot.Attack(bot.transform.position + new Vector3(0, 5f, 0), newDir);
+                    bot.Attack(bot.transform.position + new Vector3(0, 1.1f, 0), newDir);
                 }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);

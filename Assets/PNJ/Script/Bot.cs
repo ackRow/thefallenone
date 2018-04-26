@@ -34,5 +34,20 @@ public class Bot : Human
         base.Die();
 
     }*/
+	
+	public override void Die()
+    {
+        base.Die();
+
+		StartCoroutine(Clean());
+        
+    }
+
+    IEnumerator Clean()
+    {
+        yield return new WaitForSeconds(5); // delay
+       Destroy(gameObject);
+
+    }
 
 }

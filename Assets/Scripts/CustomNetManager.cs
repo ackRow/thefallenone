@@ -9,9 +9,6 @@ public class CustomNetManager : NetworkManager {
 
     public Dropdown mapselect;
 
-    public Scene map_multi1;
-    public Scene map_multi2;
-
 	public void StartupHost()
     {
         SetPort();

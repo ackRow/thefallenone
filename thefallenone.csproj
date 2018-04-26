@@ -289,7 +289,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Player\Script\DeathAnimation.cs" />
+    <Compile Include="Assets\Player\Script\FadeAnim.cs" />
     <Compile Include="Assets\Player\Script\Network\moveLook_Online.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
     <Compile Include="Assets\Player\Script\Network\PlayerController_Net.cs" />
