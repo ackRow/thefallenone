@@ -9,12 +9,15 @@ public class LoginData : IJsonClass
 
     public void ProcessData(UnityEngine.Object caller)
     {
+        Debug.Log(type);
+        Debug.Log(result);
         if (type != "success")
-            Debug.Log(result);
+            ((LoginScript)caller).message.text = result;
         else
         {
-            ((Player)caller).Token = result;
-            ((Player)caller).getUserInfo();
+            StaticInfo.Token = result;
+            ((LoginScript)caller).message.text = "Welcome back";
+            //((LoginScript)caller).getUserInfo();
         }
 
     }

@@ -265,8 +265,7 @@ public class Human : MonoBehaviour, ITarget
     {
         _animator.Play("Die", -1, 0f);
         dead = true;
-        _body.isKinematic = true;
-        _capsCollider.isTrigger = true;
+        
     }
 
     public virtual void Stand()

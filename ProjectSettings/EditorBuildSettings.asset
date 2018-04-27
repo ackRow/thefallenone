@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Multi.unity
     guid: 5d01f63646fab5549ab1c7f3b487a48c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestMap.unity
     guid: b12646a096a259b4796ff99c437f8f22
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 4a7b7008c3ddb724ba41cd668b34319e

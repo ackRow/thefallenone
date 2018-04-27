@@ -45,7 +45,8 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            player.TakeDamage(100, player);
+            //player.TakeDamage(100, player);
+            player.getReward(StaticInfo.Token, 10);
         }
 
 

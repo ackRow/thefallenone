@@ -20,16 +20,18 @@ public class Player : Human { // Hérite de la classe human
 
     public GameObject[] ArmFPS;
 
+
+    public bool hasWallhack = false;
+
+
+    // Sync server
+
     public LoginData _login;
     public UserData _user;
-
-    public string Token = "";
 
     // Use this for initialization
     new void Start () {
         base.Start();
-
-        username = "Player";
 
         controller = GetComponent<PlayerController>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
@@ -57,12 +59,10 @@ public class Player : Human { // Hérite de la classe human
 
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
 
-        if(Token == "")
-            Login("Test", "test");
+        if (StaticInfo.Token != "") 
+            getUserInfo(StaticInfo.Token);
         else
-        {
-            getUserInfo();
-        }
+            username = "Offline Player";
     }
 	
 	// Update is called once per frame
@@ -116,22 +116,22 @@ public class Player : Human { // Hérite de la classe human
     }
 
 
-
-    public void Login(string name, string pass)
+    public void getReward(string token, int coin)
     {
         WWWForm form = new WWWForm();
-        form.AddField("username", name);
-        form.AddField("password", pass);
+        form.AddField("token", token);
+        form.AddField("reward", coin.ToString());
 
-        WWW www = new WWW("https://thefallen.one/sync/login.php", form);
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
 
-        StartCoroutine(WaitForRequest<LoginData>(www));
+        StartCoroutine(WaitForRequest<UserData>(www));
     }
 
-    public void getUserInfo()
+
+    public void getUserInfo(string token)
     {
         WWWForm form = new WWWForm();
-        form.AddField("token", Token);
+        form.AddField("token", token);
 
         WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
 
@@ -151,5 +151,5 @@ public class Player : Human { // Hérite de la classe human
         }
     }
 
-    
+
 }

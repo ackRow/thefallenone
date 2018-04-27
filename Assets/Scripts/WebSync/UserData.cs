@@ -15,6 +15,8 @@ public class UserData : IJsonClass
         else
         {
             ((Player)caller).username = username;
+            StaticInfo.Username = username;
+            StaticInfo.Coin = Int32.Parse(coin);
         }
     }
 }

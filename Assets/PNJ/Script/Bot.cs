@@ -38,8 +38,9 @@ public class Bot : Human
 	public override void Die()
     {
         base.Die();
-
-		StartCoroutine(Clean());
+        _body.isKinematic = true;
+        _capsCollider.isTrigger = true;
+        StartCoroutine(Clean());
         
     }
 

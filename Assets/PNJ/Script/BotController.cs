@@ -6,6 +6,9 @@ public class BotController : MonoBehaviour {
 
     Bot bot;
 
+    public List<Renderer> listToRender;
+    public Material _forceField, _wallhack;
+
     bool triggerTarget = true;
     float angle;
 
@@ -14,15 +17,15 @@ public class BotController : MonoBehaviour {
     float maxDistance = 20;
 
     public Human target;
-
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
     int round = 50;
 
+    bool isWallhack = false;
+
     // Use this for initialization
     void Start () {
         bot = GetComponent<Bot>();
-
         bot.Scope();
     }
 	
@@ -40,6 +43,36 @@ public class BotController : MonoBehaviour {
             bot.Forward(false, Vector3.zero);
         else
             bot.Forward(false, Vector3.zero);
+
+        if (target is Player)
+        {
+            Player p = (Player)target;
+
+            if (isWallhack != p.hasWallhack)
+            {
+                isWallhack = p.hasWallhack;
+                activeWallhack(p.hasWallhack);
+
+            }
+        }
+    }
+
+    void activeWallhack(bool active)
+    {
+        if (active)
+        {
+            foreach (Renderer render in listToRender)
+            {
+                render.material = _wallhack;
+            }
+        }
+        else
+        {
+            foreach (Renderer render in listToRender)
+            {
+                render.material = _forceField;
+            }
+        }
     }
 
     private void FixedUpdate()
