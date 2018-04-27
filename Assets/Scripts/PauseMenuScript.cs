@@ -5,58 +5,45 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Networking;
 
 public class PauseMenuScript : MonoBehaviour {
-
-    public NetworkManager netm;
-    public GameObject menuObject;
+    
+    public GameObject PauseMenuObject;
     public GameObject hud;
 
-    public bool isActive = true;
-    public bool state = true;
+    public bool isActive;
 
-	// Update is called once per frame
-	void Update () {
-		
+    private void Awake()
+    {
+        isActive = false;
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isActive = !isActive;
+        }
+
         if (isActive)
         {
-            menuObject.SetActive(true);
+            PauseMenuObject.SetActive(true);
             hud.SetActive(false);
-            state = true;
-        }
-        else
-        {
-            menuObject.SetActive(false);
-            hud.SetActive(true);
-        }
-
-        if (!netm.isNetworkActive)
-        {
-            isActive = true;
-        }
-        else
-        {
-            isActive = false;
-        }
-
-        if (state)
-        {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
+            PauseMenuObject.SetActive(false);
+            hud.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            state = !state;
-        }
 	}
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("menutest");
+        SceneManager.LoadScene("Menu");
     }
 
     public void EXITButton()

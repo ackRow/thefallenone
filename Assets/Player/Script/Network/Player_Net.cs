@@ -44,6 +44,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     protected bool walking = false;
     protected bool jumping = false;
 
+    [SyncVar]
     public bool dead = false;
 
     protected float jumpDelay = 0.0f; // sync jump animation
@@ -80,6 +81,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     [SyncVar]
     public float health = 100;
+
+    public bool pause = true;
 
 
     public Vector3 Position
@@ -169,6 +172,9 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         return Physics.Raycast(transform.position + new Vector3(0, 0.9f, 0), -Vector3.up, 1f);
     }
 
+
+    /* Affichage en local */
+
     [GUITarget]
     void GUIHealthSync() // On synchronise avec le GUI du client pour update la barre de vie en temps réel
     {
@@ -190,12 +196,15 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         }
     }
 
-    [Command] // S'execute sur le serveur
+
+    /* S'execute sur le serveur */
+
+    [Command] 
     void CmdAttackOnline(Vector3 _position, Vector3 _direction, bool useGun)
     {
         RaycastHit hit;
         // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
-        if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
+        if (Physics.Raycast(_position, _direction, out hit, (useGun ? gunRange : punchRange)))
         {
             ITarget_Net target = hit.transform.GetComponent<ITarget_Net>();
             if (target != null) // Si un joueur est touché
@@ -207,6 +216,15 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         }
     }
 
+    [Command] // La fonction est synchronisé avec le server
+    void CmdRespawn()
+    {
+        health = 100f;
+        dead = false;
+    }
+
+    /* S'execute sur le client */
+
     /*[ClientRpc]
     void RpcPlayHitSound() // On lance le son de hit chez les clients
     {
@@ -217,6 +235,31 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     }*/
 
 
+    [ClientRpc] // La fonction est synchronisé avec le client
+    void RpcRespawn()
+    {
+        if (isLocalPlayer)
+        {
+            StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        _animator.Play("Die", -1, 0f); // On lance l'animation de mort
+
+        yield return new WaitForSeconds(5); // delay
+
+
+        // On relance l'animation Idle et on remet la vie à 100
+        _animator.Play("Idle", -1, 0f);
+        transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+
+        CmdRespawn();
+    }
+
+
+
     /* --- Update Function --- */
 
 
@@ -224,8 +267,9 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         /* Online */
         gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
+        //dead = health <= 0f;
 
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || pause)
             return;
 
         /* Local State */        
@@ -248,7 +292,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     protected void FixedUpdate() // Moving, Physic Stuff
     {
-        if (dead || !isLocalPlayer)
+        if (dead || !isLocalPlayer || pause)
             return;
 
 
@@ -281,8 +325,6 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             attacking = true;
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             //Playing gun shot sound
-            Debug.Log(_animator.GetFloat("Scope"));
-            Debug.Log(isScoping);
 
             CmdAttackOnline(_position, _direction, isScoping);
         }
@@ -292,11 +334,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     public void Stand()
     {
         // Override this in child
-        if (!canStand)
-            Debug.Log("Head Bang");
-        else
+        if (canStand)
         {
             crouching = false;
+            if (!crouching)
+                controller.adjustingCamera(false);
             adjustCollider(crouching);
         }
 
@@ -382,29 +424,6 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         RpcRespawn();
     }
-
-    [ClientRpc] // La fonction est synchronisé avec le client
-    void RpcRespawn()
-    {
-        if (isLocalPlayer)
-        {
-            StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
-        }
-    }
-
-    IEnumerator Respawn()
-    {
-        _animator.Play("Die", -1, 0f); // On lance l'animation de mort
-
-        yield return new WaitForSeconds(5); // delay
-
-
-        // On relance l'animation Idle et on remet la vie à 100
-        _animator.Play("Idle", -1, 0f);
-        transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
-        health = 100f;
-    }
-
     
     void OnCollisionEnter(Collision collision)
     {

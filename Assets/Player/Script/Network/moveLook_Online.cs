@@ -44,19 +44,20 @@ public class moveLook_Online : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        
-        // On tourne la camera et le joueur en fonction des mouvements de souris
-
-        md = Vector2.Scale(md, new Vector2(sensivity * smoothing, sensivity * smoothing));
-        smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-        smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-        mouseLook += smoothV;
-
-        mouseLook.y = Mathf.Clamp(mouseLook.y, minimumY, maximumY);
-
-        if (!player.dead)
+        if (!player.dead && !player.pause)
         {
+            var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        
+            // On tourne la camera et le joueur en fonction des mouvements de souris
+
+            md = Vector2.Scale(md, new Vector2(sensivity * smoothing, sensivity * smoothing));
+            smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
+            smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
+            mouseLook += smoothV;
+
+            mouseLook.y = Mathf.Clamp(mouseLook.y, minimumY, maximumY);
+
+        
             transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
             character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
         }

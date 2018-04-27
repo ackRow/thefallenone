@@ -37,6 +37,18 @@ public class PlayerController_Net : NetworkBehaviour
     void Update()
     { // Input
 
+        if (!isLocalPlayer)
+            return;
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            player.pause = !player.pause;
+        }
+
+        if (player.pause)
+            return;
+
         /* Mouvement */
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
             player.Jump();
@@ -51,6 +63,7 @@ public class PlayerController_Net : NetworkBehaviour
         {
             player.TakeDamage(100, player);
         }
+
 
 
         player.Forward(Input.GetKey(KeyCode.LeftShift), //CrossPlatformInputManager.GetButtonDown("Run"), 
@@ -83,8 +96,6 @@ public class PlayerController_Net : NetworkBehaviour
 
     public void adjustingCamera(bool crouching)
     {
-        Vector3 RIGHT = FPSContainer.transform.TransformDirection(Vector3.right);
-        Vector3 FORWARD = FPSContainer.transform.TransformDirection(Vector3.forward);
         if (crouching)
         {
             FPSContainer.transform.localPosition += new Vector3(0, 0.0f, 0.2f);
