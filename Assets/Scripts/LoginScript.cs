@@ -12,6 +12,8 @@ public class LoginScript : MonoBehaviour {
     public GameObject loginCanvas;
     public GameObject MenuCanvas;
 
+    public GameObject revengegaytext;
+
     public Text message;
 
 	// Update is called once per frame
@@ -20,6 +22,24 @@ public class LoginScript : MonoBehaviour {
         connect.onClick.RemoveAllListeners();
         connect.onClick.AddListener(Connection);
 	}
+
+    private void Update()
+    {
+        if (login.text == "Nexus" || login.text == "r0mi")
+        {
+            if (!revengegaytext.activeSelf)
+            {
+                revengegaytext.SetActive(true);
+            }
+        }
+        else
+        {
+            if (revengegaytext.activeSelf)
+            {
+                revengegaytext.SetActive(false);
+            }
+        }
+    }
 
     void Connection()
     {

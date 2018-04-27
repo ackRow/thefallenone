@@ -38,29 +38,37 @@ namespace UPnP
 
             DateTime start = DateTime.Now;
 
+            int nbTry = 0;
+
+            //  do
+            // {
+
             do
             {
                 s.SendTo(data, ipe);
 
                 int length = 0;
-                do
-                {
-                    length = s.Receive(buffer);
+                length = s.Receive(buffer);
 
-                    string resp = Encoding.ASCII.GetString(buffer, 0, length);
-                    if (resp.Contains("upnp:rootdevice"))
+                if (length <= 0)
+                    break;
+
+                string resp = Encoding.ASCII.GetString(buffer, 0, length);
+                if (resp.Contains("upnp:rootdevice"))
+                {
+                    resp = resp.Substring(resp.IndexOf("Location:") + 9);
+                    resp = resp.Substring(0, resp.IndexOf("\r")).Trim();
+                    _serviceUrl = GetServiceUrl(resp);
+                    if (!string.IsNullOrEmpty(_serviceUrl))
                     {
-                        resp = resp.Substring(resp.IndexOf("Location:") + 9);
-                        resp = resp.Substring(0, resp.IndexOf("\r")).Trim();
-                        _serviceUrl = GetServiceUrl(resp);
-                        if (!string.IsNullOrEmpty(_serviceUrl))
-                        {
-                            _descUrl = resp;
-                            return true;
-                        }
+                        _descUrl = resp;
+                        return true;
                     }
-                } while (length > 0);
-            } while (start.Subtract(DateTime.Now) < _timeout);
+                }
+                nbTry++;
+
+            } while (nbTry < 10);
+            // } while (start.Subtract(DateTime.Now) < _timeout);
             return false;
         }
 
@@ -86,19 +94,19 @@ namespace UPnP
             try
             {
 #endif
-                XmlDocument desc = new XmlDocument();
-                desc.Load(WebRequest.Create(resp).GetResponse().GetResponseStream());
-                XmlNamespaceManager nsMgr = new XmlNamespaceManager(desc.NameTable);
-                nsMgr.AddNamespace("tns", "urn:schemas-upnp-org:device-1-0");
-                XmlNode typen = desc.SelectSingleNode("//tns:device/tns:deviceType/text()", nsMgr);
-                if (!typen.Value.Contains("InternetGatewayDevice"))
-                    return null;
-                XmlNode node = desc.SelectSingleNode("//tns:service[tns:serviceType=\"urn:schemas-upnp-org:service:WANIPConnection:1\"]/tns:controlURL/text()", nsMgr);
-                if (node == null)
-                    return null;
-                XmlNode eventnode = desc.SelectSingleNode("//tns:service[tns:serviceType=\"urn:schemas-upnp-org:service:WANIPConnection:1\"]/tns:eventSubURL/text()", nsMgr);
-                _eventUrl = CombineUrls(resp, eventnode.Value);
-                return CombineUrls(resp, node.Value);
+            XmlDocument desc = new XmlDocument();
+            desc.Load(WebRequest.Create(resp).GetResponse().GetResponseStream());
+            XmlNamespaceManager nsMgr = new XmlNamespaceManager(desc.NameTable);
+            nsMgr.AddNamespace("tns", "urn:schemas-upnp-org:device-1-0");
+            XmlNode typen = desc.SelectSingleNode("//tns:device/tns:deviceType/text()", nsMgr);
+            if (!typen.Value.Contains("InternetGatewayDevice"))
+                return null;
+            XmlNode node = desc.SelectSingleNode("//tns:service[tns:serviceType=\"urn:schemas-upnp-org:service:WANIPConnection:1\"]/tns:controlURL/text()", nsMgr);
+            if (node == null)
+                return null;
+            XmlNode eventnode = desc.SelectSingleNode("//tns:service[tns:serviceType=\"urn:schemas-upnp-org:service:WANIPConnection:1\"]/tns:eventSubURL/text()", nsMgr);
+            _eventUrl = CombineUrls(resp, eventnode.Value);
+            return CombineUrls(resp, node.Value);
 #if !DEBUG
             }
             catch { return null; }
@@ -120,7 +128,7 @@ namespace UPnP
                 Console.WriteLine("UPnP port forwarding might not work for port under 45000");
             XmlDocument xdoc = SOAPRequest(_serviceUrl, "<u:AddPortMapping xmlns:u=\"urn:schemas-upnp-org:service:WANIPConnection:1\">" +
                 "<NewRemoteHost></NewRemoteHost><NewExternalPort>" + port.ToString() + "</NewExternalPort><NewProtocol>" + protocol.ToString().ToUpper() + "</NewProtocol>" +
-                "<NewInternalPort>" + port.ToString() + "</NewInternalPort><NewInternalClient>" + /*Dns.GetHostAddresses(Dns.GetHostName())[0].ToString() +*/ GetIP4Address() +
+                "<NewInternalPort>" + port.ToString() + "</NewInternalPort><NewInternalClient>" + /*Dns.GetHostAddresses(Dns.GetHostName())[0].ToString()*/ GetIP4Address() +
                 "</NewInternalClient><NewEnabled>1</NewEnabled><NewPortMappingDescription>" + description +
             "</NewPortMappingDescription><NewLeaseDuration>0</NewLeaseDuration></u:AddPortMapping>", "AddPortMapping");
         }
@@ -133,7 +141,7 @@ namespace UPnP
             "<u:DeletePortMapping xmlns:u=\"urn:schemas-upnp-org:service:WANIPConnection:1\">" +
             "<NewRemoteHost>" +
             "</NewRemoteHost>" +
-            "<NewExternalPort>"+ port+"</NewExternalPort>" +
+            "<NewExternalPort>" + port + "</NewExternalPort>" +
             "<NewProtocol>" + protocol.ToString().ToUpper() + "</NewProtocol>" +
             "</u:DeletePortMapping>", "DeletePortMapping");
         }
