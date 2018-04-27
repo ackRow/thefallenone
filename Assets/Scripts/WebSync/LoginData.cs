@@ -7,7 +7,7 @@ public class LoginData : IJsonClass
     public string type;
     public string result;
 
-    public void ProcessData(UnityEngine.Object caller)
+    public bool ProcessData(UnityEngine.Object caller)
     {
         Debug.Log(type);
         Debug.Log(result);
@@ -18,7 +18,11 @@ public class LoginData : IJsonClass
             StaticInfo.Token = result;
             ((LoginScript)caller).message.text = "Welcome back";
             //((LoginScript)caller).getUserInfo();
+            return true;
+
         }
+
+        return false;
 
     }
 }

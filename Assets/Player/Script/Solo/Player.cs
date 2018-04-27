@@ -68,6 +68,8 @@ public class Player : Human { // Hérite de la classe human
 	// Update is called once per frame
 	new void Update () {
 
+        //Debug.Log(walking_speed);
+
         /* Animation FPS Arm */
         Animate(ArmAnimator);
 
@@ -93,6 +95,16 @@ public class Player : Human { // Hérite de la classe human
         // Call camera change in PlayerController
         if(!crouching)
             controller.adjustingCamera(false);
+    }
+
+    public void Heal(float value)
+    {
+        if (dead)
+            return;
+
+        health += value;
+        if (health > 100.0f)
+            health = 100.0f;
     }
 
 

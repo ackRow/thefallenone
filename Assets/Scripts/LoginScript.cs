@@ -9,6 +9,8 @@ public class LoginScript : MonoBehaviour {
     public InputField login;
     public InputField password;
     public Button connect;
+    public GameObject loginCanvas;
+    public GameObject MenuCanvas;
 
     public Text message;
 
@@ -44,9 +46,11 @@ public class LoginScript : MonoBehaviour {
         else
         {
             T jsonClass = JsonUtility.FromJson<T>(data.text);
-            ((IJsonClass)jsonClass).ProcessData(this);
+            if (((IJsonClass)jsonClass).ProcessData(this) && loginCanvas.activeSelf == true)
+            {
+                loginCanvas.SetActive(false);
+                MenuCanvas.SetActive(true);
+            }
         }
-
-        SceneManager.LoadScene("Level1");
     }
 }

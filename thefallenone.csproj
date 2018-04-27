@@ -289,6 +289,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Box\Script\Box.cs" />
+    <Compile Include="Assets\Box\Script\CoinBox.cs" />
+    <Compile Include="Assets\Box\Script\DamageBox.cs" />
+    <Compile Include="Assets\Box\Script\HealBox.cs" />
+    <Compile Include="Assets\Box\Script\SpeedBox.cs" />
+    <Compile Include="Assets\Box\Script\WallBox.cs" />
     <Compile Include="Assets\Player\Script\FadeAnim.cs" />
     <Compile Include="Assets\Player\Script\Network\moveLook_Online.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
@@ -298,11 +304,11 @@
     <Compile Include="Assets\Player\Script\Solo\PlayerController.cs" />
     <Compile Include="Assets\PNJ\Script\Bot.cs" />
     <Compile Include="Assets\PNJ\Script\BotController.cs" />
-    <Compile Include="Assets\Scripts\CustomNetManager.cs" />
     <Compile Include="Assets\Scripts\Human.cs" />
+    <Compile Include="Assets\Scripts\Interface Script\CustomNetManager.cs" />
+    <Compile Include="Assets\Scripts\Interface Script\MainMenuScript.cs" />
+    <Compile Include="Assets\Scripts\Interface Script\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\LoginScript.cs" />
-    <Compile Include="Assets\Scripts\MainMenuScript.cs" />
-    <Compile Include="Assets\Scripts\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\Target_Net.cs" />
     <Compile Include="Assets\Scripts\WebSync\JsonClass.cs" />

@@ -8,7 +8,7 @@ public class UserData : IJsonClass
     public string username;
     public string coin;
 
-    public void ProcessData(UnityEngine.Object caller)
+    public bool ProcessData(UnityEngine.Object caller)
     {
         if (type != "success")
             Debug.Log("couldn't retrieve user information");
@@ -17,6 +17,8 @@ public class UserData : IJsonClass
             ((Player)caller).username = username;
             StaticInfo.Username = username;
             StaticInfo.Coin = Int32.Parse(coin);
+            return true;
         }
+        return false;
     }
 }

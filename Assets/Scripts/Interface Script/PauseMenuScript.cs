@@ -15,8 +15,7 @@ public class PauseMenuScript : MonoBehaviour {
     {
         isActive = false;
     }
-
-    // Update is called once per frame
+    
     void Update () {
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -27,14 +26,12 @@ public class PauseMenuScript : MonoBehaviour {
         if (isActive)
         {
             PauseMenuObject.SetActive(true);
-            hud.SetActive(false);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.Confined;
         }
         else
         {
             PauseMenuObject.SetActive(false);
-            hud.SetActive(true);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
