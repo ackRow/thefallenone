@@ -16,6 +16,7 @@ public class LoginScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Awake () {
+        password.contentType = InputField.ContentType.Password;
         connect.onClick.RemoveAllListeners();
         connect.onClick.AddListener(Connection);
 	}

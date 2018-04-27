@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Net.Sockets;
 
 
 public class CustomNetManager : NetworkManager {
@@ -18,6 +19,15 @@ public class CustomNetManager : NetworkManager {
 
     public void StartupHost()
     {
+        try
+        {
+            UPnP.NAT.Discover();
+            UPnP.NAT.ForwardPort(4761, ProtocolType.Tcp, "TFO");
+        }
+        catch
+        {
+            Debug.Log("UPnP failed");
+        }
         SetPort();
         NetworkManager.singleton.StartHost();
     }

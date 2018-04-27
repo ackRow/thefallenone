@@ -123,7 +123,6 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             }
 
             gun = ArmFPS[ArmFPS.Length - 1];
-            playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
         }
         else
         {
@@ -306,6 +305,12 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             _body.AddForce(new Vector3(0, JumpForce * jumpMult, 0), ForceMode.Impulse);
             jumpMult = 1.0f;
             jumping = false; // a présent, le joueur n'est plus entrain de sauter mais entrain de retomber
+        }
+
+        // Si le joueur tombe dans le vide, il respawn
+        if (_body.transform.position.y < -20f)
+        {
+            _body.MovePosition(spawnPoints[Random.Range(0, 4)].transform.position);
         }
     }
 
