@@ -256,7 +256,7 @@ public class Human : MonoBehaviour, ITarget
                 Debug.Log(caller.username + " killed " + username);
                 if (caller is Player)
                 {
-                    ((Player)caller).updateStat(StaticInfo.Token, StaticInfo.Stat.kill);
+                    ((Player)caller).updateStat(StaticInfo.Stat.kill);
                 }
             }
             else

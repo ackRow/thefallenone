@@ -20,6 +20,7 @@ public class Player : Human { // Hérite de la classe human
 
     public GameObject[] ArmFPS;
 
+    private Vector3 spawnPoint;
 
     public bool hasWallhack = false;
 
@@ -62,8 +63,10 @@ public class Player : Human { // Hérite de la classe human
 
         playerHealth = FindObjectsOfType<Slider>()[0]; // On recupère le slider
 
-        if (StaticInfo.Token != "") 
-            getUserInfo(StaticInfo.Token);
+        spawnPoint = transform.position;
+
+        if (StaticInfo.Username != "")
+            username = StaticInfo.Username;
         else
             username = "Offline Player";
     }
@@ -125,7 +128,7 @@ public class Player : Human { // Hérite de la classe human
         controller.resetCamera(false);
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
-        //transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        transform.position = spawnPoint;
         health = 100f;
     }
 
@@ -137,10 +140,13 @@ public class Player : Human { // Hérite de la classe human
         myAudio.Play();
     }
 
-    public void getReward(string token, int coin)
+    public void getReward(int coin)
     {
+        if (StaticInfo.Token == "")
+            return;
+
         WWWForm form = new WWWForm();
-        form.AddField("token", token);
+        form.AddField("token", StaticInfo.Token);
         form.AddField("reward", coin.ToString());
 
         WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
@@ -150,6 +156,9 @@ public class Player : Human { // Hérite de la classe human
 
     public void finishLevel(int level)
     {
+        if (StaticInfo.Token == "")
+            return;
+
         WWWForm form = new WWWForm();
         form.AddField("token", StaticInfo.Token);
         form.AddField("level", level.ToString());
@@ -159,10 +168,13 @@ public class Player : Human { // Hérite de la classe human
         StartCoroutine(WaitForRequest<UserData>(www));
     }
 
-    public void updateStat(string token, StaticInfo.Stat stat)
+    public void updateStat(StaticInfo.Stat stat)
     {
+        if (StaticInfo.Token == "")
+            return;
+
         WWWForm form = new WWWForm();
-        form.AddField("token", token);
+        form.AddField("token", StaticInfo.Token);
         form.AddField(stat.ToString(), 1);
 
         WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
@@ -173,6 +185,9 @@ public class Player : Human { // Hérite de la classe human
 
     public void getUserInfo(string token)
     {
+        if (StaticInfo.Token == "")
+            return;
+
         WWWForm form = new WWWForm();
         form.AddField("token", token);
 

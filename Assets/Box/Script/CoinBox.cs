@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class CoinBox : Box {
 
-    // Donne un gain de vie au joueur
+    // Donne un gain de coin
 
     public int reward = 10;
 
    public override void Action(Player p)
     {
-        if (StaticInfo.Token != "")
-            p.getReward(StaticInfo.Token, reward);
+        p.getReward(reward);
         Destroy(gameObject);
     }
 
