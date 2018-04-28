@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a954584ed87074aaef126a8def5eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSound: {fileID: 8300000, guid: d2ef0ab2a024e34468078ffd1fe4a462, type: 3}
   reward: 10

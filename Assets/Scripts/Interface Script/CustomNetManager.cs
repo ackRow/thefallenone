@@ -9,12 +9,27 @@ using System.Net.Sockets;
 
 public class CustomNetManager : NetworkManager {
 
-    public Dropdown mapselect = GameObject.Find("Dropdown").GetComponent<Dropdown>();
-    public MainMenuScript main = GameObject.Find("Main Menu").GetComponent<MainMenuScript>();
+    public Dropdown mapselect;
+    public MainMenuScript main;
 
+    public bool launched;
+    
     private void Update()
     {
-        NetworkManager.singleton.onlineScene = mapselect.options[mapselect.value].text;
+        if (SceneManager.GetActiveScene().name == "Menu")
+        {
+            try
+            {
+                main = GameObject.Find("Main Menu").GetComponent<MainMenuScript>();
+            }
+            catch { }
+            if (main.multiplayerCanvas.activeSelf)
+            {
+                mapselect = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+                NetworkManager.singleton.onlineScene = mapselect.options[mapselect.value].text;
+            }
+        }
+       
     }
 
     public void StartupHost()
@@ -28,6 +43,8 @@ public class CustomNetManager : NetworkManager {
         {
             Debug.Log("UPnP failed");
         }
+
+        Debug.Log("Startup Host");
         SetPort();
         NetworkManager.singleton.StartHost();
     }
@@ -57,11 +74,7 @@ public class CustomNetManager : NetworkManager {
 
     private void OnLevelWasLoaded(int level)
     {
-        if (level == 0)
-        {
-            SetupMenuButtons();
-        }
-        else
+        if (level != 0)
         {
             SetupOtherButtons();
         }
@@ -77,7 +90,7 @@ public class CustomNetManager : NetworkManager {
         main.Launchbtn("Level2");
     }
 
-    void SetupMenuButtons()
+    public void SetupMenuButtons()
     {
         GameObject.Find("Single").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("Single").GetComponent<Button>().onClick.AddListener(main.Singlecv);
@@ -87,7 +100,10 @@ public class CustomNetManager : NetworkManager {
 
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.AddListener(main.ExitBtn);
+    }
 
+    public void SetupSinglePlayerButtons()
+    {
         GameObject.Find("Map1Button").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("Map1Button").GetComponent<Button>().onClick.AddListener(LaunchSingleMap1);
 
@@ -96,7 +112,9 @@ public class CustomNetManager : NetworkManager {
 
         GameObject.Find("SingleBack").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("SingleBack").GetComponent<Button>().onClick.AddListener(main.Return);
-
+    }
+    public void SetupMultiplayerButtons()
+    {
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.AddListener(StartupHost);
 

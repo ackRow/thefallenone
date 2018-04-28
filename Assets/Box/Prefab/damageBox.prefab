@@ -107,4 +107,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afa0285f4976e846a73f606a7c3a081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSound: {fileID: 8300000, guid: d2ef0ab2a024e34468078ffd1fe4a462, type: 3}
   damage: 25

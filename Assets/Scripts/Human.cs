@@ -278,9 +278,7 @@ public class Human : MonoBehaviour, ITarget
     {
 
         // Override this in child
-        if (!canStand)
-            Debug.Log("Head Bang");
-        else
+        if (canStand)
         {
             crouching = false;
             adjustCollider(crouching);
