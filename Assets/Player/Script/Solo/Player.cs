@@ -23,6 +23,7 @@ public class Player : Human { // Hérite de la classe human
 
     public bool hasWallhack = false;
 
+    public AudioSource myAudio;
 
     // Sync server
 
@@ -32,6 +33,8 @@ public class Player : Human { // Hérite de la classe human
     // Use this for initialization
     new void Start () {
         base.Start();
+
+        myAudio = GetComponent<AudioSource>();
 
         controller = GetComponent<PlayerController>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
@@ -106,8 +109,7 @@ public class Player : Human { // Hérite de la classe human
         if (health > 100.0f)
             health = 100.0f;
     }
-
-
+    
     public override void Die()
     {
         base.Die();
@@ -127,6 +129,13 @@ public class Player : Human { // Hérite de la classe human
         health = 100f;
     }
 
+    public void PlaySound(AudioClip sound, bool loop, float volume)
+    {
+        myAudio.clip = sound;
+        myAudio.volume = volume;
+        myAudio.loop = loop;
+        myAudio.Play();
+    }
 
     public void getReward(string token, int coin)
     {
