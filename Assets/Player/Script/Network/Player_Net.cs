@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.UI; // faut utiliser l'UI
+using UnityEngine.SceneManagement;
 
 public class Player_Net : NetworkBehaviour, ITarget_Net
 {
@@ -221,6 +222,23 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         }
     }
 
+    [Command]
+    public void CmdTakeDamage(float amount, string caller_token) // run server side
+    {
+        if (dead)
+            return;
+
+        health -= amount;
+        if (health <= 0f)
+        {
+            updateStat(caller_token, StaticInfo.Stat.kill);
+            dead = true;
+            Die();
+        }
+        else
+            _animator.SetTrigger("isHit"); // animation lorsqu'on est touché
+    }
+
     [Command] // La fonction est synchronisé avec le server
     void CmdRespawn()
     {
@@ -240,6 +258,18 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     }
 
+    [Command]
+    public void CmdEndGame()
+    {
+        RpcLooseGame();
+        updateStat(StaticInfo.Token, StaticInfo.Stat.play);
+
+        Cursor.lockState = CursorLockMode.None;
+        (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
+
+        SceneManager.LoadScene("Menu");
+    }
+
     /* S'execute sur le client */
 
     /*[ClientRpc]
@@ -251,6 +281,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         }
     }*/
 
+    [ClientRpc]
+    public void RpcLooseGame()
+    {
+        updateStat(StaticInfo.Token, StaticInfo.Stat.play);
+    }
 
     [ClientRpc] // La fonction est synchronisé avec le client
     void RpcRespawn()
@@ -428,22 +463,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         CmdTakeDamage(damage, caller_token);
     }
 
-    [Command]
-    public void CmdTakeDamage(float amount, string caller_token) // run server side
-    { 
-        if (dead)
-            return;
-
-        health -= amount;
-        if (health <= 0f)
-        {
-            updateStat(caller_token, StaticInfo.Stat.kill);
-            dead = true;
-            Die();
-        }
-        else
-            _animator.SetTrigger("isHit"); // animation lorsqu'on est touché
-    } 
+    
 
 
     private void Die()
@@ -453,7 +473,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     public void Win()
     {
-
+        updateStat(StaticInfo.Token, StaticInfo.Stat.win);
+        CmdEndGame();
     }
     
     void OnCollisionEnter(Collision collision)
