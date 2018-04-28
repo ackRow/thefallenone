@@ -139,6 +139,28 @@ public class Player : Human { // Hérite de la classe human
         StartCoroutine(WaitForRequest<UserData>(www));
     }
 
+    public void finishLevel(int level)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", StaticInfo.Token);
+        form.AddField("level", level.ToString());
+
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
+
+        StartCoroutine(WaitForRequest<UserData>(www));
+    }
+
+    public void updateStat(string token, StaticInfo.Stat stat)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", token);
+        form.AddField(stat.ToString(), 1);
+
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
+
+        StartCoroutine(WaitForRequest<UserData>(www));
+    }
+
 
     public void getUserInfo(string token)
     {

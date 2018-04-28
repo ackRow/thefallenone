@@ -12,8 +12,6 @@ public class LoginScript : MonoBehaviour {
     public GameObject loginCanvas;
     public GameObject MenuCanvas;
 
-    public GameObject revengegaytext;
-
     public Text message;
 
 	// Update is called once per frame
@@ -23,27 +21,19 @@ public class LoginScript : MonoBehaviour {
         connect.onClick.AddListener(Connection);
 	}
 
-    private void Update()
-    {
-        if (login.text == "Nexus" || login.text == "r0mi")
-        {
-            if (!revengegaytext.activeSelf)
-            {
-                revengegaytext.SetActive(true);
-            }
-        }
-        else
-        {
-            if (revengegaytext.activeSelf)
-            {
-                revengegaytext.SetActive(false);
-            }
-        }
-    }
-
     void Connection()
     {
         Login(login.text, password.text);
+    }
+
+    public void getUserInfo(string token)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("token", token);
+
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
+
+        StartCoroutine(WaitForRequest<UserData>(www));
     }
 
     public void Login(string name, string pass)
@@ -69,6 +59,7 @@ public class LoginScript : MonoBehaviour {
             T jsonClass = JsonUtility.FromJson<T>(data.text);
             if (((IJsonClass)jsonClass).ProcessData(this) && loginCanvas.activeSelf == true)
             {
+                getUserInfo(StaticInfo.Token);
                 loginCanvas.SetActive(false);
                 MenuCanvas.SetActive(true);
             }

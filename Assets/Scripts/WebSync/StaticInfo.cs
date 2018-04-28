@@ -5,6 +5,16 @@
     private static string token = "";
     private static string username = "";
     private static int coin;
+    private static int level;
+
+    public enum Stat
+    {
+        win,
+        loose,
+        kill,
+        death,
+        level
+    }
 
     public static string Token
     {
@@ -39,6 +49,18 @@
         set
         {
             coin = value;
+        }
+    }
+
+    public static int Level
+    {
+        get
+        {
+            return level;
+        }
+        set
+        {
+            level = value;
         }
     }
 }

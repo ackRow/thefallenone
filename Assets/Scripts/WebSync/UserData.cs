@@ -7,6 +7,7 @@ public class UserData : IJsonClass
     public string type;
     public string username;
     public string coin;
+    public string level;
 
     public bool ProcessData(UnityEngine.Object caller)
     {
@@ -17,6 +18,7 @@ public class UserData : IJsonClass
             ((Player)caller).username = username;
             StaticInfo.Username = username;
             StaticInfo.Coin = Int32.Parse(coin);
+            StaticInfo.Level = Int32.Parse(level);
             return true;
         }
         return false;

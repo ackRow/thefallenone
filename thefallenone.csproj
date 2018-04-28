@@ -292,6 +292,7 @@
     <Compile Include="Assets\Box\Script\Box.cs" />
     <Compile Include="Assets\Box\Script\CoinBox.cs" />
     <Compile Include="Assets\Box\Script\DamageBox.cs" />
+    <Compile Include="Assets\Box\Script\FinishBox.cs" />
     <Compile Include="Assets\Box\Script\HealBox.cs" />
     <Compile Include="Assets\Box\Script\SpeedBox.cs" />
     <Compile Include="Assets\Box\Script\WallBox.cs" />

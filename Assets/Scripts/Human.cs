@@ -251,8 +251,14 @@ public class Human : MonoBehaviour, ITarget
         if (health <= 0f)
         {
             Die();
-            if(caller != null)
-                Debug.Log(caller.username + " killed "+username);
+            if (caller != null)
+            {
+                Debug.Log(caller.username + " killed " + username);
+                if (caller is Player)
+                {
+                    ((Player)caller).updateStat(StaticInfo.Token, StaticInfo.Stat.kill);
+                }
+            }
             else
                 Debug.Log(username + " died");
         }
@@ -287,8 +293,8 @@ public class Human : MonoBehaviour, ITarget
     {
         if (collision.gameObject.tag == "jumpg")
         {
-            //Jump();
             jumpMult = 2.0f;
+            Jump();     
         }else
             jumpMult = 1.0f;
 

@@ -9,8 +9,8 @@ using System.Net.Sockets;
 
 public class CustomNetManager : NetworkManager {
 
-    public Dropdown mapselect;
-    public MainMenuScript main;
+    public Dropdown mapselect = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+    public MainMenuScript main = GameObject.Find("Main Menu").GetComponent<MainMenuScript>();
 
     private void Update()
     {

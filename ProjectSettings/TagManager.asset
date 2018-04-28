@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - jumpg
   - aie
+  - finish
   layers:
   - Default
   - TransparentFX
