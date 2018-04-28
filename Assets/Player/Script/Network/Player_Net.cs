@@ -222,6 +222,18 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         dead = false;
     }
 
+    [Command]
+    public void CmdHeal(float val)
+    {
+        if (dead)
+            return;
+
+        health += val;
+        if (health > 100.0f)
+            health = 100.0f;
+
+    }
+
     /* S'execute sur le client */
 
     /*[ClientRpc]

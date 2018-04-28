@@ -12,7 +12,12 @@ public class UserData : IJsonClass
     public bool ProcessData(UnityEngine.Object caller)
     {
         if (type != "success")
+        {
+            StaticInfo.Token = "";
+            if(caller is LoginScript)
+                ((LoginScript)caller).message.text = "Session expired";
             Debug.Log("couldn't retrieve user information");
+        }
         else
         {
             //((Player)caller).username = username;

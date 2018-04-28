@@ -28,14 +28,13 @@ public class LoginScript : MonoBehaviour {
     {
         if (StaticInfo.Token != "")
         {
+           
             getUserInfo(StaticInfo.Token);
         }
     }
 
     void Connection()
-    {
-        connect.interactable = false;
-        loadingGun.SetActive(true);
+    { 
         Login(login.text, password.text);
         
     }
@@ -63,7 +62,8 @@ public class LoginScript : MonoBehaviour {
 
     IEnumerator WaitForRequest<T>(WWW data)
     {
-
+        connect.interactable = false;
+        loadingGun.SetActive(true);
         yield return data; // Wait until the download is done
         if (data.error != null)
         {

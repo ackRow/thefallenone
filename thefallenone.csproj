@@ -289,13 +289,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Box\Script\Box.cs" />
-    <Compile Include="Assets\Box\Script\CoinBox.cs" />
-    <Compile Include="Assets\Box\Script\DamageBox.cs" />
-    <Compile Include="Assets\Box\Script\FinishBox.cs" />
-    <Compile Include="Assets\Box\Script\HealBox.cs" />
-    <Compile Include="Assets\Box\Script\SpeedBox.cs" />
-    <Compile Include="Assets\Box\Script\WallBox.cs" />
+    <Compile Include="Assets\Box\Online\Script\Box_Net.cs" />
+    <Compile Include="Assets\Box\Online\Script\Flag_Net.cs" />
+    <Compile Include="Assets\Box\Online\Script\HealBox_Net.cs" />
+    <Compile Include="Assets\Box\Solo\Script\Box.cs" />
+    <Compile Include="Assets\Box\Solo\Script\CoinBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\DamageBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\FinishBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\HealBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\SpeedBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\WallBox.cs" />
     <Compile Include="Assets\Player\Script\FadeAnim.cs" />
     <Compile Include="Assets\Player\Script\Network\moveLook_Online.cs" />
     <Compile Include="Assets\Player\Script\Network\Player_Net.cs" />
