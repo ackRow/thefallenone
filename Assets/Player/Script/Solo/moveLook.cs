@@ -46,7 +46,7 @@ public class moveLook : MonoBehaviour
 
         mouseLook.y = Mathf.Clamp(mouseLook.y, player.crouching ? minimumY_crunch : minimumY, player.crouching ? maximumY_crunch : maximumY);
 
-        if (!player.dead)
+        if (!player.dead && !(GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive)
         {
             transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
             character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);

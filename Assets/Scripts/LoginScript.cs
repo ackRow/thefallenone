@@ -9,6 +9,8 @@ public class LoginScript : MonoBehaviour {
     public InputField login;
     public InputField password;
     public Button connect;
+    public GameObject loadingGun;
+
     public GameObject loginCanvas;
     public GameObject MenuCanvas;
 
@@ -16,14 +18,26 @@ public class LoginScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Awake () {
+        loadingGun.SetActive(false);
         password.contentType = InputField.ContentType.Password;
         connect.onClick.RemoveAllListeners();
         connect.onClick.AddListener(Connection);
 	}
 
+    void Update()
+    {
+        if (StaticInfo.Token != "")
+        {
+            getUserInfo(StaticInfo.Token);
+        }
+    }
+
     void Connection()
     {
+        connect.interactable = false;
+        loadingGun.SetActive(true);
         Login(login.text, password.text);
+        
     }
 
     public void getUserInfo(string token)
@@ -49,6 +63,7 @@ public class LoginScript : MonoBehaviour {
 
     IEnumerator WaitForRequest<T>(WWW data)
     {
+
         yield return data; // Wait until the download is done
         if (data.error != null)
         {
@@ -59,10 +74,11 @@ public class LoginScript : MonoBehaviour {
             T jsonClass = JsonUtility.FromJson<T>(data.text);
             if (((IJsonClass)jsonClass).ProcessData(this) && loginCanvas.activeSelf == true)
             {
-                getUserInfo(StaticInfo.Token);
                 loginCanvas.SetActive(false);
                 MenuCanvas.SetActive(true);
             }
         }
+        connect.interactable = true;
+        loadingGun.SetActive(false);
     }
 }

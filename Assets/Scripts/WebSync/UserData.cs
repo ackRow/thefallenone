@@ -15,7 +15,7 @@ public class UserData : IJsonClass
             Debug.Log("couldn't retrieve user information");
         else
         {
-            ((Player)caller).username = username;
+            //((Player)caller).username = username;
             StaticInfo.Username = username;
             StaticInfo.Coin = Int32.Parse(coin);
             StaticInfo.Level = Int32.Parse(level);

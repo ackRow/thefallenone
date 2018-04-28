@@ -3796,6 +3796,7 @@ MonoBehaviour:
   login: {fileID: 820045379}
   password: {fileID: 152805985}
   connect: {fileID: 1356277833}
+  loadingGun: {fileID: 855226873}
   loginCanvas: {fileID: 260248057}
   MenuCanvas: {fileID: 544459583}
   message: {fileID: 1895649460}

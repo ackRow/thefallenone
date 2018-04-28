@@ -9,8 +9,6 @@ public class LoginData : IJsonClass
 
     public bool ProcessData(UnityEngine.Object caller)
     {
-        Debug.Log(type);
-        Debug.Log(result);
         if (type != "success")
             ((LoginScript)caller).message.text = result;
         else
