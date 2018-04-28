@@ -77,7 +77,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     /* Online */
     public NetworkStartPosition[] spawnPoints;
 
-    public string username = "Player Online";
+    public string username;
 
     [SyncVar]
     public float health = 100;
@@ -123,6 +123,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             }
 
             gun = ArmFPS[ArmFPS.Length - 1];
+
+            if (StaticInfo.Username != "")
+                username = StaticInfo.Username;
+            else
+                username = "Online Player";
         }
         else
         {
@@ -134,6 +139,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
             gun = ArmExt[ArmExt.Length - 1];
         }
+
     }
 
     /* Helper Function */
@@ -199,7 +205,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     /* S'execute sur le serveur */
 
     [Command] 
-    void CmdAttackOnline(Vector3 _position, Vector3 _direction, bool useGun)
+    void CmdAttackOnline(Vector3 _position, Vector3 _direction, bool useGun, string Token)
     {
         RaycastHit hit;
         // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
@@ -210,7 +216,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             {
                 //RpcPlayHitSound();
                 hasHitTarget = true;
-                target.TakeDamage((useGun ? gunDamage : punchDamage), this); // La target va perdre de la vie
+                target.TakeDamage((useGun ? gunDamage : punchDamage), Token); // La target va perdre de la vie
             }
         }
     }
@@ -251,6 +257,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         if (isLocalPlayer)
         {
+            Debug.Log(StaticInfo.Token + "dead");
+            updateStat(StaticInfo.Token, StaticInfo.Stat.death);
             StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
         }
     }
@@ -343,7 +351,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             //Playing gun shot sound
 
-            CmdAttackOnline(_position, _direction, isScoping);
+            CmdAttackOnline(_position, _direction, isScoping, StaticInfo.Token);
         }
     }
 
@@ -415,20 +423,21 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     /* --- Event Function (or callback) --- */
 
 
-    public void TakeDamage(float damage, Player_Net caller)
+    public void TakeDamage(float damage, string caller_token)
     {
-        CmdTakeDamage(damage);
+        CmdTakeDamage(damage, caller_token);
     }
 
     [Command]
-    public void CmdTakeDamage(float amount) // run server side
-    {
+    public void CmdTakeDamage(float amount, string caller_token) // run server side
+    { 
         if (dead)
             return;
 
         health -= amount;
         if (health <= 0f)
         {
+            updateStat(caller_token, StaticInfo.Stat.kill);
             dead = true;
             Die();
         }
@@ -441,6 +450,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         RpcRespawn();
     }
+
+    public void Win()
+    {
+
+    }
     
     void OnCollisionEnter(Collision collision)
     {
@@ -450,6 +464,33 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             jumpMult = 2.0f;
         }
     }
+    public void updateStat(string Token, StaticInfo.Stat stat)
+    {
+        if (Token == "")
+            return;
 
-   
+        WWWForm form = new WWWForm();
+        form.AddField("token", Token);
+        form.AddField(stat.ToString(), 1);
+
+        WWW www = new WWW("https://thefallen.one/sync/userInfo.php", form);
+
+        StartCoroutine(WaitForRequest<UserData>(www));
+    }
+
+    IEnumerator WaitForRequest<T>(WWW data)
+    {
+        yield return data; // Wait until the download is done
+        if (data.error != null)
+        {
+            Debug.Log("There was an error sending request: " + data.error);
+        }
+        else
+        {
+            T jsonClass = JsonUtility.FromJson<T>(data.text);
+            ((IJsonClass)jsonClass).ProcessData(this);
+        }
+    }
+
+
 }

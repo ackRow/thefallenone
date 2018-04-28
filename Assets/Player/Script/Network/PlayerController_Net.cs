@@ -61,7 +61,7 @@ public class PlayerController_Net : NetworkBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            player.TakeDamage(10, player);
+            player.TakeDamage(10, StaticInfo.Token);
         }
 
 

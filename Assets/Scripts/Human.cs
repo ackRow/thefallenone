@@ -254,10 +254,10 @@ public class Human : MonoBehaviour, ITarget
             if (caller != null)
             {
                 Debug.Log(caller.username + " killed " + username);
-                if (caller is Player)
+                /*if (caller is Player)  kill stat online only
                 {
                     ((Player)caller).updateStat(StaticInfo.Stat.kill);
-                }
+                }*/
             }
             else
                 Debug.Log(username + " died");

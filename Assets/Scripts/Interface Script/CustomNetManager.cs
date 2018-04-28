@@ -34,7 +34,7 @@ public class CustomNetManager : NetworkManager {
 
     public void StartupHost()
     {
-        try
+       /* try 
         {
             UPnP.NAT.Discover();
             UPnP.NAT.ForwardPort(4761, ProtocolType.Tcp, "TFO");
@@ -42,7 +42,7 @@ public class CustomNetManager : NetworkManager {
         catch
         {
             Debug.Log("UPnP failed");
-        }
+        }*/
 
         Debug.Log("Startup Host");
         SetPort();
