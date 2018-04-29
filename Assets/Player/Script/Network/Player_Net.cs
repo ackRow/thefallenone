@@ -262,11 +262,13 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     public void CmdEndGame()
     {
         RpcLooseGame();
-        updateStat(StaticInfo.Token, StaticInfo.Stat.play);
+        //updateStat(StaticInfo.Token, StaticInfo.Stat.play);
 
         Cursor.lockState = CursorLockMode.None;
         (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
 
+        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(NetworkManager.singleton.StopHost);
         SceneManager.LoadScene("Menu");
     }
 
