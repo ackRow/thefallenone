@@ -284,9 +284,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         //Quit game
         Cursor.lockState = CursorLockMode.None;
         (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
-
-        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(NetworkManager.singleton.StopHost);
+        try
+        {
+            NetworkManager.singleton.StopHost();
+        }
+        catch { }
         SceneManager.LoadScene("Menu");
     }
 
