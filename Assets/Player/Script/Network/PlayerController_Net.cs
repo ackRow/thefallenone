@@ -46,7 +46,7 @@ public class PlayerController_Net : NetworkBehaviour
             player.pause = !player.pause;
         }
 
-        if (player.pause)
+        if (player.pause || player.dead)
             return;
 
         /* Mouvement */
