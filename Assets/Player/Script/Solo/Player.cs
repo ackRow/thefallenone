@@ -128,7 +128,7 @@ public class Player : Human { // Hérite de la classe human
         controller.resetCamera(false);
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
-        transform.position = spawnPoint;
+        _body.MovePosition(spawnPoint);
         health = 100f;
     }
 

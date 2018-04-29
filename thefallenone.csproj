@@ -298,6 +298,7 @@
     <Compile Include="Assets\Box\Solo\Script\CoinBox.cs" />
     <Compile Include="Assets\Box\Solo\Script\DamageBox.cs" />
     <Compile Include="Assets\Box\Solo\Script\FinishBox.cs" />
+    <Compile Include="Assets\Box\Solo\Script\GunBox.cs" />
     <Compile Include="Assets\Box\Solo\Script\HealBox.cs" />
     <Compile Include="Assets\Box\Solo\Script\SpeedBox.cs" />
     <Compile Include="Assets\Box\Solo\Script\WallBox.cs" />

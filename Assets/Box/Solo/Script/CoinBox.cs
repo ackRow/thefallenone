@@ -8,7 +8,13 @@ public class CoinBox : Box {
 
     public int reward = 10;
 
-   public override void Action(Player p)
+    new void Update()
+    {
+        transform.Rotate(new Vector3(0, 0, 45) * Time.deltaTime);
+
+    }
+
+    public override void Action(Player p)
     {
         p.getReward(reward);
         Destroy(gameObject);

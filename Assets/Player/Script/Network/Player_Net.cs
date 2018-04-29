@@ -290,7 +290,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
-        transform.position = spawnPoints[Random.Range(0, 4)].transform.position;
+        _body.MovePosition(spawnPoints[Random.Range(0, 4)].transform.position);
 
         CmdRespawn();
     }

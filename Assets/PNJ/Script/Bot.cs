@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Bot : Human
 {
-
+    public bool lootGun = false;
+    public GameObject gunBox;
     // Use this for initialization
     new void Start () {
         base.Start();
@@ -40,6 +41,12 @@ public class Bot : Human
         base.Die();
         _body.isKinematic = true;
         _capsCollider.isTrigger = true;
+
+        if (lootGun)
+        {
+            Instantiate(gunBox).transform.position = transform.position;
+        }
+
         StartCoroutine(Clean());
         
     }

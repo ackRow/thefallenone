@@ -28,7 +28,7 @@ public class LoginScript : MonoBehaviour {
     {
         if (StaticInfo.Token != "")
         {
-           
+            Debug.Log("Sending request");
             getUserInfo(StaticInfo.Token);
         }
     }

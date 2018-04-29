@@ -13,8 +13,8 @@ public class BotController : MonoBehaviour {
     float angle;
 
     float distance;
-    float minDistance = 5;
-    float maxDistance = 20;
+    public float minDistance = 5;
+    public float maxDistance = 20;
 
     public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
@@ -37,13 +37,14 @@ public class BotController : MonoBehaviour {
         // Si la distance entre le bot et le personnage est superieur a minDistance alors il avant vers le player
         // Si il est trop loin il ne va pas vers le joueur non plus
         // Sinon il ne bouge pas
-        if (distance > minDistance)
-            bot.Forward(false, forward);
-        else if(distance > maxDistance)
+
+        triggerTarget = distance < maxDistance;
+
+        if (distance < minDistance || !triggerTarget)
             bot.Forward(false, Vector3.zero);
         else
-            bot.Forward(false, Vector3.zero);
-
+            bot.Forward(false, forward);
+            
         if (target is Player)
         {
             Player p = (Player)target;
@@ -100,7 +101,7 @@ public class BotController : MonoBehaviour {
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
             }
         }
-        else
+        /*else
         {   // Routine
             if (round == 100)
             {
@@ -112,7 +113,7 @@ public class BotController : MonoBehaviour {
             }
 
             round++;
-        }
+        }*/
         
         
     }
