@@ -2,7 +2,7 @@
     // Saving data between scenes
 {
 
-    private static string token = "";//"e923ea88915304e25682ca12d7322c36"; // Auto connect to OnlineTest
+    private static string token = "";
     private static string username = ""; 
     private static int coin;
     private static int level;
