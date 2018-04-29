@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Box\Online\Script\Box_Net.cs" />
+     <Compile Include="Assets\Box\Online\Script\DamageBox_Net.cs" />
      <Compile Include="Assets\Box\Online\Script\Flag_Net.cs" />
      <Compile Include="Assets\Box\Online\Script\HealBox_Net.cs" />
+     <Compile Include="Assets\Box\Online\Script\SpeedBox_Net.cs" />
      <Compile Include="Assets\Box\Solo\Script\Box.cs" />
      <Compile Include="Assets\Box\Solo\Script\CoinBox.cs" />
      <Compile Include="Assets\Box\Solo\Script\DamageBox.cs" />
