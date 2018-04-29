@@ -5,8 +5,8 @@ using UnityEngine;
 public class SpeedBox_Net : Box_Net
 {
 
-    public float speedValue = 10.0f;
-    public int duration = 10;
+    public float speedValue = 4.0f;
+    public int duration = 2;
 
     public override void Action(Player_Net p)
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SpeedBox : Box { 
 
-    public float speedValue = 10.0f;
-    public int duration = 10;
+    public float speedValue = 4.0f;
+    public int duration = 5;
 
     public override void Action(Player p)
     {
