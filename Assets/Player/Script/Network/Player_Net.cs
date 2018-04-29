@@ -263,13 +263,6 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         RpcLooseGame();
         //updateStat(StaticInfo.Token, StaticInfo.Stat.play);
-
-        Cursor.lockState = CursorLockMode.None;
-        (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
-
-        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(NetworkManager.singleton.StopHost);
-        SceneManager.LoadScene("Menu");
     }
 
     /* S'execute sur le client */
@@ -287,6 +280,14 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     public void RpcLooseGame()
     {
         updateStat(StaticInfo.Token, StaticInfo.Stat.play);
+
+        //Quit game
+        Cursor.lockState = CursorLockMode.None;
+        (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
+
+        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(NetworkManager.singleton.StopHost);
+        SceneManager.LoadScene("Menu");
     }
 
     [ClientRpc] // La fonction est synchronisé avec le client
@@ -475,8 +476,12 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     public void Win()
     {
-        updateStat(StaticInfo.Token, StaticInfo.Stat.win);
-        CmdEndGame();
+        if (isLocalPlayer)
+        {
+            updateStat(StaticInfo.Token, StaticInfo.Stat.win);
+            CmdEndGame();
+        }
+        
     }
     
     void OnCollisionEnter(Collision collision)

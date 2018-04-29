@@ -58,7 +58,9 @@ public class CustomNetManager : NetworkManager {
 
     void SetIPAddress()
     {
-        string ipAddress = "127.0.0.1";//GameObject.Find("IPAdress").transform.Find("IP").GetComponent<Text>().text;
+        string ipAddress = GameObject.Find("IPAdress").transform.Find("IP").GetComponent<Text>().text;
+        if (ipAddress == "")
+            ipAddress = "127.0.0.1";
         NetworkManager.singleton.networkAddress = ipAddress;
     }
 
