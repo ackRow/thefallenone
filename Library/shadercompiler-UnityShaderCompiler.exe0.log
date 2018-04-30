@@ -1,4 +1,4 @@
-Base path: C:/Program Files/Unity/Editor/Data
+Base path: E:/Unity/Editor/Data
 Cmd: initializeCompiler
 Cmd: preprocess
   error: 1 plat 21 at (108): Both vertex and fragment programs must be present in a shader snippet. Excluding it from compilation.
