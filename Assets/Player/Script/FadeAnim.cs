@@ -79,6 +79,7 @@ public class FadeAnim : MonoBehaviour
                 hit_indicator.color = new Color(1, 1, 1, i);
                 yield return null;
             }
+            hit_indicator.color = new Color(1, 1, 1, 0); // hide picture
         }
 
         else
@@ -97,9 +98,11 @@ public class FadeAnim : MonoBehaviour
         {
             for (float i = duration; i >= 0; i -= Time.deltaTime)
             {
+                
                 text.color = new Color(red, green, blue, i);
                 yield return null;
             }
+            text.color = new Color(red, green, blue, 0);
         }
 
         else

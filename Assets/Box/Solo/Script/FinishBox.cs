@@ -18,10 +18,18 @@ public class FinishBox : Box
     {
         p.finishLevel(level);
 
-        Cursor.lockState = CursorLockMode.None;
-        (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
+        if (level == 1)
+        {
+            SceneManager.LoadScene("Level2");
+        }
+        else
+        {
 
-        SceneManager.LoadScene("Menu");
+            Cursor.lockState = CursorLockMode.None;
+            (GameObject.Find("PauseScript").GetComponent<PauseMenuScript>()).isActive = true;
+
+            SceneManager.LoadScene("Menu");
+        }
 
         //Destroy(gameObject);
     }
