@@ -33,6 +33,7 @@ public abstract class Human : MonoBehaviour, ITarget
 
     public Light _flashGun;
     public GameObject GunSmoke;
+    public ParticleSystem shotParticle;
 
     public float gunDamage = 25f;
     public float gunRange = 20f;
@@ -285,7 +286,10 @@ public abstract class Human : MonoBehaviour, ITarget
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {
                 if (isScoping && GunSmoke != null)
+                {
                     Instantiate(GunSmoke).transform.position = hit.point;
+                    shotParticle.Play();
+                }
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
                 {

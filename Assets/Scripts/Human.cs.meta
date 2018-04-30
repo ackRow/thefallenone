@@ -5,7 +5,17 @@ licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _flashGun: {instanceID: 0}
+  - GunSmoke: {instanceID: 0}
+  - shotParticle: {instanceID: 0}
+  - myAudio: {instanceID: 0}
+  - punchSound: {instanceID: 0}
+  - gunShotSound: {instanceID: 0}
+  - jumpSound: {instanceID: 0}
+  - stepSound: {instanceID: 0}
+  - hitSound: {instanceID: 0}
+  - switchSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
