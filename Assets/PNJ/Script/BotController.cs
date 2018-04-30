@@ -9,7 +9,7 @@ public class BotController : MonoBehaviour {
     public List<Renderer> listToRender;
     public Material _forceField, _wallhack;
 
-    bool triggerTarget = true;
+    bool triggerTarget = false;
     float angle;
 
     float distance;
