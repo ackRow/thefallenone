@@ -21,7 +21,7 @@ public abstract class Box : MonoBehaviour
         if (p != null && !triggered)
         {
             triggered = true;
-            p.PlaySound(pickUpSound, false, 0.3f);
+            p.PlaySound(pickUpSound, 0.3f, false);
             Action(p);
 
         }

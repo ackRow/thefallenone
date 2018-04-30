@@ -33,7 +33,6 @@ public abstract class Human : MonoBehaviour, ITarget
 
     public Light _flashGun;
     public GameObject GunSmoke;
-    public ParticleSystem shotParticle;
 
     public float gunDamage = 25f;
     public float gunRange = 20f;
@@ -120,38 +119,42 @@ public abstract class Human : MonoBehaviour, ITarget
             _animator.SetBool("Jump", jumping);
 
             if (attacking)
-            {             
+            {
+               
                 _animator.SetTrigger("Attack");
             }
 
         }
     }
 
-    public void PlaySound(AudioClip sound, bool loop, float volume)
+    public void PlaySound(AudioClip sound, float volume, bool loop)
     {
         if (myAudio != null && sound != null)
         {
-            myAudio.clip = sound;
-            myAudio.volume = volume;
-            myAudio.loop = loop;
-            myAudio.Play();
+            if (loop)
+            {
+                myAudio.clip = sound;
+                myAudio.volume = volume;
+                myAudio.loop = loop;
+                myAudio.Play();
+            }
+            else
+            {
+                myAudio.PlayOneShot(sound, volume);
+            }
+            
         }
     }
 
     protected void Sound()
     {
-
+       
         if (attacking)
-            PlaySound(isScoping ? gunShotSound : punchSound, false, 0.5f);
-
-        if(jumping)
-            PlaySound(jumpSound, false, 0.5f);
-
-        else if(walking)
-            PlaySound(stepSound, false, 0.7f);
+            PlaySound(isScoping ? gunShotSound : punchSound, 0.5f, false);
+            
 
         if(hasHitTarget)
-            PlaySound(hitSound, false, 0.7f);
+            PlaySound(hitSound, 0.7f, false);
     }
 
    
@@ -210,6 +213,8 @@ public abstract class Human : MonoBehaviour, ITarget
             
         if (!jumping && IsGrounded())
         {
+            //PlaySound(jumpSound, false, 0.5f);
+            PlaySound(jumpSound, 0.5f, false);
             walking = false;
             jumping = true;
 
@@ -250,7 +255,18 @@ public abstract class Human : MonoBehaviour, ITarget
         if (crouching && run)
             Stand();
 
-        walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
+        bool tmp_walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
+
+        if(walking != tmp_walking && myAudio)
+        {
+            if (tmp_walking)
+                PlaySound(stepSound, 1.0f, true);
+            else
+                myAudio.loop = false;
+
+        }
+
+        walking = tmp_walking;
 
         _moveDirection = _direction;
     }
@@ -260,7 +276,7 @@ public abstract class Human : MonoBehaviour, ITarget
         if (hasGun)
         {
             isScoping = !isScoping;
-            PlaySound(switchSound, false, 0.5f);
+            myAudio.PlayOneShot(switchSound, 0.5f);
         }    
 
         if (crouching)
@@ -286,10 +302,7 @@ public abstract class Human : MonoBehaviour, ITarget
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {
                 if (isScoping && GunSmoke != null)
-                {
                     Instantiate(GunSmoke).transform.position = hit.point;
-                    shotParticle.Play();
-                }
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
                 {
