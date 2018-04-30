@@ -10,6 +10,7 @@ public class DamageBox : Box {
 
    public override void Action(Player p)
     {
+        FindObjectsOfType<FadeAnim>()[0].GetBoxFade("damage");
         p.TakeDamage(damage, p);
         Destroy(gameObject);
     }

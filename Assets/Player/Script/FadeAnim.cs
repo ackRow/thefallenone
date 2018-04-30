@@ -25,7 +25,7 @@ public class FadeAnim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player_health != healthbar.value)
+        if (player_health > healthbar.value)
         {
             hit_indicator.color = new Color(1, 1, 1, 1);
             StartCoroutine(FadeImage(true));
@@ -53,8 +53,8 @@ public class FadeAnim : MonoBehaviour
                 StartCoroutine(FadeText(true, 1f, speed_box, 0, 0, 1));
                 break;
             case "wall":
-                StartCoroutine(FadeText(false, 1f, Wall_box, 0, 0, 1));
-                StartCoroutine(FadeText(true, 1f, Wall_box, 0, 0, 1));
+                StartCoroutine(FadeText(false, 1f, Wall_box, 183, 0, 1));
+                StartCoroutine(FadeText(true, 1f, Wall_box, 183, 0, 1));
                 break;
             case "coin":
                 StartCoroutine(FadeText(false, 1f, Coin_box, 255, 213, 0));

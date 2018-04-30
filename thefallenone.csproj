@@ -314,6 +314,7 @@
     <Compile Include="Assets\Scripts\Human.cs" />
     <Compile Include="Assets\Scripts\Interface Script\CustomNetManager.cs" />
     <Compile Include="Assets\Scripts\Interface Script\GradiantText.cs" />
+    <Compile Include="Assets\Scripts\Interface Script\HoverScript.cs" />
     <Compile Include="Assets\Scripts\Interface Script\ImageType.cs" />
     <Compile Include="Assets\Scripts\Interface Script\LoadingCircle.cs" />
     <Compile Include="Assets\Scripts\Interface Script\MainMenuScript.cs" />

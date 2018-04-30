@@ -16,6 +16,7 @@ public class CoinBox : Box {
 
     public override void Action(Player p)
     {
+        FindObjectsOfType<FadeAnim>()[0].GetBoxFade("coin");
         p.getReward(reward);
         Destroy(gameObject);
     }

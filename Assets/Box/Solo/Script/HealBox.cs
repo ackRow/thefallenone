@@ -10,6 +10,7 @@ public class HealBox : Box {
 
    public override void Action(Player p)
     {
+        FindObjectsOfType<FadeAnim>()[0].GetBoxFade("heal");
         p.Heal(heal);
         Destroy(gameObject);
     }

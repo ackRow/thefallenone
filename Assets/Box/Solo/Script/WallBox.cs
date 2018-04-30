@@ -9,7 +9,7 @@ public class WallBox : Box {
     public override void Action(Player p)
     {
         //Destroy(gameObject);
-
+        FindObjectsOfType<FadeAnim>()[0].GetBoxFade("wall");
         StartCoroutine(Effect(p));
     }
 

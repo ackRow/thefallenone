@@ -38,7 +38,8 @@ public class BotController : MonoBehaviour {
         // Si il est trop loin il ne va pas vers le joueur non plus
         // Sinon il ne bouge pas
 
-        triggerTarget = distance < maxDistance;
+        if(distance < maxDistance)  // Une fois que le bot à agro le joueur, il le suivra toujours
+            triggerTarget = true;
 
         if (distance < minDistance || !triggerTarget)
             bot.Forward(false, Vector3.zero);

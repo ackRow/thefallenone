@@ -9,6 +9,7 @@ public class SpeedBox : Box {
 
     public override void Action(Player p)
     {
+        FindObjectsOfType<FadeAnim>()[0].GetBoxFade("speed");
         StartCoroutine(Effect(p));
     }
 
