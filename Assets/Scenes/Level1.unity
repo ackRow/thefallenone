@@ -11298,6 +11298,10 @@ Prefab:
       propertyPath: myAudio
       value: 
       objectReference: {fileID: 1413324910}
+    - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
   m_IsPrefabParent: 0
