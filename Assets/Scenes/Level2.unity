@@ -290,7 +290,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -1235,7 +1235,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -1434,7 +1434,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -1515,7 +1515,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -2099,7 +2099,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -2327,7 +2327,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -3377,7 +3377,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -4223,7 +4223,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2017743702}
     - target: {fileID: 114635470850002896, guid: a9b28103f95665e4da8ee42147e9883f,
         type: 2}
       propertyPath: minDistance
@@ -4475,6 +4475,12 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300188, guid: 8d83445bceccaee49baa289accaf22fa, type: 3}
+--- !u!114 &2017743702 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114870502308931686, guid: ff4eb5d632bb52c469c94020799167fd,
+    type: 2}
+  m_PrefabInternal: {fileID: 948073501}
+  m_Script: {fileID: 11500000, guid: 706ce301b412b7943abb9f43a8a556ee, type: 3}
 --- !u!1 &2022935650 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100490, guid: 8d83445bceccaee49baa289accaf22fa, type: 3}
