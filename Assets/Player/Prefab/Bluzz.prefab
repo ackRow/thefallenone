@@ -1773,7 +1773,7 @@ MonoBehaviour:
   username: 
   health: 100
   walking_speed: 4
-  running_speed: 8
+  running_speed: 6
   JumpForce: 650
   hasGun: 1
   _flashGun: {fileID: 108373987471897466}
@@ -1796,6 +1796,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 5ad5b3ae3440f6e49a2874d2642f4696, type: 3}
   switchSound: {fileID: 8300000, guid: 849a2f6253e08a6428efd02328ff0aed, type: 3}
   FPSView: 1
+  crossHair: {fileID: 0}
   head: {fileID: 1319040072901546}
   ArmExt:
   - {fileID: 1989710212381084}
