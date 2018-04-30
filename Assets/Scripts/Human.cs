@@ -84,6 +84,7 @@ public abstract class Human : MonoBehaviour, ITarget
     public AudioClip jumpSound;
     public AudioClip stepSound;
     public AudioClip hitSound;
+    public AudioClip hurtSound;
 
     public AudioClip switchSound; // son qd le genre joueur change du gun au point et inversement
 
@@ -342,6 +343,9 @@ public abstract class Human : MonoBehaviour, ITarget
         if (dead)
             return;
 
+        if(hurtSound)
+            myAudio.PlayOneShot(hurtSound, 0.5f);
+
         health -= damage;
         if (health <= 0f)
         {
@@ -349,10 +353,7 @@ public abstract class Human : MonoBehaviour, ITarget
             if (caller != null)
             {
                 Debug.Log(caller.username + " killed " + username);
-                /*if (caller is Player)  kill stat online only
-                {
-                    ((Player)caller).updateStat(StaticInfo.Stat.kill);
-                }*/
+                
             }
             else
                 Debug.Log(username + " died");

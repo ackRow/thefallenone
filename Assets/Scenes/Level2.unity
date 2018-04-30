@@ -882,7 +882,7 @@ Prefab:
         type: 2}
       propertyPath: pickUpSound
       value: 
-      objectReference: {fileID: 8300000, guid: 5d00be8d48858aa42a042b26c236e6c8, type: 3}
+      objectReference: {fileID: 8300000, guid: 5f435c94160314d4f8664b20f28e30fe, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_IsPrefabParent: 0
@@ -2287,7 +2287,7 @@ Prefab:
         type: 2}
       propertyPath: pickUpSound
       value: 
-      objectReference: {fileID: 8300000, guid: 5d00be8d48858aa42a042b26c236e6c8, type: 3}
+      objectReference: {fileID: 8300000, guid: 5f435c94160314d4f8664b20f28e30fe, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_IsPrefabParent: 0
@@ -2496,6 +2496,11 @@ Prefab:
       propertyPath: running_speed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114173270413212380, guid: dd760b303cc62fb41b88a076dfcb906b,
+        type: 2}
+      propertyPath: hurtSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 5f435c94160314d4f8664b20f28e30fe, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd760b303cc62fb41b88a076dfcb906b, type: 2}
   m_IsPrefabParent: 0
@@ -2585,7 +2590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afa0285f4976e846a73f606a7c3a081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpSound: {fileID: 8300000, guid: 5d00be8d48858aa42a042b26c236e6c8, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 5f435c94160314d4f8664b20f28e30fe, type: 3}
   damage: 25
 --- !u!23 &1041214474
 MeshRenderer:
@@ -7563,7 +7568,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -198564582
+  randomSeed: -1976519428
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11170,7 +11175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9afa0285f4976e846a73f606a7c3a081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUpSound: {fileID: 8300000, guid: 5d00be8d48858aa42a042b26c236e6c8, type: 3}
+  pickUpSound: {fileID: 8300000, guid: 5f435c94160314d4f8664b20f28e30fe, type: 3}
   damage: 25
 --- !u!23 &1651983021
 MeshRenderer:
@@ -11781,6 +11786,15 @@ Prefab:
       propertyPath: level
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1471147962824428, guid: 252dc2b00338fda40bd40da4e765ec6a, type: 2}
+      propertyPath: m_Name
+      value: FinishBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 114004853445355898, guid: 252dc2b00338fda40bd40da4e765ec6a,
+        type: 2}
+      propertyPath: pickUpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: febdb19dceb3acf4da42e8edae5d260b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 252dc2b00338fda40bd40da4e765ec6a, type: 2}
   m_IsPrefabParent: 0
