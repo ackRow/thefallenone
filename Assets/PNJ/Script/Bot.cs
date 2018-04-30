@@ -7,7 +7,7 @@ public class Bot : Human
     public bool lootGun = false;
     public GameObject gunBox;
     // Use this for initialization
-    new void Start () {
+    protected override void Start () {
         base.Start();
         gunFireBuff = 2.0f;
         walking_speed = 2.5f;
@@ -17,24 +17,10 @@ public class Bot : Human
     }
 	
 	// Update is called once per frame
-	new void Update () {
+	protected override void Update () {
         base.Update();
     }
 
-    /*public void TakeDamage(float damage, Human caller)
-    {
-        health -= damage;
-        if (health <= 0f)
-            Die();
-        else
-            animator.SetTrigger("isHit"); // animation lorsqu'on est touché
-    }
-
-    public void Die()
-    {
-        base.Die();
-
-    }*/
 	
 	public override void Die()
     {

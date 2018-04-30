@@ -13,7 +13,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
 
-public class Human : MonoBehaviour, ITarget
+public abstract class Human : MonoBehaviour, ITarget
 {
 
     /* Variable Definition */
@@ -47,6 +47,7 @@ public class Human : MonoBehaviour, ITarget
     protected Rigidbody _body;
     protected Animator _animator;
     protected CapsuleCollider _capsCollider;
+    public AudioSource myAudio;
 
     protected float _capsHeight;
     protected Vector3 _capsCenter;
@@ -75,6 +76,15 @@ public class Human : MonoBehaviour, ITarget
     protected bool hasHitTarget = false;
     protected bool isHit = false;
 
+    /* Sound */
+
+    public AudioClip punchSound;
+    public AudioClip gunShotSound;
+    public AudioClip jumpSound;
+    public AudioClip stepSound;
+    public AudioClip hitSound;
+
+    public AudioClip switchSound; // son qd le genre joueur change du gun au point et inversement
 
 
     public Vector3 Position
@@ -82,7 +92,7 @@ public class Human : MonoBehaviour, ITarget
         get { return _body.transform.position; }
     }
 
-    protected void Start () {
+    protected virtual void Start () {
 
         _animator = GetComponent<Animator>();
         _body = GetComponent<Rigidbody>();
@@ -109,17 +119,43 @@ public class Human : MonoBehaviour, ITarget
             _animator.SetBool("Jump", jumping);
 
             if (attacking)
-            {
-                //crouching = false;
-                attacking = false;
+            {             
                 _animator.SetTrigger("Attack");
-
             }
 
         }
     }
 
-    protected void Update() // Animating, playing sounds
+    public void PlaySound(AudioClip sound, bool loop, float volume)
+    {
+        if (myAudio != null && sound != null)
+        {
+            myAudio.clip = sound;
+            myAudio.volume = volume;
+            myAudio.loop = loop;
+            myAudio.Play();
+        }
+    }
+
+    protected void Sound()
+    {
+
+        if (attacking)
+            PlaySound(isScoping ? gunShotSound : punchSound, false, 0.5f);
+
+        if(jumping)
+            PlaySound(jumpSound, false, 0.5f);
+
+        else if(walking)
+            PlaySound(stepSound, false, 0.7f);
+
+        if(hasHitTarget)
+            PlaySound(hitSound, false, 0.7f);
+    }
+
+   
+
+    protected virtual void Update() // Animating, playing sounds
     {
         /* State */
         canStand = !Physics.Raycast(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, _capsCollider.height);
@@ -129,13 +165,18 @@ public class Human : MonoBehaviour, ITarget
             Stand();
         }
 
+        /* Sound */
+        Sound();
+
         /* Animation */
         Animate(_animator);
 
-        /* Sound */
+        /*State*/
+        attacking = false;
+        hasHitTarget = false;
     }
 
-    protected void FixedUpdate() // Moving, Physic Stuff
+    protected virtual void FixedUpdate() // Moving, Physic Stuff
     {
         // Debug.DrawRay(transform.position + new Vector3(0, _capsCollider.height, 0), Vector3.up, Color.red, 0.1f, true);
        
@@ -216,8 +257,12 @@ public class Human : MonoBehaviour, ITarget
     public void Scope()
     {
         if (hasGun)
+        {
             isScoping = !isScoping;
-        if(crouching)
+            PlaySound(switchSound, false, 0.5f);
+        }    
+
+        if (crouching)
             Stand();
     }
 
@@ -232,14 +277,14 @@ public class Human : MonoBehaviour, ITarget
             attacking = true;
             RaycastHit hit;
 
-            if (isScoping)
+            if (isScoping && _flashGun != null)
                 StartCoroutine(FlashGun());
 
             // Debug.Log("Attack!");
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {
-                if (isScoping)
+                if (isScoping && GunSmoke != null)
                     Instantiate(GunSmoke).transform.position = hit.point;
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché

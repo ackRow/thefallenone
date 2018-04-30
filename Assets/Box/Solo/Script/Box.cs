@@ -1,29 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
-public abstract class Box_Net : NetworkBehaviour {
+public abstract class Box : MonoBehaviour
+{
 
     protected bool triggered = false;
-    public AudioClip pickUpSound; 
+    public AudioClip pickUpSound;
 
-    void Update () {
+    public void Update()
+    {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
 
-	}
+    }
 
     void OnTriggerEnter(Collider entity)
     {
-        Player_Net p = entity.transform.GetComponent<Player_Net>();
-        //p.PlaySound(pickUpSound, false, 0.1f);
+        Player p = entity.transform.GetComponent<Player>();
+        
         if (p != null && !triggered)
         {
             triggered = true;
+            p.PlaySound(pickUpSound, false, 0.3f);
             Action(p);
 
         }
     }
 
-    public abstract void Action(Player_Net p);
+    public abstract void Action(Player p);
 }

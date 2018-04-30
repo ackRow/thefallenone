@@ -24,15 +24,13 @@ public class Player : Human { // Hérite de la classe human
 
     public bool hasWallhack = false;
 
-    public AudioSource myAudio;
-
     // Sync server
 
     public LoginData _login;
     public UserData _user;
 
     // Use this for initialization
-    new void Start () {
+    protected override void Start () {
         base.Start();
 
         myAudio = GetComponent<AudioSource>();
@@ -70,9 +68,9 @@ public class Player : Human { // Hérite de la classe human
         else
             username = "Offline Player";
     }
-	
-	// Update is called once per frame
-	new void Update () {
+
+    // Update is called once per frame
+    protected override void Update () {
 
         //Debug.Log(walking_speed);
 
@@ -89,10 +87,6 @@ public class Player : Human { // Hérite de la classe human
 
     }
 
-    new void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
 
 
     public override void Stand()
@@ -131,15 +125,6 @@ public class Player : Human { // Hérite de la classe human
         _body.MovePosition(spawnPoint);
         health = 100f;
     }
-
-    public void PlaySound(AudioClip sound, bool loop, float volume)
-    {
-        myAudio.clip = sound;
-        myAudio.volume = volume;
-        myAudio.loop = loop;
-        myAudio.Play();
-    }
-
     public void getReward(int coin)
     {
         if (StaticInfo.Token == "")
