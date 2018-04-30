@@ -31,6 +31,9 @@ public class Human : MonoBehaviour, ITarget
 
     /* Default value for gun and punch */
 
+    public Light _flashGun;
+    public GameObject GunSmoke;
+
     public float gunDamage = 25f;
     public float gunRange = 20f;
     public float gunFireBuff = 0.6f;
@@ -228,18 +231,34 @@ public class Human : MonoBehaviour, ITarget
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             attacking = true;
             RaycastHit hit;
-           // Debug.Log("Attack!");
+
+            if (isScoping)
+                StartCoroutine(FlashGun());
+
+            // Debug.Log("Attack!");
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
-            {         
+            {
+                if (isScoping)
+                    Instantiate(GunSmoke).transform.position = hit.point;
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
                 {
+                    
                     hasHitTarget = true;
                     target.TakeDamage((isScoping ? gunDamage : punchDamage), this); // La target va perdre de la vie
                 }
             }
+            
         }
+    }
+
+    IEnumerator FlashGun()
+    {
+        _flashGun.enabled = true;
+        yield return new WaitForSeconds(0.05f); // delay
+
+        _flashGun.enabled = false;
     }
 
     public void TakeDamage(float damage, Human caller)
