@@ -83,17 +83,15 @@ public class PlayerController : MonoBehaviour {
     {
         if (crouching)
         {
-            //FPSContainer.transform.Translate(new Vector3(0, 0.0f, 0.2f));
             FPSContainer.transform.localPosition += new Vector3(0, 0.0f, 0.2f);
 
-            fpsCam.transform.localPosition += new Vector3(0.02f, -0.30f, 0.07f);
+            fpsCam.transform.localPosition += new Vector3(0.0f, -0.25f, -0.1f);
         }
 
         else
         {
-            //FPSContainer.transform.Translate(new Vector3(0, 0.0f, -0.2f));
             FPSContainer.transform.localPosition += new Vector3(0, 0.0f, -0.2f);
-            fpsCam.transform.localPosition += new Vector3(-0.02f, +0.30f, -0.07f);
+           fpsCam.transform.localPosition += new Vector3(0.0f, 0.25f, 0.1f);
         }
     }
 }
