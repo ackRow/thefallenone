@@ -30,7 +30,7 @@ public class Bot : Human
 
         if (lootGun)
         {
-            Instantiate(gunBox).transform.position = transform.position;
+            Instantiate(gunBox).transform.position = transform.position + new Vector3(0, 0.2f, 0);
         }
 
         StartCoroutine(Clean());
