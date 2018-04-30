@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI; // faut utiliser l'UI
 
 public class Player : Human { // Hérite de la classe human
@@ -29,6 +30,8 @@ public class Player : Human { // Hérite de la classe human
 
     public LoginData _login;
     public UserData _user;
+
+    int currentScene;
 
     // Use this for initialization
     protected override void Start () {
@@ -68,6 +71,8 @@ public class Player : Human { // Hérite de la classe human
             username = StaticInfo.Username;
         else
             username = "Offline Player";
+
+        currentScene = SceneManager.GetActiveScene().buildIndex;
 
         crossHair.SetActive(isScoping);
     }
@@ -127,9 +132,11 @@ public class Player : Human { // Hérite de la classe human
         dead = false;
         controller.resetCamera(false);
         // On relance l'animation Idle et on remet la vie à 100
-        _animator.Play("Idle", -1, 0f);
+        /*_animator.Play("Idle", -1, 0f);
         _body.MovePosition(spawnPoint);
-        health = 100f;
+        health = 100f;*/
+
+        SceneManager.LoadScene(currentScene);
     }
     public void getReward(int coin)
     {
