@@ -240,8 +240,8 @@ public abstract class Human : MonoBehaviour, ITarget
     {
         if (crouching)
         {
-            _capsCollider.height = _capsCollider.height / 2f;
-            _capsCollider.center = _capsCollider.center / 2f;
+            _capsCollider.height = _capsCollider.height / 1.5f;
+            _capsCollider.center = _capsCollider.center / 1.5f;
         }
         else
         {

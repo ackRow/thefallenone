@@ -77,6 +77,21 @@ public class BotController : MonoBehaviour {
         }
     }
 
+    private bool rayPlayer(Vector3 _position, Vector3 _direction)
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_position, _direction, out hit, bot.gunRange))
+        {
+            ITarget target = hit.transform.GetComponent<ITarget>();
+            if (target != null) // Si un joueur est touché
+            {
+                return target is Player;
+            }
+        }
+        return false;
+    }
+
     private void FixedUpdate()
     {
         // Si le joueur est trigger par le bot
@@ -96,7 +111,11 @@ public class BotController : MonoBehaviour {
                 if (distance < maxDistance)
                 {
                     transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
-                    bot.Attack(bot.transform.position + new Vector3(0, 1.1f, 0), newDir);
+
+                    if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), newDir))
+                        bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), newDir);
+                    else
+                        triggerTarget = false;
                 }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
