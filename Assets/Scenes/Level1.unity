@@ -12221,6 +12221,11 @@ Prefab:
       propertyPath: hasGun
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114173270413212380, guid: dd760b303cc62fb41b88a076dfcb906b,
+        type: 2}
+      propertyPath: crossHair
+      value: 
+      objectReference: {fileID: 337129133}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dd760b303cc62fb41b88a076dfcb906b, type: 2}
   m_IsPrefabParent: 0

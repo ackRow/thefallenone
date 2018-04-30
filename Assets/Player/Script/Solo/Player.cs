@@ -13,6 +13,7 @@ public class Player : Human { // Hérite de la classe human
 
     public bool FPSView = true;
 
+    public GameObject crossHair;
     private GameObject gun;
     public GameObject head;
 
@@ -67,12 +68,12 @@ public class Player : Human { // Hérite de la classe human
             username = StaticInfo.Username;
         else
             username = "Offline Player";
+
+        crossHair.SetActive(isScoping);
     }
 
     // Update is called once per frame
     protected override void Update () {
-
-        //Debug.Log(walking_speed);
 
         /* Animation FPS Arm */
         Animate(ArmAnimator);
@@ -87,7 +88,12 @@ public class Player : Human { // Hérite de la classe human
 
     }
 
+    public override void Scope()
+    {
+        base.Scope();
 
+        crossHair.SetActive(isScoping);
+    }
 
     public override void Stand()
     {

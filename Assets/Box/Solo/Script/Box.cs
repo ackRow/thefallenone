@@ -30,7 +30,8 @@ public abstract class Box : MonoBehaviour
             triggered = true;
             p.PlaySound(pickUpSound, 0.3f, false);
             Action(p);
-            avaible.Stop();
+            if(avaible != null)
+                avaible.Stop();
         }
     }
 

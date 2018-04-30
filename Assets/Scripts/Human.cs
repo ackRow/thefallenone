@@ -276,7 +276,7 @@ public abstract class Human : MonoBehaviour, ITarget
         _moveDirection = _direction;
     }
 
-    public void Scope()
+    public virtual void Scope()
     {
         if (hasGun)
         {
@@ -311,7 +311,11 @@ public abstract class Human : MonoBehaviour, ITarget
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {
                 if (isScoping && GunSmoke != null)
-                    Instantiate(GunSmoke).transform.position = hit.point;
+                {
+                    GameObject particle = Instantiate(GunSmoke);
+                    particle.transform.position = hit.point;
+                    Destroy(particle.gameObject, 1f);
+                }
 
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
