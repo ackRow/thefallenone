@@ -22,5 +22,8 @@ public class WallBox : Box {
         p.hasWallhack = false;
 
         triggered = false;
+
+        avaible.Play();
+
     }
 }

@@ -7,6 +7,13 @@ public abstract class Box : MonoBehaviour
 
     protected bool triggered = false;
     public AudioClip pickUpSound;
+    protected ParticleSystem avaible;
+
+
+    public void Start()
+    {
+        avaible = GetComponentInChildren<ParticleSystem>();
+    }
 
     public void Update()
     {
@@ -23,7 +30,7 @@ public abstract class Box : MonoBehaviour
             triggered = true;
             p.PlaySound(pickUpSound, 0.3f, false);
             Action(p);
-
+            avaible.Stop();
         }
     }
 

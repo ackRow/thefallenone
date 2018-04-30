@@ -299,18 +299,20 @@ public abstract class Human : MonoBehaviour, ITarget
             attacking = true;
             RaycastHit hit;
 
-            if (isScoping && _flashGun != null)
-                StartCoroutine(FlashGun());
+            if (isScoping)
+            {
+                if(_flashGun != null)
+                    StartCoroutine(FlashGun());
+                shotParticle.Play();
+            }
+               
 
-            // Debug.Log("Attack!");
             // On tir un rayon depuis le centre de la camera du joueur jusqu'à une certaine distance
             if (Physics.Raycast(_position, _direction, out hit, (isScoping ? gunRange : punchRange)))
             {
                 if (isScoping && GunSmoke != null)
-                {
                     Instantiate(GunSmoke).transform.position = hit.point;
-                    shotParticle.Play();
-                }
+
                 ITarget target = hit.transform.GetComponent<ITarget>();
                 if (target != null) // Si un joueur est touché
                 {
