@@ -32,6 +32,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     protected float _capsHeight;
     protected Vector3 _capsCenter;
+    private AudioSource myAudio;
+    public ParticleSystem shotParticle;
 
     /* Movement variable */
 
@@ -55,8 +57,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     protected bool attacking = false;
 
 
-    protected bool hasHitTarget = false;
-    protected bool isHit = false;
+    //protected bool hasHitTarget = false;
+    //protected bool isHit = false;
 
     /* Local variable */
     private Slider playerHealth;
@@ -74,6 +76,15 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     public GameObject[] ArmFPS;
 
+    /* Sound */
+
+    public AudioClip punchSound;
+    public AudioClip gunShotSound;
+    public AudioClip jumpSound;
+    public AudioClip stepSound;
+    public AudioClip hitSound;
+    public AudioClip hurtSound;
+    public AudioClip switchSound;
 
     /* Online */
     public NetworkStartPosition[] spawnPoints;
@@ -102,6 +113,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         _capsCollider = GetComponent<CapsuleCollider>();
         _capsHeight = _capsCollider.height;
         _capsCenter = _capsCollider.center;
+        myAudio = GetComponent<AudioSource>();
 
         controller = GetComponent<PlayerController_Net>();
         ArmAnimator = GetComponentsInChildren<Animator>()[1];
@@ -117,6 +129,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         if (FPSView)
         {
+
             head.GetComponent<Renderer>().enabled = false; // On cache la tête du joueur (car vue FPS)
             foreach (var obj in ArmExt)
             {
@@ -151,15 +164,11 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
             _animator.SetFloat("Speed", Speed); // La variable speed va modifier la vitesse des animations de mouvements
 
-
-
             if (hasGun)
                 _animator.SetFloat("Scope", isScoping ? 1.0f : 0.0f);
 
             if (attacking)
             {
-                //crouching = false;
-                attacking = false;
                 _animator.SetTrigger("Attack");
 
             }
@@ -169,6 +178,25 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             _animator.SetBool("Walk", walking && !jumping);
 
             _animator.SetBool("Jump", jumping);
+
+        }
+    }
+
+    public void PlaySound(AudioClip sound, float volume, bool loop)
+    {
+        if (myAudio != null && sound != null)
+        {
+            if (loop)
+            {
+                myAudio.clip = sound;
+                myAudio.volume = volume;
+                myAudio.loop = loop;
+                myAudio.Play();
+            }
+            else
+            {
+                myAudio.PlayOneShot(sound, volume);
+            }
 
         }
     }
@@ -192,8 +220,8 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         if (crouching)
         {
-            _capsCollider.height = _capsCollider.height / 2f;
-            _capsCollider.center = _capsCollider.center / 2f;
+            _capsCollider.height = _capsCollider.height / 1.5f;
+            _capsCollider.center = _capsCollider.center / 1.5f;
         }
         else
         {
@@ -215,8 +243,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             ITarget_Net target = hit.transform.GetComponent<ITarget_Net>();
             if (target != null) // Si un joueur est touché
             {
-                //RpcPlayHitSound();
-                hasHitTarget = true;
+                RpcPlayHitSound(true);
                 target.TakeDamage((useGun ? gunDamage : punchDamage), Token); // La target va perdre de la vie
             }
         }
@@ -260,14 +287,14 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     /* S'execute sur le client */
 
-    /*[ClientRpc]
-    void RpcPlayHitSound() // On lance le son de hit chez les clients
+    [ClientRpc]
+    void RpcPlayHitSound(bool attacker) // On lance le son de hit chez les clients
     {
-        if (!myAudio.isPlaying)
+        if (isLocalPlayer)
         {
-            myAudio.PlayOneShot(hitSound);
+            PlaySound(attacker ? hitSound : hurtSound, 0.7f, false);
         }
-    }*/
+    }
 
 
     [ClientRpc] // La fonction est synchronisé avec le client
@@ -277,6 +304,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         {
             Debug.Log(StaticInfo.Token + "dead");
             updateStat(StaticInfo.Token, StaticInfo.Stat.death);
+            controller.resetCamera(true);
             StartCoroutine(Respawn()); // Permet de mettre un delay dans la fonction
         }
     }
@@ -287,7 +315,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         yield return new WaitForSeconds(5); // delay
 
-
+        controller.resetCamera(false);
         // On relance l'animation Idle et on remet la vie à 100
         _animator.Play("Idle", -1, 0f);
         _body.MovePosition(spawnPoints[Random.Range(0, 4)].transform.position);
@@ -301,11 +329,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
 
     void Update () {
-
-        /* Online */
-        gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
-        //dead = health <= 0f;
-
+  
         if (!isLocalPlayer || pause)
             return;
 
@@ -320,11 +344,13 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         Animate(ArmAnimator);
         Animate(_animator);
 
-        /* Sound */
-
         /* UI */
         GUIHealthSync();
-       
+
+        /* State */
+        gun.GetComponent<Renderer>().enabled = hasGun && isScoping; //  Hide and Show gun
+        attacking = false;
+
     }
 
     protected void FixedUpdate() // Moving, Physic Stuff
@@ -368,6 +394,9 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             attacking = true;
             nextTimeToAttack = Time.time + (isScoping ? gunFireBuff : punchingBuff);
             //Playing gun shot sound
+            PlaySound(isScoping ? gunShotSound : punchSound, 0.5f, false);
+            if (isScoping)
+                shotParticle.Play();
 
             CmdAttackOnline(_position, _direction, isScoping, StaticInfo.Token);
         }
@@ -398,6 +427,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         if (!jumping && IsGrounded())
         {
+            PlaySound(jumpSound, 0.5f, false);
             walking = false;
             jumping = true;
 
@@ -411,13 +441,19 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
     {
         crouching = !crouching;
         adjustCollider(crouching);
+
+        if (crouching)
+            _body.MovePosition(_body.position + new Vector3(0, 0.05f, 0));
         return crouching;
     }
 
     public void Scope()
     {
         if (hasGun)
+        {
             isScoping = !isScoping;
+            PlaySound(jumpSound, 0.5f, false);
+        }
         if (crouching)
             Stand();
     }
@@ -432,7 +468,18 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
         if (crouching && run)
             Stand();
 
-        walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
+        bool tmp_walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
+
+        if (walking != tmp_walking && myAudio)
+        {
+            if (tmp_walking)
+                PlaySound(stepSound, 1.0f, true);
+            else
+                myAudio.loop = false;
+
+        }
+
+        walking = tmp_walking;
 
         _moveDirection = _direction;
     }
@@ -443,10 +490,9 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
     public void TakeDamage(float damage, string caller_token)
     {
+        RpcPlayHitSound(false);
         CmdTakeDamage(damage, caller_token);
     }
-
-    
 
 
     private void Die()

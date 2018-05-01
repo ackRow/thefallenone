@@ -99,13 +99,14 @@ public class PlayerController_Net : NetworkBehaviour
         if (crouching)
         {
             FPSContainer.transform.localPosition += new Vector3(0, 0.0f, 0.2f);
-            fpsCam.transform.localPosition += new Vector3(0.02f, -0.30f, 0.07f);
+
+            fpsCam.transform.localPosition += new Vector3(0.0f, -0.25f, -0.1f);
         }
 
         else
         {
             FPSContainer.transform.localPosition += new Vector3(0, 0.0f, -0.2f);
-            fpsCam.transform.localPosition += new Vector3(-0.02f, +0.30f, -0.07f);
+            fpsCam.transform.localPosition += new Vector3(0.0f, 0.25f, 0.1f);
         }
     }
 }

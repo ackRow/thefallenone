@@ -2,7 +2,7 @@
     // Saving data between scenes
 {
 
-    private static string token = "";
+    private static string token = "27fcb688e8c531d64e42009f65142cba";
     private static string username = ""; 
     private static int coin;
     private static int level;

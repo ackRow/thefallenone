@@ -85,8 +85,7 @@ public abstract class Human : MonoBehaviour, ITarget
     public AudioClip stepSound;
     public AudioClip hitSound;
     public AudioClip hurtSound;
-
-    public AudioClip switchSound; // son qd le genre joueur change du gun au point et inversement
+    public AudioClip switchSound;
 
 
     public Vector3 Position
