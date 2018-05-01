@@ -9,6 +9,7 @@ public class LoginScript : MonoBehaviour {
     public InputField login;
     public InputField password;
     public Button connect;
+    public Button register;
     public GameObject loadingGun;
 
     public GameObject loginCanvas;
@@ -80,5 +81,16 @@ public class LoginScript : MonoBehaviour {
         }
         connect.interactable = true;
         loadingGun.SetActive(false);
+    }
+
+    public void Offline()
+    {
+        loginCanvas.SetActive(false);
+        MenuCanvas.SetActive(true);
+    }
+
+    public void Register()
+    {
+        Application.OpenURL("http://thefallen.one/register.php");
     }
 }
