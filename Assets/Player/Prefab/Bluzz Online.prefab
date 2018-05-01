@@ -1712,8 +1712,8 @@ MonoBehaviour:
   JumpForce: 650
   hasGun: 1
   gunDamage: 50
-  gunRange: 20
-  gunFireBuff: 0.28
+  gunRange: 30
+  gunFireBuff: 0.6
   punchDamage: 100
   punchRange: 1
   punchingBuff: 0.95
