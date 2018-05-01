@@ -10,8 +10,6 @@ public class FinishBox : Box
 
     public new void Update()
     {
-       // transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
-
     }
 
     public override void Action(Player p)

@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class Flag_Net : Box_Net
 {
+    public new void Update()
+    {
+    }
 
     public override void Action(Player_Net p)
     {

@@ -15,7 +15,7 @@ public abstract class Box_Net : NetworkBehaviour
         avaible = GetComponentInChildren<ParticleSystem>();
     }
 
-    void Update()
+    public void Update()
     {
         transform.Rotate(new Vector3(15, 30, 45) * Time.deltaTime);
 
