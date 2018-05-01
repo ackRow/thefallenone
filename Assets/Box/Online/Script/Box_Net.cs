@@ -8,6 +8,12 @@ public abstract class Box_Net : NetworkBehaviour
 
     protected bool triggered = false;
     public AudioClip pickUpSound;
+    protected ParticleSystem avaible;
+
+    public void Start()
+    {
+        avaible = GetComponentInChildren<ParticleSystem>();
+    }
 
     void Update()
     {
@@ -18,11 +24,14 @@ public abstract class Box_Net : NetworkBehaviour
     void OnTriggerEnter(Collider entity)
     {
         Player_Net p = entity.transform.GetComponent<Player_Net>();
-        //p.PlaySound(pickUpSound, false, 0.1f);
+       
         if (p != null && !triggered)
         {
+            p.PlaySound(pickUpSound, 0.1f, false);
             triggered = true;
             Action(p);
+            if (avaible != null)
+                avaible.Stop();
 
         }
     }

@@ -25,7 +25,8 @@ public class SpeedBox : Box {
         p.running_speed -= speedValue;
         p.walking_speed -= speedValue;
 
-        // Narmol
         triggered = false;
+
+        avaible.Play();
     }
 }

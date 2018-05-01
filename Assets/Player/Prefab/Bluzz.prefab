@@ -1779,7 +1779,7 @@ MonoBehaviour:
   _flashGun: {fileID: 108373987471897466}
   GunSmoke: {fileID: 1612547532342700, guid: f3c0644217f146b40b36ecdf6923e04e, type: 2}
   shotParticle: {fileID: 198645380719973478}
-  gunDamage: 25
+  gunDamage: 35
   gunRange: 20
   gunFireBuff: 0.6
   punchDamage: 50
@@ -1794,6 +1794,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 849a2f6253e08a6428efd02328ff0aed, type: 3}
   stepSound: {fileID: 8300000, guid: 3b82c88b304d2824c820d9f750607da9, type: 3}
   hitSound: {fileID: 8300000, guid: 5ad5b3ae3440f6e49a2874d2642f4696, type: 3}
+  hurtSound: {fileID: 0}
   switchSound: {fileID: 8300000, guid: 849a2f6253e08a6428efd02328ff0aed, type: 3}
   FPSView: 1
   crossHair: {fileID: 0}

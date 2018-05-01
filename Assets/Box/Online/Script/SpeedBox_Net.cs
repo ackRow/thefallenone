@@ -18,14 +18,13 @@ public class SpeedBox_Net : Box_Net
         p.running_speed += speedValue;
         p.walking_speed += speedValue;
 
-        // Grisé
-
         yield return new WaitForSeconds(duration);
 
         p.running_speed -= speedValue;
         p.walking_speed -= speedValue;
 
-        // Narmol
         triggered = false;
+
+        avaible.Play();
     }
 }
