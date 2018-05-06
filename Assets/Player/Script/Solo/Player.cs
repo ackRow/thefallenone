@@ -131,13 +131,15 @@ public class Player : Human { // Hérite de la classe human
 
         dead = false;
         controller.resetCamera(false);
-        // On relance l'animation Idle et on remet la vie à 100
+        
         /*_animator.Play("Idle", -1, 0f);
         _body.MovePosition(spawnPoint);
         health = 100f;*/
-
+        // On recommence le niveau
         SceneManager.LoadScene(currentScene);
     }
+    
+    // On récupère un FallenCoin
     public void getReward(int coin)
     {
         if (StaticInfo.Token == "")
@@ -151,7 +153,7 @@ public class Player : Human { // Hérite de la classe human
 
         StartCoroutine(WaitForRequest<UserData>(www));
     }
-
+    // On fini le niveau
     public void finishLevel(int level)
     {
         if (StaticInfo.Token == "")
@@ -195,14 +197,14 @@ public class Player : Human { // Hérite de la classe human
     }
     IEnumerator WaitForRequest<T>(WWW data)
     {
-        yield return data; // Wait until the download is done
+        yield return data; // Wait for the data
         if (data.error != null)
         {
             Debug.Log("There was an error sending request: " + data.error);
         }
         else
         {
-            T jsonClass = JsonUtility.FromJson<T>(data.text);
+            T jsonClass = JsonUtility.FromJson<T>(data.text); // La réponse est en JSON
             ((IJsonClass)jsonClass).ProcessData(this);
         }
     }
