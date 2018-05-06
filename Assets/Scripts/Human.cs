@@ -13,7 +13,7 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
 
-public abstract class Human : MonoBehaviour, ITarget
+public abstract class Human : MonoBehaviour, ITarget // implémente ITarget.cs
 {
 
     /* Variable Definition */
@@ -93,6 +93,8 @@ public abstract class Human : MonoBehaviour, ITarget
         get { return _body.transform.position; }
     }
 
+    /* --- Init Function --- */
+    
     protected virtual void Start () {
 
         _animator = GetComponent<Animator>();
@@ -102,6 +104,7 @@ public abstract class Human : MonoBehaviour, ITarget
         _capsCenter = _capsCollider.center;
     }
 
+    /* Helper Function */
 
     protected void Animate(Animator _animator)
     {
@@ -157,9 +160,9 @@ public abstract class Human : MonoBehaviour, ITarget
         if(hasHitTarget)
             PlaySound(hitSound, 0.7f, false);
     }
-
    
-
+    /* --- Update Function --- */
+    
     protected virtual void Update() // Animating, playing sounds
     {
         /* State */
@@ -202,6 +205,8 @@ public abstract class Human : MonoBehaviour, ITarget
             jumping = false; // a présent, le joueur n'est plus entrain de sauter mais entrain de retomber
         }
     }
+
+    /* --- Action Function (called by the controller) --- */
 
     public void Jump()
     {
@@ -336,6 +341,8 @@ public abstract class Human : MonoBehaviour, ITarget
 
         _flashGun.enabled = false;
     }
+    
+    /* --- Event Function (or callback) --- */
 
     public void TakeDamage(float damage, Human caller)
     {
