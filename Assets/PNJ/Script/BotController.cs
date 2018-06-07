@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BotController : MonoBehaviour {
+public class BotController : MonoBehaviour
+{
 
     Bot bot;
 
@@ -27,7 +28,8 @@ public class BotController : MonoBehaviour {
     bool isWallhack = false;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         bot = GetComponent<Bot>();
         agent = GetComponent<NavMeshAgent>();
         bot.Scope();
@@ -36,9 +38,10 @@ public class BotController : MonoBehaviour {
         agent.speed = bot.walking_speed;
         agent.stoppingDistance = minDistance;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         distance = Vector3.Distance(target.transform.position, transform.position);
 
@@ -46,14 +49,14 @@ public class BotController : MonoBehaviour {
         // Si il est trop loin il ne va pas vers le joueur non plus
         // Sinon il ne bouge pas
 
-        if(distance < maxDistance)  // Une fois que le bot à agro le joueur, il le suivra toujours
+        if (distance < maxDistance)  // Une fois que le bot à agro le joueur, il le suivra toujours
             triggerTarget = true;
 
         if (distance < minDistance || !triggerTarget)
             bot.Forward(false, Vector3.zero);
         else
             bot.Forward(false, forward);
-            
+
         if (target is Player)
         {
             Player p = (Player)target;
@@ -114,16 +117,17 @@ public class BotController : MonoBehaviour {
 
             if (!bot.dead)
             {
-                //Quaternion rotateY = Quaternion.LookRotation(newDir);
+                Quaternion rotateY = Quaternion.LookRotation(newDir);
 
                 if (distance < maxDistance)
                 {
-                    /*transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                    if (distance <= minDistance)
+                        transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
 
-                    if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), newDir))
-                        bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), newDir);
+                    if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward))
+                        bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward);
                     else
-                        triggerTarget = false;*/
+                        triggerTarget = false;
                     agent.destination = target.Position;
                 }
 
@@ -143,7 +147,7 @@ public class BotController : MonoBehaviour {
 
             round++;
         }*/
-        
-        
+
+
     }
 }

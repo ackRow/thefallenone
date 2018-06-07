@@ -10,7 +10,7 @@ public class Bot : Human
     protected override void Start () {
         base.Start();
         gunFireBuff = 2.0f;
-        walking_speed = 2.5f;
+        walking_speed = 1.25f;
         gunDamage = 20.0f;
         if(username == "")
             username = "Guard";
