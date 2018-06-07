@@ -65,12 +65,13 @@ ModelImporter:
     7400002: Afraid
     7400004: ArmatureAction
     7400006: Die
-    7400008: Idle
-    7400010: Punching
-    7400012: RunningAf
-    7400014: Walking
-    7400016: WalkingCiti
-    7400018: IdleCiti
+    7400008: Hurt
+    7400010: Idle
+    7400012: Punching
+    7400014: RunningAf
+    7400016: Walking
+    7400018: WalkingCiti
+    7400020: IdleCiti
     9500000: //RootNode
     13700000: Body
     13700002: Hand_L
@@ -109,7 +110,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Default Take
       takeName: Default Take
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
@@ -219,9 +220,37 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: Hurt
+      takeName: Hurt
+      firstFrame: 0
+      lastFrame: 9
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: Idle
       takeName: Idle
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 25
       wrapMode: 0
       orientationOffsetY: 0
@@ -229,7 +258,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -361,7 +390,7 @@ ModelImporter:
     - serializedVersion: 16
       name: IdleCiti
       takeName: IdleCiti
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
@@ -369,7 +398,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

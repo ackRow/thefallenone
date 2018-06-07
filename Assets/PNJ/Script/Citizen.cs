@@ -14,7 +14,7 @@ public class Citizen : Human
         if (username == "")
             username = "Citizen";
 
-        health = 50.0f;
+        health = 100.0f;
     }
 
     // Update is called once per frame

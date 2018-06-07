@@ -25,8 +25,7 @@ public class Bot : Human
 	public override void Die()
     {
         base.Die();
-        _body.isKinematic = true;
-        _capsCollider.isTrigger = true;
+        
 
         if (lootGun)
         {

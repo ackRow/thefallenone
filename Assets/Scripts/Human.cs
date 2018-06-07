@@ -373,7 +373,9 @@ public abstract class Human : MonoBehaviour, ITarget // implémente ITarget.cs
     {
         _animator.Play("Die", -1, 0f);
         dead = true;
-        
+        _body.isKinematic = true;
+        _capsCollider.isTrigger = true;
+        _capsCollider.radius = 0.0f;
     }
 
     public virtual void Stand()
