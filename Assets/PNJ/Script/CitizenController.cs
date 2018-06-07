@@ -23,6 +23,7 @@ public class CitizenController : MonoBehaviour
     void Start()
     {
         citizen = GetComponent<Citizen>();
+        angle = 90.0f;
         //bot.Scope();
     }
 
