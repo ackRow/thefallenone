@@ -311,6 +311,8 @@
     <Compile Include="Assets\Player\Script\Solo\PlayerController.cs" />
     <Compile Include="Assets\PNJ\Script\Bot.cs" />
     <Compile Include="Assets\PNJ\Script\BotController.cs" />
+    <Compile Include="Assets\PNJ\Script\Citizen.cs" />
+    <Compile Include="Assets\PNJ\Script\CitizenController.cs" />
     <Compile Include="Assets\Scripts\Human.cs" />
     <Compile Include="Assets\Scripts\Interface Script\CustomNetManager.cs" />
     <Compile Include="Assets\Scripts\Interface Script\GradiantText.cs" />

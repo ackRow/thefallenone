@@ -31,6 +31,10 @@ public class BotController : MonoBehaviour {
         bot = GetComponent<Bot>();
         agent = GetComponent<NavMeshAgent>();
         bot.Scope();
+
+        // Attribut du NavMeshAgent
+        agent.speed = bot.walking_speed;
+        agent.stoppingDistance = minDistance;
     }
 	
 	// Update is called once per frame
