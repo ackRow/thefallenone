@@ -344,7 +344,7 @@ public abstract class Human : MonoBehaviour, ITarget // implémente ITarget.cs
     
     /* --- Event Function (or callback) --- */
 
-    public void TakeDamage(float damage, Human caller)
+    public virtual void TakeDamage(float damage, Human caller)
     {
         if (dead)
             return;

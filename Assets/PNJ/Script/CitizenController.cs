@@ -9,7 +9,7 @@ public class CitizenController : MonoBehaviour
     public List<Renderer> listToRender;
     public Material _forceField, _wallhack;
 
-    bool afraid = false;
+    //bool afraid = false;
     float angle;
 
     //public Human target;
@@ -31,7 +31,7 @@ public class CitizenController : MonoBehaviour
     void Update()
     {
 
-        if (afraid)
+        if (citizen.afraid)
             citizen.Forward(false, Vector3.zero);
         else
             citizen.Forward(false, forward);
@@ -57,6 +57,8 @@ public class CitizenController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (citizen.dead || citizen.afraid)
+            return;
         // Routine
             if (round == 100)
             {

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Citizen : Human
 {
     // Use this for initialization
+
+    public bool afraid = false;
+
     protected override void Start()
     {
         base.Start();
@@ -18,8 +21,12 @@ public class Citizen : Human
     protected override void Update()
     {
         base.Update();
-    }
 
+        if (_animator && !dead)
+        {
+            _animator.SetFloat("Afraid", afraid ? 1.0f : 0.0f);
+        }
+    }
 
     public override void Die()
     {
@@ -29,6 +36,14 @@ public class Citizen : Human
 
 
         StartCoroutine(Clean());
+
+    }
+
+    public override void TakeDamage(float damage, Human caller)
+    {
+        base.TakeDamage(damage, caller);
+        afraid = true;
+
 
     }
 
