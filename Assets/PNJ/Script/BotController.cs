@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class BotController : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class BotController : MonoBehaviour {
 
     public List<Renderer> listToRender;
     public Material _forceField, _wallhack;
+    public NavMeshAgent agent;
 
     bool triggerTarget = false;
     float angle;
@@ -17,6 +19,7 @@ public class BotController : MonoBehaviour {
     public float maxDistance = 20;
 
     public Human target;
+
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
     int round = 50;
@@ -26,6 +29,7 @@ public class BotController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         bot = GetComponent<Bot>();
+        agent = GetComponent<NavMeshAgent>();
         bot.Scope();
     }
 	
@@ -106,16 +110,17 @@ public class BotController : MonoBehaviour {
 
             if (!bot.dead)
             {
-                Quaternion rotateY = Quaternion.LookRotation(newDir);
+                //Quaternion rotateY = Quaternion.LookRotation(newDir);
 
                 if (distance < maxDistance)
                 {
-                    transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                    /*transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
 
                     if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), newDir))
                         bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), newDir);
                     else
-                        triggerTarget = false;
+                        triggerTarget = false;*/
+                    agent.destination = target.Position;
                 }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
