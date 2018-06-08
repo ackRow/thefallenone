@@ -76,14 +76,16 @@ public class BotController : MonoBehaviour
         {
             foreach (Renderer render in listToRender)
             {
-                render.material = _wallhack;
+                if (render.name != "Glock_Eagle")
+                    render.material = _wallhack;
             }
         }
         else
         {
             foreach (Renderer render in listToRender)
             {
-                render.material = _forceField;
+                if(render.name != "Glock_Eagle")
+                    render.material = _forceField;
             }
         }
     }
