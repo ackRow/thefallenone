@@ -13,6 +13,7 @@ public class CitizenController : MonoBehaviour
     float randomAngle;
 
     public bool walking = false;
+    public bool running = false;
     //public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
@@ -24,7 +25,7 @@ public class CitizenController : MonoBehaviour
     void Start()
     {
         citizen = GetComponent<Citizen>();
-        randomAngle = Random.Range(0, 180);
+        randomAngle = Random.Range(-30, 30);
         //bot.Scope();
     }
 
@@ -32,9 +33,12 @@ public class CitizenController : MonoBehaviour
     void Update()
     {
 
-
-
-        if (target is Player)
+        if (running)
+        {
+            
+            afraidMovement();
+        }
+        else if (target is Player)
         {
             Player p = (Player)target;
 
@@ -43,13 +47,10 @@ public class CitizenController : MonoBehaviour
                 citizen.afraid = true;
                 //citizen.Forward(false, Vector3.zero);
             }
-            else
-            {
                 if (walking)
                     citizen.Forward(false, forward);
                 else
                     citizen.Forward(false, Vector3.zero);
-            }
 
         }
         else
@@ -63,13 +64,14 @@ public class CitizenController : MonoBehaviour
         if (citizen.dead || !walking)
             return;
         // Routine
-        if (round == 600)
+        if (round == 700)
         {
-            angle += 180.0f;
+            /*angle += 180.0f;
 
             citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
 
-            round = 0;
+            round = 0;*/
+            walking = false;
         }
 
         round++;

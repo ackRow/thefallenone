@@ -13,7 +13,8 @@ public class Citizen : Human
         base.Start();
         if (username == "")
             username = "Citizen";
-
+        walking_speed = 2.5f;
+        running_speed = 6f;
         health = 100.0f;
     }
 
