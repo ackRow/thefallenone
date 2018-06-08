@@ -9,21 +9,26 @@ public class CitizenController : MonoBehaviour
     public List<Renderer> listToRender;
     public Material _forceField, _wallhack;
 
-    public float angle;
-
-    public bool walking = false;
+    //bool afraid = false;
+    float angle;
+	float randomAngle;
+	
     //public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
     int round = 50;
-
-    public Human target; // for scared
+	bool stopRoutine = false;
+	
+    public Human target; // for wallhack and scared
+    bool isWallhack = false;
 
     // Use this for initialization
     void Start()
     {
         citizen = GetComponent<Citizen>();
+        angle = 90.0f;
         //bot.Scope();
+		randomAngle = Random.Range(0, 180);
     }
 
     // Update is called once per frame
@@ -39,28 +44,49 @@ public class CitizenController : MonoBehaviour
             if (p.hasShotCitizen)
             {
                 citizen.afraid = true;
-                //citizen.Forward(false, Vector3.zero);
+                citizen.Forward(false, Vector3.zero);
+				/*stopRoutine = true;
+				afraidMovement()*/
             }
             else
-            {
-                if(walking)
-                    citizen.Forward(false, forward);
-                else
-                    citizen.Forward(false, Vector3.zero);
-            }
+                citizen.Forward(false, forward);
 
+            if (isWallhack != p.hasWallhack)
+            {
+                isWallhack = p.hasWallhack;
+                activeWallhack(p.hasWallhack);
+
+            }
         }
         else {
-            citizen.Forward(false, Vector3.zero);
+            citizen.Forward(false, forward);
+        }
+    }
+
+    void activeWallhack(bool active)
+    {
+        if (active)
+        {
+            foreach (Renderer render in listToRender)
+            {
+                render.material = _wallhack;
+            }
+        }
+        else
+        {
+            foreach (Renderer render in listToRender)
+            {
+                render.material = _forceField;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (citizen.dead || !walking)
+        if (citizen.dead || citizen.afraid  || stopRoutine)
             return;
         // Routine
-            if (round == 600)
+            if (round == 100)
             {
                 angle += 180.0f;
 
@@ -72,5 +98,20 @@ public class CitizenController : MonoBehaviour
             round++;
 
 
+    }
+	
+	void afraidMovement()
+    {
+        citizen.transform.rotation = Quaternion.AngleAxis(randomAngle, citizen.transform.up);
+        citizen.Forward(true, forward);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Floor")
+        {
+            randomAngle = Random.Range(0, 180);
+            citizen.transform.rotation = Quaternion.AngleAxis(randomAngle, citizen.transform.up);
+        }
     }
 }
