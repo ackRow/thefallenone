@@ -6,6 +6,7 @@
     private static string username = ""; 
     private static int coin;
     private static int level;
+    private static int multiplayerCharacter;
 
     public enum Stat
     {
@@ -39,6 +40,19 @@
             username = value;
         }
     }
+
+    public static int Perso
+    {
+        get
+        {
+            return multiplayerCharacter;
+        }
+        set
+        {
+            multiplayerCharacter = value;
+        }
+    }
+
 
     public static int Coin
     {

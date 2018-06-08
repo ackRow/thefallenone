@@ -324,6 +324,7 @@
     <Compile Include="Assets\Scripts\LoginScript.cs" />
     <Compile Include="Assets\Scripts\Network\Target_Net.cs" />
     <Compile Include="Assets\Scripts\Network\UPnP.cs" />
+    <Compile Include="Assets\Scripts\rotate.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\WebSync\JsonClass.cs" />
     <Compile Include="Assets\Scripts\WebSync\LoginData.cs" />

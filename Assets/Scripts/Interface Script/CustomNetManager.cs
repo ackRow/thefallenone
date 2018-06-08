@@ -13,7 +13,9 @@ public class CustomNetManager : NetworkManager {
     public MainMenuScript main;
 
     public bool launched;
-    
+
+    public GameObject[] OnlinePrefabArr;
+
     private void Update()
     {
         if (SceneManager.GetActiveScene().name == "Menu")
@@ -118,6 +120,8 @@ public class CustomNetManager : NetworkManager {
     }
     public void SetupMultiplayerButtons()
     {
+
+        playerPrefab = OnlinePrefabArr[StaticInfo.Perso - 1];
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.AddListener(StartupHost);
 
