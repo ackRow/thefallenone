@@ -133,6 +133,7 @@ public class BotController : MonoBehaviour
                 {
                     transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
                     bot.walking = false;
+                    agent.destination = transform.position;
                 }
 
 
