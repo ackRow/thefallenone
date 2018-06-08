@@ -6971,8 +6971,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8340273, y: 2.8926437, z: 2.7948246}
-  m_Center: {x: 0.18813285, y: -0.18777882, z: 0.8974123}
+  m_Size: {x: 2.776874, y: 2.8926437, z: 3.5228844}
+  m_Center: {x: 0.65954894, y: -0.18777858, z: 1.2614422}
 --- !u!65 &182787289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6995,8 +6995,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0003848, y: 1.4710267, z: 3.4345374}
-  m_Center: {x: 0.000004708767, y: 0.06399567, z: 0.023189845}
+  m_Size: {x: 2.0003848, y: 3.6635256, z: 5.9760747}
+  m_Center: {x: 0.000005997096, y: 1.1602451, z: -0.64263725}
 --- !u!64 &182787291
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13587,12 +13587,13 @@ GameObject:
   - component: {fileID: 1481209319}
   - component: {fileID: 1481209321}
   - component: {fileID: 1481209320}
+  - component: {fileID: 1481209322}
   m_Layer: 0
   m_Name: GTI_POT_4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967294
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1481209319
 Transform:
@@ -13649,6 +13650,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1481209318}
+  m_Mesh: {fileID: 4300756, guid: 3b8ed66412ffee140ba2d442c37e3051, type: 3}
+--- !u!64 &1481209322
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1481209318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300756, guid: 3b8ed66412ffee140ba2d442c37e3051, type: 3}
 --- !u!1001 &1524546293
 Prefab:
