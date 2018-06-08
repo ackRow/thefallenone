@@ -10,7 +10,7 @@ public class CitizenController : MonoBehaviour
     public Material _forceField, _wallhack;
 
     //bool afraid = false;
-    float angle;
+    public float angle;
 
     //public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
@@ -24,7 +24,6 @@ public class CitizenController : MonoBehaviour
     void Start()
     {
         citizen = GetComponent<Citizen>();
-        angle = 90.0f;
         //bot.Scope();
     }
 
@@ -81,7 +80,7 @@ public class CitizenController : MonoBehaviour
         if (citizen.dead || citizen.afraid)
             return;
         // Routine
-            if (round == 100)
+            if (round == 600)
             {
                 angle += 180.0f;
 
