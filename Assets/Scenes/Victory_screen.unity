@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 756387692}
   - component: {fileID: 756387691}
   - component: {fileID: 756387690}
+  - component: {fileID: 756387694}
   m_Layer: 5
   m_Name: Victory_screen
   m_TagString: Untagged
@@ -291,6 +292,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &756387694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 756387689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a852c5674f43e04d8c95208aa86f458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &893432298 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: 63faa7c1c12391a41b427da70358887e, type: 3}
@@ -311,7 +323,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &986173755
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1100,7 +1112,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2073805046
 Transform:
   m_ObjectHideFlags: 0
