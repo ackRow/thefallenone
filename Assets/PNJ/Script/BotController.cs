@@ -52,10 +52,10 @@ public class BotController : MonoBehaviour
         if (distance < maxDistance)  // Une fois que le bot à agro le joueur, il le suivra toujours
             triggerTarget = true;
 
-        if (distance < minDistance || !triggerTarget)
+        /*if (distance < minDistance || !triggerTarget)
             bot.Forward(false, Vector3.zero);
         else
-            bot.Forward(false, forward);
+            bot.Forward(false, forward);*/
 
         if (target is Player)
         {
@@ -108,48 +108,46 @@ public class BotController : MonoBehaviour
     private void FixedUpdate()
     {
         // Si le joueur est trigger par le bot
-        if (triggerTarget)
+        if (bot.dead)
         {
-            Vector3 targetDir = target.transform.position - transform.position;
+            agent.destination = transform.position;
+            return;
+        }
+        Vector3 targetDir = target.transform.position - transform.position;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
+        //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
+        //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);   
 
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
-            //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
-            //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);
 
+        if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), newDir)) // ~ Le joueur est visible par le bot
+        {
+            //triggerTarget = true;
+            agent.destination = target.Position;
+            bot.walking = true;
 
-            if (!bot.dead)
+            Quaternion rotateY = Quaternion.LookRotation(newDir);
+
+            if (distance < maxDistance)
             {
-                Quaternion rotateY = Quaternion.LookRotation(newDir);
-
-                if (distance < maxDistance)
+                if (distance <= minDistance)
                 {
-                    if (distance <= minDistance)
-                        transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                    transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
+                    bot.walking = false;
+                }
 
-                    if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward))
-                        bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward);
-                    else
-                        triggerTarget = false;
-                    agent.destination = target.Position;
+
+                if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward)) // Le bot vise vers le joueur = il tir
+                {
+                    bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward);
                 }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
             }
         }
-        /*else
-        {   // Routine
-            if (round == 100)
-            {
-                angle += 180.0f;
-
-                bot.transform.rotation = Quaternion.AngleAxis(angle, bot.transform.up); // rotate
-
-                round = 0;
-            }
-
-            round++;
-        }*/
-
+        else
+        {
+            bot.walking = false;
+        }
 
     }
 }

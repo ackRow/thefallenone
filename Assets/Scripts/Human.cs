@@ -62,7 +62,7 @@ public abstract class Human : MonoBehaviour, ITarget // implémente ITarget.cs
 
     public bool crouching = false;
     public bool canStand = true;
-    protected bool walking = false;
+    public bool walking = false;
     protected bool jumping = false;
 
     public bool dead = false;
