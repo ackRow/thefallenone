@@ -95,6 +95,16 @@ public class Player : Human { // Hérite de la classe human
 
     }
 
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (_body.transform.position.y < -20f)
+        {
+            Die();
+        }
+    }
+
     public override void Scope()
     {
         base.Scope();
@@ -122,7 +132,10 @@ public class Player : Human { // Hérite de la classe human
     
     public override void Die()
     {
+        if (dead)
+            return;
         base.Die();
+        
         controller.resetCamera(true);
         StartCoroutine(Respawn());
     }

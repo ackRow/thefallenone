@@ -2475,7 +2475,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9bba0012b573e77418fc951f67d869f8, type: 2}
+  - {fileID: 2100000, guid: 6e3f986af96b0864f9b448013dd16ddf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2624,7 +2624,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1016079308}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: b028ca26d06b2ef4fa1a51cd55473aa3, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 24c5d5aed6fb04645a8a99894ef1beae, type: 2}
 --- !u!1 &1054217234
 GameObject:
   m_ObjectHideFlags: 0

@@ -322,14 +322,22 @@
     <Compile Include="Assets\Scripts\Interface Script\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Interface Script\PauseMenuScript.cs" />
     <Compile Include="Assets\Scripts\LoginScript.cs" />
+    <Compile Include="Assets\Scripts\Map\moovedirection.cs" />
+    <Compile Include="Assets\Scripts\Map\mooveleft.cs" />
+    <Compile Include="Assets\Scripts\Map\mooveright.cs" />
+    <Compile Include="Assets\Scripts\Map\plateform.cs" />
+    <Compile Include="Assets\Scripts\Map\rotate.cs" />
     <Compile Include="Assets\Scripts\Network\Target_Net.cs" />
     <Compile Include="Assets\Scripts\Network\UPnP.cs" />
-    <Compile Include="Assets\Scripts\rotate.cs" />
     <Compile Include="Assets\Scripts\Target.cs" />
     <Compile Include="Assets\Scripts\WebSync\JsonClass.cs" />
     <Compile Include="Assets\Scripts\WebSync\LoginData.cs" />
     <Compile Include="Assets\Scripts\WebSync\StaticInfo.cs" />
     <Compile Include="Assets\Scripts\WebSync\UserData.cs" />
+    <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
+    <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Player\SmoothMouseLook.cs" />
+    <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Skybox\SkyboxChanger.cs" />
+    <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Skybox\SkyboxRotator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Silhouette-Outlined Diffuse.shader" />
