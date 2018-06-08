@@ -120,8 +120,10 @@ public class CustomNetManager : NetworkManager {
     }
     public void SetupMultiplayerButtons()
     {
-
-        playerPrefab = OnlinePrefabArr[StaticInfo.Perso - 1];
+        if(StaticInfo.Perso > 0)
+            playerPrefab = OnlinePrefabArr[StaticInfo.Perso - 1];
+        else
+            playerPrefab = OnlinePrefabArr[0];
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("StartHostButton").GetComponent<Button>().onClick.AddListener(StartupHost);
 

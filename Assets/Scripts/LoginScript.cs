@@ -17,20 +17,24 @@ public class LoginScript : MonoBehaviour {
 
     public Text message;
 
+    private bool alreadySend = false;
+
 	// Update is called once per frame
 	void Awake () {
         loadingGun.SetActive(false);
         password.contentType = InputField.ContentType.Password;
         connect.onClick.RemoveAllListeners();
         connect.onClick.AddListener(Connection);
-	}
+        alreadySend = false;
+    }
 
     void Update()
     {
-        if (StaticInfo.Token != "")
+        if (StaticInfo.Token != "" && !alreadySend)
         {
             Debug.Log("Sending request");
             getUserInfo(StaticInfo.Token);
+            alreadySend = true;
         }
     }
 
