@@ -24,6 +24,10 @@ public class FinishBox : Box
         {
             SceneManager.LoadScene("Level3");
         }
+        else if (level == 3)
+        {
+            SceneManager.LoadScene("Level4");
+        }
         else
         {
 
