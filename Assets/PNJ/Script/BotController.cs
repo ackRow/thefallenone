@@ -94,7 +94,7 @@ public class BotController : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(_position, _direction, out hit, bot.gunRange))
+        if (Physics.Raycast(_position, _direction, out hit, maxDistance))
         {
             ITarget target = hit.transform.GetComponent<ITarget>();
             if (target != null) // Si un joueur est touché
@@ -107,15 +107,15 @@ public class BotController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Si le joueur est trigger par le bot
         if (bot.dead)
         {
             agent.destination = transform.position;
             return;
         }
         Vector3 targetDir = target.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.0f, 0.0f);
-        //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 2.0f, 0.0f);  // 120degrés de champ de vision
+
+        Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
         //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);   
 
 

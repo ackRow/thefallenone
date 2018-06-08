@@ -12,6 +12,7 @@ public class Bot : Human
         gunFireBuff = 2.0f;
         walking_speed = 2.5f;
         gunDamage = 20.0f;
+
         if(username == "")
             username = "Guard";
     }
