@@ -9,33 +9,30 @@ public class CitizenController : MonoBehaviour
     public List<Renderer> listToRender;
     public Material _forceField, _wallhack;
 
-    //bool afraid = false;
-    float angle;
-	float randomAngle;
-	
+    public float angle;
+    float randomAngle;
+
+    public bool walking = false;
     //public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
     int round = 50;
-	bool stopRoutine = false;
-	
-    public Human target; // for wallhack and scared
-    bool isWallhack = false;
+
+    public Human target; // for scared
 
     // Use this for initialization
     void Start()
     {
         citizen = GetComponent<Citizen>();
-        angle = 90.0f;
+        randomAngle = Random.Range(0, 180);
         //bot.Scope();
-		randomAngle = Random.Range(0, 180);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        
+
 
         if (target is Player)
         {
@@ -44,63 +41,43 @@ public class CitizenController : MonoBehaviour
             if (p.hasShotCitizen)
             {
                 citizen.afraid = true;
-                citizen.Forward(false, Vector3.zero);
-				/*stopRoutine = true;
-				afraidMovement()*/
+                //citizen.Forward(false, Vector3.zero);
             }
             else
-                citizen.Forward(false, forward);
-
-            if (isWallhack != p.hasWallhack)
             {
-                isWallhack = p.hasWallhack;
-                activeWallhack(p.hasWallhack);
-
+                if (walking)
+                    citizen.Forward(false, forward);
+                else
+                    citizen.Forward(false, Vector3.zero);
             }
-        }
-        else {
-            citizen.Forward(false, forward);
-        }
-    }
 
-    void activeWallhack(bool active)
-    {
-        if (active)
-        {
-            foreach (Renderer render in listToRender)
-            {
-                render.material = _wallhack;
-            }
         }
         else
         {
-            foreach (Renderer render in listToRender)
-            {
-                render.material = _forceField;
-            }
+            citizen.Forward(false, Vector3.zero);
         }
     }
 
     private void FixedUpdate()
     {
-        if (citizen.dead || citizen.afraid  || stopRoutine)
+        if (citizen.dead || !walking)
             return;
         // Routine
-            if (round == 100)
-            {
-                angle += 180.0f;
+        if (round == 600)
+        {
+            angle += 180.0f;
 
-                citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
+            citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
 
-                round = 0;
-            }
+            round = 0;
+        }
 
-            round++;
+        round++;
 
 
     }
-	
-	void afraidMovement()
+
+void afraidMovement()
     {
         citizen.transform.rotation = Quaternion.AngleAxis(randomAngle, citizen.transform.up);
         citizen.Forward(true, forward);
