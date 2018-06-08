@@ -95,6 +95,21 @@ public class CustomNetManager : NetworkManager {
         main.Launchbtn("Level2");
     }
 
+    void LaunchSingleMap3()
+    {
+        main.Launchbtn("Level3");
+    }
+
+    void LaunchSingleMap4()
+    {
+        main.Launchbtn("Level4");
+    }
+
+    void LaunchSingleMap5()
+    {
+        main.Launchbtn("Level5");
+    }
+
     public void SetupMenuButtons()
     {
         GameObject.Find("Single").GetComponent<Button>().onClick.RemoveAllListeners();
@@ -114,6 +129,15 @@ public class CustomNetManager : NetworkManager {
 
         GameObject.Find("Map2Button").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("Map2Button").GetComponent<Button>().onClick.AddListener(LaunchSingleMap2);
+
+        GameObject.Find("Map3Button").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("Map3Button").GetComponent<Button>().onClick.AddListener(LaunchSingleMap3);
+
+        GameObject.Find("Map4Button").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("Map4Button").GetComponent<Button>().onClick.AddListener(LaunchSingleMap4);
+
+        GameObject.Find("Map5Button").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("Map5Button").GetComponent<Button>().onClick.AddListener(LaunchSingleMap5);
 
         GameObject.Find("SingleBack").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("SingleBack").GetComponent<Button>().onClick.AddListener(main.Return);
