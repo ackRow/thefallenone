@@ -96,6 +96,10 @@
      <Compile Include="Assets\Scripts\WebSync\LoginData.cs" />
      <Compile Include="Assets\Scripts\WebSync\StaticInfo.cs" />
      <Compile Include="Assets\Scripts\WebSync\UserData.cs" />
+     <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Player\FPSWalkerEnhanced.cs" />
+     <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Player\SmoothMouseLook.cs" />
+     <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Skybox\SkyboxChanger.cs" />
+     <Compile Include="Assets\SimpleCumulus\Demo\Scripts\Skybox\SkyboxRotator.cs" />
      <None Include="Assets\Materials\Silhouette-Outlined Diffuse.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
