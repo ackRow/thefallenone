@@ -105,13 +105,4 @@ public class CitizenController : MonoBehaviour
         citizen.transform.rotation = Quaternion.AngleAxis(randomAngle, citizen.transform.up);
         citizen.Forward(true, forward);
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag != "Floor")
-        {
-            randomAngle = Random.Range(0, 180);
-            citizen.transform.rotation = Quaternion.AngleAxis(randomAngle, citizen.transform.up);
-        }
-    }
 }
