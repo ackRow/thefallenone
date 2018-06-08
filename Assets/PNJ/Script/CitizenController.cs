@@ -17,6 +17,7 @@ public class CitizenController : MonoBehaviour
 
     int round = 50;
 
+    public Human target; // for wallhack and scared
     bool isWallhack = false;
 
     // Use this for initialization
@@ -31,10 +32,30 @@ public class CitizenController : MonoBehaviour
     void Update()
     {
 
-        if (citizen.afraid)
-            citizen.Forward(false, Vector3.zero);
-        else
+        
+
+        if (target is Player)
+        {
+            Player p = (Player)target;
+
+            if (p.hasShotCitizen)
+            {
+                citizen.afraid = true;
+                citizen.Forward(false, Vector3.zero);
+            }
+            else
+                citizen.Forward(false, forward);
+
+            if (isWallhack != p.hasWallhack)
+            {
+                isWallhack = p.hasWallhack;
+                activeWallhack(p.hasWallhack);
+
+            }
+        }
+        else {
             citizen.Forward(false, forward);
+        }
     }
 
     void activeWallhack(bool active)

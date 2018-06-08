@@ -24,7 +24,9 @@ public class Player : Human { // Hérite de la classe human
 
     private Vector3 spawnPoint;
 
+    // For PNJ
     public bool hasWallhack = false;
+    public bool hasShotCitizen = false;
 
     // Sync server
 

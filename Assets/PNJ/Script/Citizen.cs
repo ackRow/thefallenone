@@ -42,7 +42,13 @@ public class Citizen : Human
     public override void TakeDamage(float damage, Human caller)
     {
         base.TakeDamage(damage, caller);
-        afraid = true;
+
+        if(caller is Player)
+        {
+            Player p = (Player)caller;
+            p.hasShotCitizen = true;
+        }
+        
 
 
     }
