@@ -1831,7 +1831,7 @@ MonoBehaviour:
   spawnPoints: []
   username: 
   health: 100
-  pause: 0
+  pause: 1
 --- !u!114 &114996012730742164
 MonoBehaviour:
   m_ObjectHideFlags: 1
