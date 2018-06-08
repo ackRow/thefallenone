@@ -83,6 +83,10 @@
      <Compile Include="Assets\Scripts\Interface Script\LoadingCircle.cs" />
      <Compile Include="Assets\Scripts\Interface Script\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\Interface Script\PauseMenuScript.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\Rotation_Y.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\Rotation_Y_skulls.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\ScrollingTextScript.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\Victory_state.cs" />
      <Compile Include="Assets\Scripts\LoginScript.cs" />
      <Compile Include="Assets\Scripts\Map\moovedirection.cs" />
      <Compile Include="Assets\Scripts\Map\mooveleft.cs" />
