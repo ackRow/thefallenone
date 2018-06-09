@@ -267,8 +267,10 @@ public abstract class Human : MonoBehaviour, ITarget // implémente ITarget.cs
 
         bool tmp_walking = (_moveDirection.z * _moveDirection.z + _moveDirection.x * _moveDirection.x) > 0.2;
 
-        if(walking != tmp_walking && myAudio)
+
+        if (walking != tmp_walking && myAudio)
         {
+            Debug.Log(username);
             if (tmp_walking)
                 PlaySound(stepSound, 1.0f, true);
             else

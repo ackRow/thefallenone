@@ -124,6 +124,8 @@ public class BotController : MonoBehaviour
             //triggerTarget = true;
             agent.destination = target.Position;
             bot.walking = true;
+            if(!bot.myAudio.isPlaying)
+                bot.PlaySound(bot.stepSound, 1.5f, false);
 
             Quaternion rotateY = Quaternion.LookRotation(newDir);
 
