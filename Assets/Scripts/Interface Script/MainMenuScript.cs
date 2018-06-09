@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuScript : MonoBehaviour {
+public class MainMenuScript : MonoBehaviour
+{
 
-	public GameObject MainCanvas;
-	public GameObject singleplayerCanvas;
-	public GameObject multiplayerCanvas;
+    public GameObject MainCanvas;
+    public GameObject singleplayerCanvas;
+    public GameObject multiplayerCanvas;
+    public GameObject loadingCanvas;
 
     public CustomNetManager netmanager;
     private bool button_set;
@@ -42,7 +44,8 @@ public class MainMenuScript : MonoBehaviour {
     }
     public void Launchbtn(string Scene)
     {
-        SceneManager.LoadScene(Scene);
+        LoadCv();
+        SceneManager.LoadSceneAsync(Scene);
     }
 
     public void ExitBtn()
@@ -50,7 +53,7 @@ public class MainMenuScript : MonoBehaviour {
         Application.Quit();
     }
 
-	public void Singlecv()
+    public void Singlecv()
     {
         MainCanvas.SetActive(false);
         singleplayerCanvas.SetActive(true);
@@ -64,16 +67,27 @@ public class MainMenuScript : MonoBehaviour {
         netmanager.SetupMultiplayerButtons();
     }
 
+    public void LoadCv()
+    {
+        singleplayerCanvas.SetActive(false);
+        loadingCanvas.SetActive(true);
+    }
+
     public void Return()
     {
         if (singleplayerCanvas.activeSelf == true)
         {
             singleplayerCanvas.SetActive(false);
         }
+        else if(loadingCanvas.activeSelf == true)
+        {
+            loadingCanvas.SetActive(false);
+        }
         else
         {
             multiplayerCanvas.SetActive(false);
         }
+
         MainCanvas.SetActive(true);
     }
 }

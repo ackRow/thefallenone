@@ -49,7 +49,7 @@ public class PauseMenuScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isActive = !isActive;
-            if (actual_scene.name == "Level1" || actual_scene.name == "Level2")
+            if (actual_scene.name == "Level1" || actual_scene.name == "Level2" || actual_scene.name == "Level3" || actual_scene.name == "Level4")
             {
                 solo = true;
             }
@@ -88,7 +88,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadSceneAsync("Menu");
     }
 
     public void EXITButton()
