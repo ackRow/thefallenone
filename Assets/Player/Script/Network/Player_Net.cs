@@ -506,7 +506,12 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
 
         if (isLocalPlayer)
         {
+            StaticInfo.Win = true;
             updateStat(StaticInfo.Token, StaticInfo.Stat.win);
+        }
+        else
+        {
+            StaticInfo.Win = false;
         }
 
         updateStat(StaticInfo.Token, StaticInfo.Stat.play);
@@ -519,7 +524,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             NetworkManager.singleton.StopHost();
         }
         catch { }
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Victory_screen");
     }
     
     void OnCollisionEnter(Collision collision)

@@ -7,6 +7,7 @@
     private static int coin;
     private static int level;
     private static int multiplayerCharacter;
+    private static bool win;
 
     public enum Stat
     {
@@ -53,6 +54,17 @@
         }
     }
 
+    public static bool Win
+    {
+        get
+        {
+            return win;
+        }
+        set
+        {
+            win = value;
+        }
+    }
 
     public static int Coin
     {
