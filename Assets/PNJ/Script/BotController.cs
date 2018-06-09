@@ -119,7 +119,7 @@ public class BotController : MonoBehaviour
         //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);   
 
 
-        if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), newDir)) // ~ Le joueur est visible par le bot
+        if (rayPlayer(bot.transform.position + new Vector3(0, 0.9f, 0), newDir)) // ~ Le joueur est visible par le bot
         {
             //triggerTarget = true;
             agent.destination = target.Position;
@@ -137,9 +137,9 @@ public class BotController : MonoBehaviour
                 }
 
 
-                if (rayPlayer(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward)) // Le bot vise vers le joueur = il tir
+                if (rayPlayer(bot.transform.position + new Vector3(0, 0.9f, 0), bot.transform.forward)) // Le bot vise vers le joueur = il tir
                 {
-                    bot.Attack(bot.transform.position + new Vector3(0, 0.8f, 0), bot.transform.forward);
+                    bot.Attack(bot.transform.position + new Vector3(0, 0.9f, 0), bot.transform.forward);
                 }
 
                 //transform.localRotation = Quaternion.AngleAxis(Quaternion.LookRotation(newDir).y, transform.up);
