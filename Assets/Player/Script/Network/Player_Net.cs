@@ -524,7 +524,7 @@ public class Player_Net : NetworkBehaviour, ITarget_Net
             NetworkManager.singleton.StopHost();
         }
         catch { }
-        SceneManager.LoadScene("Victory_screen");
+        SceneManager.LoadScene("Victory_screen2");
     }
     
     void OnCollisionEnter(Collision collision)

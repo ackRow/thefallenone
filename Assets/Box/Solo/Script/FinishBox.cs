@@ -28,6 +28,14 @@ public class FinishBox : Box
         {
             SceneManager.LoadScene("Level4");
         }
+        else if (level == 4)
+        {
+            SceneManager.LoadScene("Level5");
+        }
+        else if (level == 5)
+        {
+            SceneManager.LoadScene("générique");
+        }
         else
         {
 
