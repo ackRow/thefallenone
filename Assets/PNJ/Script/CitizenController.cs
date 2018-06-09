@@ -17,7 +17,7 @@ public class CitizenController : MonoBehaviour
     //public Human target;
     Vector3 forward = new Vector3(1.0f, 0, 0);
 
-    int round = 50;
+    int round = 0;
 
     public Human target; // for scared
 
@@ -35,8 +35,8 @@ public class CitizenController : MonoBehaviour
 
         if (running)
         {
-            
-            afraidMovement();
+
+            citizen.Forward(true, forward);
         }
         else if (target is Player)
         {
@@ -61,20 +61,37 @@ public class CitizenController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (citizen.dead || !walking)
+        if (citizen.dead)
             return;
-        // Routine
-        if (round == 700)
+
+        if (walking)
         {
-            /*angle += 180.0f;
+            // Routine
+            if (round == 700)
+            {
+                /*angle += 180.0f;
 
-            citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
+                citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
 
-            round = 0;*/
-            walking = false;
+                round = 0;*/
+                walking = false;
+            }
+            round++;
         }
+        else if (running)
+        {
+            if (round == 300)
+            {
+                angle += 180.0f;
 
-        round++;
+                citizen.transform.rotation = Quaternion.AngleAxis(angle, citizen.transform.up); // rotate
+
+                round = 0;
+                walking = false;
+            }
+            round++;
+        }
+        
 
 
     }
