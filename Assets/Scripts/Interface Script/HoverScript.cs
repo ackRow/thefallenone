@@ -28,33 +28,33 @@ public class HoverScript : MonoBehaviour {
 
     public void OnPointerEnter(PointerEventData data)
     {
-        StartCoroutine(FadeText(false, 0.25f, 1, 0, red_text));
-        StartCoroutine(FadeText(false, 0.25f, 0, 1, green_text));
+        StartCoroutine(FadeText(false, 0.25f, 0, 1, 1, red_text));
+        StartCoroutine(FadeText(false, 0.25f, 1, 0, 1, green_text));
     }
 
     public void OnPointerExit(PointerEventData data)
     {
-        StartCoroutine(FadeText(true, 0.25f, 1, 0, red_text));
-        StartCoroutine(FadeText(true, 0.25f, 0, 1, green_text));
+        StartCoroutine(FadeText(true, 0.25f, 0, 1, 1, red_text));
+        StartCoroutine(FadeText(true, 0.25f, 1, 0, 1, green_text));
     }
 
-    IEnumerator FadeText(bool fadeAway, float duration, int red, int green, Text text)
+    IEnumerator FadeText(bool fadeAway, float duration, int red, int green, int blue, Text text)
     {
         if (fadeAway)
         {
             for (float i = 1; i >= 0; i -= Time.deltaTime * 1 / duration)
             {
-                text.color = new Color(red, green, 0, i);
+                text.color = new Color(red, green, blue, i);
                 yield return null;
             }
-            text.color = new Color(red, green, 0, 0);
+            text.color = new Color(red, green, blue, 0);
         }
 
         else
         {
             for (float i = 0; i <= 1; i += Time.deltaTime * 1 / duration)
             {
-                text.color = new Color(red, green, 0, i);
+                text.color = new Color(red, green, blue, i);
                 yield return null;
             }
         }
