@@ -120,7 +120,7 @@ public class BotController : MonoBehaviour
             return;
         }
         Vector3 targetDir = target.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 2.0f, 0.0f);  // 120degrés de champ de vision
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, Mathf.PI, 0.0f);  // 120degrés de champ de vision
 
         //Debug.DrawRay(bot.transform.position + new Vector3(0, 1f, 0), newDir, Color.red, 0.1f, true);
         //Debug.DrawRay(transform.position + new Vector3(0, 1.1f, 0), newDir, Color.red, 0.1f, true);   
