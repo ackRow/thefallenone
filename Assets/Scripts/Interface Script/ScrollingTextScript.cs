@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScrollingTextScript : MonoBehaviour {
@@ -37,5 +38,8 @@ public class ScrollingTextScript : MonoBehaviour {
         {
             thx.SetActive(true);
         }
+
+        if (Input.GetKeyDown("escape") || Input.GetKeyDown(KeyCode.Return))
+            SceneManager.LoadScene("Menu");
     }
 }

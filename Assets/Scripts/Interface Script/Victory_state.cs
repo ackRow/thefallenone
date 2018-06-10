@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Victory_state : MonoBehaviour {
 
@@ -9,6 +10,9 @@ public class Victory_state : MonoBehaviour {
     GameObject trophies;
     GameObject win;
     GameObject loose;
+
+    Text countDeath;
+    Text countKill;
 
     private void Start()
     {
@@ -23,6 +27,14 @@ public class Victory_state : MonoBehaviour {
 
         loose = GameObject.Find("loose");
         loose.SetActive(false);
+
+       /* countDeath = GameObject.Find("DeathCount").GetComponent<Text>();
+
+        countDeath.text = StaticInfo.Death.ToString();
+
+        countKill = GameObject.Find("KillCount").GetComponent<Text>();
+
+        countKill.text = StaticInfo.Kill.ToString();*/
 
         State(StaticInfo.Win);
     }
