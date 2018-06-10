@@ -9,6 +9,7 @@ public class PauseMenuScript : MonoBehaviour {
     
     public GameObject PauseMenuObject;
     public GameObject hud;
+    public GameObject OptionsMenu;
 
     public bool isActive;
 
@@ -17,10 +18,13 @@ public class PauseMenuScript : MonoBehaviour {
     bool button_set = false;
     Scene actual_scene;
 
+    bool options_shown;
+
     private void Awake()
     {
         isActive = false;
         solo = false;
+        options_shown = false;
     }
 
     void Set_buttons()
@@ -32,6 +36,9 @@ public class PauseMenuScript : MonoBehaviour {
 
             GameObject.Find("QuitButton").GetComponent<Button>().onClick.RemoveAllListeners();
             GameObject.Find("QuitButton").GetComponent<Button>().onClick.AddListener(Application.Quit);
+
+            GameObject.Find("OptionButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            GameObject.Find("OptionButton").GetComponent<Button>().onClick.AddListener(OptionMenu);
         }
         else
         {
@@ -40,6 +47,9 @@ public class PauseMenuScript : MonoBehaviour {
 
             GameObject.Find("QuitButton").GetComponent<Button>().onClick.RemoveAllListeners();
             GameObject.Find("QuitButton").GetComponent<Button>().onClick.AddListener(Application.Quit);
+
+            GameObject.Find("OptionButton").GetComponent<Button>().onClick.RemoveAllListeners();
+            GameObject.Find("OptionButton").GetComponent<Button>().onClick.AddListener(OptionMenu);
         }
     }
 
@@ -49,10 +59,8 @@ public class PauseMenuScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isActive = !isActive;
-            if (actual_scene.name == "Level1" || actual_scene.name == "Level2" || actual_scene.name == "Level3" || actual_scene.name == "Level4")
-            {
+            if (actual_scene.name == "Level1" || actual_scene.name == "Level2" || actual_scene.name == "Level3" || actual_scene.name == "Level4" || actual_scene.name == "Level5")
                 solo = true;
-            }
         }
 
         if (isActive)
@@ -70,9 +78,14 @@ public class PauseMenuScript : MonoBehaviour {
                 time_stop = true;
                 Time.timeScale = 0;
             }
+            if (options_shown)
+                OptionsMenu.SetActive(true);
+            else
+                OptionsMenu.SetActive(false);
         }
         else
         {
+            options_shown = false;
             PauseMenuObject.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
@@ -94,5 +107,10 @@ public class PauseMenuScript : MonoBehaviour {
     public void EXITButton()
     {
         Application.Quit();
+    }
+
+    public void OptionMenu()
+    {
+        options_shown = !options_shown;
     }
 }
