@@ -30,7 +30,7 @@ public class SettingsLink : MonoBehaviour {
         antiadd = GameObject.Find("Anti_Aliasing").GetComponent<Dropdown>();
         languagedd = GameObject.Find("Languages").GetComponent<Dropdown>();
         audiovolume = GameObject.Find("Audio").GetComponent<Slider>();
-        FPS = GameObject.Find("FPS").GetComponent<Text>();
+        FPS = GameObject.Find("FPS_display").GetComponent<Text>();
         Save = GameObject.Find("Save").GetComponent<Button>();
     }
 	

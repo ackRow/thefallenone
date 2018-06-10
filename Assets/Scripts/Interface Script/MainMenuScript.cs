@@ -109,6 +109,6 @@ public class MainMenuScript : MonoBehaviour
 
     public void Show_options()
     {
-        options_shown = !options_shown;
+        options_shown = true;
     }
 }
