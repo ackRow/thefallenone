@@ -18,8 +18,8 @@ public class Citizen : Human
         running_speed = 6f;
         health = 100.0f;
 
-        if (myAudio != null && !walking)
-            PlaySound(punchSound, 1.0f, false);
+        //if (myAudio != null && !walking)
+        //    PlaySound(punchSound, 1.0f, false);
     }
 
     // Update is called once per frame
@@ -30,8 +30,14 @@ public class Citizen : Human
         if(!walking && wasAfraid != afraid)
         {
             if (myAudio != null)
-                PlaySound(gunShotSound, 1.0f, false);
-
+            {
+                myAudio.loop = false;
+                myAudio.Stop();
+                PlaySound(gunShotSound, 0.4f, false);
+               
+            }
+            _capsCollider.height /= 1.1f;
+            _capsCollider.center /= 1.1f;
             wasAfraid = afraid;
         }
 
