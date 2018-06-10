@@ -7,6 +7,7 @@ public class Citizen : Human
     // Use this for initialization
 
     public bool afraid = false;
+    private bool wasAfraid = false;
 
     protected override void Start()
     {
@@ -16,12 +17,23 @@ public class Citizen : Human
         walking_speed = 2.5f;
         running_speed = 6f;
         health = 100.0f;
+
+        if (myAudio != null && !walking)
+            PlaySound(punchSound, 1.0f, false);
     }
 
     // Update is called once per frame
     protected override void Update()
     {
         base.Update();
+
+        if(!walking && wasAfraid != afraid)
+        {
+            if (myAudio != null)
+                PlaySound(gunShotSound, 1.0f, false);
+
+            wasAfraid = afraid;
+        }
 
         if (_animator && !dead)
         {
