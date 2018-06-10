@@ -77,10 +77,12 @@
      <Compile Include="Assets\PNJ\Script\CitizenController.cs" />
      <Compile Include="Assets\Scripts\Human.cs" />
      <Compile Include="Assets\Scripts\Interface Script\CustomNetManager.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\Dialogues_script.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\FPS.cs" />
      <Compile Include="Assets\Scripts\Interface Script\GradiantText.cs" />
-     <Compile Include="Assets\Scripts\Interface Script\HoverScript.cs" />
      <Compile Include="Assets\Scripts\Interface Script\ImageType.cs" />
      <Compile Include="Assets\Scripts\Interface Script\LoadingCircle.cs" />
+     <Compile Include="Assets\Scripts\Interface Script\loadWaffle.cs" />
      <Compile Include="Assets\Scripts\Interface Script\MainMenuScript.cs" />
      <Compile Include="Assets\Scripts\Interface Script\PauseMenuScript.cs" />
      <Compile Include="Assets\Scripts\Interface Script\Rotation_Y.cs" />
@@ -95,6 +97,8 @@
      <Compile Include="Assets\Scripts\Map\rotate.cs" />
      <Compile Include="Assets\Scripts\Network\Target_Net.cs" />
      <Compile Include="Assets\Scripts\Network\UPnP.cs" />
+     <Compile Include="Assets\Scripts\Options Scripts\GameSettings.cs" />
+     <Compile Include="Assets\Scripts\Options Scripts\SettingsLink.cs" />
      <Compile Include="Assets\Scripts\Target.cs" />
      <Compile Include="Assets\Scripts\WebSync\JsonClass.cs" />
      <Compile Include="Assets\Scripts\WebSync\LoginData.cs" />
