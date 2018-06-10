@@ -28,7 +28,14 @@ public class CustomNetManager : NetworkManager {
             if (main.multiplayerCanvas.activeSelf)
             {
                 mapselect = GameObject.Find("Dropdown").GetComponent<Dropdown>();
-                NetworkManager.singleton.onlineScene = mapselect.options[mapselect.value].text;
+                if (mapselect.value == 0)
+                {
+                    NetworkManager.singleton.onlineScene = "Multi2";
+                }
+                else
+                {
+                    NetworkManager.singleton.onlineScene = "Multi";
+                }
             }
         }
        
@@ -117,9 +124,6 @@ public class CustomNetManager : NetworkManager {
 
         GameObject.Find("Multi").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("Multi").GetComponent<Button>().onClick.AddListener(main.Multicv);
-
-        GameObject.Find("OptionButton").GetComponent<Button>().onClick.RemoveAllListeners();
-        GameObject.Find("OptionButton").GetComponent<Button>().onClick.AddListener(main.Show_options);
 
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.AddListener(main.ExitBtn);

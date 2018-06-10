@@ -180,16 +180,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Test des espaces dans un texte unity\n\noui cela fonctionne parfait\n\n\xE7a
-    m'\xE9vitera de faire tout un tas de texte et me faire chier \xE0 mettre le script
-    \xE0 chaque fois, c'est pas mal \xE7a consid\xE8re tout comme un bloc note.\n\nje
-    devrais par contre cr\xE9e d'autre texte si je veux changer la police\n\nj'aurai
-    probablement juste \xE0 tcheck la position des \xE9l\xE9ments et quand \xE7a arrive
-    \xE0 un certain pt dans l'espace, boom je balance le scroll tant qu'il n'a pas
-    atteint le centre de l'\xE9cran.\n\nNice on fait comme \xE7a ma gueule\n\n\nPourquoi
-    le scroll ne fonctionne pas\n\n\nUltra test\n\nJe l'ai fait plut\xF4t de la bonne
-    mani\xE8re cette fois\n\n\n\n\n\n\n\n\n\n\n\n\n\nOk donc \xE7a c'est super en
-    dessous\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  m_Text: "Game Over.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImagin\xE9
+    et cr\xE9e par la Dark Waffle :\r\n\r\nChef de projet :\r\nRosenkranz Hugo\r\n\r\nCommunity
+    Manager :\r\nHasselmann-H\xE9bert\r\n\r\nMechaniques de jeu :\r\n\r\nRosenkranz
+    Hugo\r\nGuillaume Mateos\r\n\r\n\r\nResponsable IA :\r\n\r\nGuillaume Mateos\r\n\r\n\r\nLevel
+    Design :\r\n\r\nHasselmann-H\xE9bert Romain\r\nRosenkranz Hugo\r\n\r\n\r\nNetwork
+    :\r\n\r\nRosenkranz Hugo\r\nMinary Th\xE9o\r\n\r\n\r\nGraphisme :\r\n\r\nHasselmann-H\xE9bert
+    Romain\r\nMinary Th\xE9o\r\n\r\n\r\nInterfaces :\r\n\r\nMinary Th\xE9o\r\n\r\n\r\nResponsable
+    web :\r\n\r\nMateos Guillaume\r\n\r\n\r\nAudio :\r\n\r\nRosenkranz Hugo\r\nHasselmann-H\xE9bert
+    Romain\r\nMateos Guillaume\r\nMinary Th\xE9o\r\n\r\n\r\nSpecial music voice :\r\n\r\nAlexandre
+    Chazal"
 --- !u!222 &143261073
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1256654770
 RectTransform:
   m_ObjectHideFlags: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5e8b0cb0be21949988342934864aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollspeed: 0.1
+  scrollspeed: 0.05
 --- !u!1 &1916312995
 GameObject:
   m_ObjectHideFlags: 0

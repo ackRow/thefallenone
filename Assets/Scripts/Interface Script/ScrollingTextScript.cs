@@ -25,7 +25,7 @@ public class ScrollingTextScript : MonoBehaviour {
 
     private void Update()
     {
-        if (text.transform.position.y < 280f)
+        if (text.transform.position.y < 920f)
         {
             float pos = textzone.verticalNormalizedPosition;
 
