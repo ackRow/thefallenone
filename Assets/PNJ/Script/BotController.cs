@@ -31,12 +31,16 @@ public class BotController : MonoBehaviour
     void Start()
     {
         bot = GetComponent<Bot>();
-        agent = GetComponent<NavMeshAgent>();
         bot.Scope();
 
-        // Attribut du NavMeshAgent
-        agent.speed = bot.walking_speed;
-        agent.stoppingDistance = minDistance;
+        if (!bot.standing)
+        {
+            agent = GetComponent<NavMeshAgent>();
+
+            // Attribut du NavMeshAgent
+            agent.speed = bot.walking_speed;
+            agent.stoppingDistance = minDistance;
+        }
     }
 
     // Update is called once per frame
@@ -109,7 +113,10 @@ public class BotController : MonoBehaviour
     {
         if (bot.dead)
         {
-            agent.destination = transform.position;
+            if (agent != null)
+            {
+                agent.destination = transform.position;
+            }
             return;
         }
         Vector3 targetDir = target.transform.position - transform.position;
@@ -122,20 +129,24 @@ public class BotController : MonoBehaviour
         if (rayPlayer(bot.transform.position + new Vector3(0, 0.9f, 0), newDir)) // ~ Le joueur est visible par le bot
         {
             //triggerTarget = true;
-            agent.destination = target.Position;
-            bot.walking = true;
-            if(bot.myAudio != null && !bot.myAudio.isPlaying)
-                bot.PlaySound(bot.stepSound, 1.5f, false);
+            if (agent != null)
+            {
+                agent.destination = target.Position;
+                bot.walking = true;
+                if (bot.myAudio != null && !bot.myAudio.isPlaying)
+                    bot.PlaySound(bot.stepSound, 1.5f, false);
+            }
 
             Quaternion rotateY = Quaternion.LookRotation(newDir);
 
-            if (distance < maxDistance)
+            if (distance < maxDistance || bot.standing)
             {
                 if (distance <= minDistance)
                 {
                     transform.rotation = new Quaternion(transform.rotation.x, rotateY.y, transform.rotation.z, rotateY.w);
                     bot.walking = false;
-                    agent.destination = transform.position;
+                    if (agent != null)
+                        agent.destination = transform.position;
                 }
 
 

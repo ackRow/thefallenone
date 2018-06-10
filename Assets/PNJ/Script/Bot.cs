@@ -6,6 +6,8 @@ public class Bot : Human
 {
     public bool lootGun = false;
     public GameObject gunBox;
+
+    public bool standing = false;
     // Use this for initialization
     protected override void Start () {
         base.Start();
