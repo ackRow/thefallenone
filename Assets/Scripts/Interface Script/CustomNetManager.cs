@@ -118,6 +118,9 @@ public class CustomNetManager : NetworkManager {
         GameObject.Find("Multi").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("Multi").GetComponent<Button>().onClick.AddListener(main.Multicv);
 
+        GameObject.Find("OptionButton").GetComponent<Button>().onClick.RemoveAllListeners();
+        GameObject.Find("OptionButton").GetComponent<Button>().onClick.AddListener(main.Show_options);
+
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.RemoveAllListeners();
         GameObject.Find("ExitButton").GetComponent<Button>().onClick.AddListener(main.ExitBtn);
     }

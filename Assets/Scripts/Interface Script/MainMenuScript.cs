@@ -11,13 +11,17 @@ public class MainMenuScript : MonoBehaviour
     public GameObject singleplayerCanvas;
     public GameObject multiplayerCanvas;
     public GameObject loadingCanvas;
+    public GameObject Options;
 
     public CustomNetManager netmanager;
     private bool button_set;
 
+    bool options_shown;
+
     private void Awake()
     {
         button_set = false;
+        options_shown = false;
     }
     /*private void Awake()
     {
@@ -40,6 +44,18 @@ public class MainMenuScript : MonoBehaviour
             button_set = true;
             netmanager = GameObject.Find("NetworkManager").GetComponent<CustomNetManager>();
             netmanager.SetupMenuButtons();
+        }
+
+        if (MainCanvas.activeSelf)
+        {
+            if (options_shown)
+                Options.SetActive(true);
+            else
+                Options.SetActive(false);
+        }
+        else
+        {
+            options_shown = false;
         }
     }
     public void Launchbtn(string Scene)
@@ -89,5 +105,10 @@ public class MainMenuScript : MonoBehaviour
         }
 
         MainCanvas.SetActive(true);
+    }
+
+    public void Show_options()
+    {
+        options_shown = !options_shown;
     }
 }
