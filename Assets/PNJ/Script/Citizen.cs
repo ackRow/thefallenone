@@ -33,7 +33,7 @@ public class Citizen : Human
             {
                 myAudio.loop = false;
                 myAudio.Stop();
-                PlaySound(gunShotSound, 0.4f, false);
+                PlaySound(gunShotSound, 0.3f, false);
                
             }
             _capsCollider.height /= 1.1f;
