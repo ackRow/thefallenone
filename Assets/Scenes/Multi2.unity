@@ -8741,7 +8741,7 @@ Transform:
   - {fileID: 1893582027}
   - {fileID: 834945961}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834945960
 GameObject:
@@ -15945,6 +15945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseMenuObject: {fileID: 1871612324}
   hud: {fileID: 1409919832}
+  OptionsMenu: {fileID: 0}
   isActive: 0
 --- !u!4 &931714719
 Transform:
@@ -17022,13 +17023,13 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4456655795119030, guid: 8b5ff4bd328930141a20d3df1776cc4d, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114047132956738332, guid: 8b5ff4bd328930141a20d3df1776cc4d,
         type: 2}
       propertyPath: m_PlayerPrefab
       value: 
-      objectReference: {fileID: 1219023020467244, guid: eee1535d3ddfe934e8641bd4d2f01a90,
+      objectReference: {fileID: 1998127034108446, guid: a842980dabc14a340919b8e3b04ea26d,
         type: 2}
     - target: {fileID: 1509282558926820, guid: 8b5ff4bd328930141a20d3df1776cc4d, type: 2}
       propertyPath: m_IsActive

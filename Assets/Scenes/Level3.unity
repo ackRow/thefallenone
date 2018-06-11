@@ -3694,7 +3694,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (16)
@@ -7859,7 +7859,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (5)
@@ -30455,7 +30455,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (1)
@@ -33010,7 +33010,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (15)
@@ -45284,7 +45284,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (12)
@@ -50756,7 +50756,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (8)
@@ -63535,7 +63535,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (14)
@@ -69391,7 +69391,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (13)
@@ -85870,7 +85870,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (3)
@@ -89913,7 +89913,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (9)
@@ -90026,7 +90026,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (10)
@@ -93779,7 +93779,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (4)
@@ -98726,7 +98726,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (7)
@@ -98744,6 +98744,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
   m_IsPrefabParent: 0
+--- !u!82 &1792958007 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 82147731826195662, guid: dd760b303cc62fb41b88a076dfcb906b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1797002176}
 --- !u!1 &1793147071
 GameObject:
   m_ObjectHideFlags: 0
@@ -106299,7 +106304,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (6)
@@ -109271,7 +109276,7 @@ Prefab:
         type: 2}
       propertyPath: myAudio
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1792958007}
     - target: {fileID: 1643962403562306, guid: a9b28103f95665e4da8ee42147e9883f, type: 2}
       propertyPath: m_Name
       value: garde (2)

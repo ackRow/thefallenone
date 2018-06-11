@@ -3549,6 +3549,8 @@ MonoBehaviour:
   OnlinePrefabArr:
   - {fileID: 1655026143534264, guid: 8c8cdd8842264644eab4890dc405917d, type: 2}
   - {fileID: 1219023020467244, guid: eee1535d3ddfe934e8641bd4d2f01a90, type: 2}
+  - {fileID: 1978324333263902, guid: a3391306f39d30a4782bdfc1e6e7da17, type: 2}
+  - {fileID: 1998127034108446, guid: a842980dabc14a340919b8e3b04ea26d, type: 2}
 --- !u!1 &463950261
 GameObject:
   m_ObjectHideFlags: 0
